@@ -1,6 +1,11 @@
 package principal;
 
+import java.util.List;
+
+import javax.swing.Icon;
 import javax.swing.ImageIcon; //Importando ImageIcon
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class Sapato {
 	
@@ -13,9 +18,10 @@ public class Sapato {
 	private double maiorTam;
 	private String descricao;
 	private ImageIcon fotoSapato;
+	private int qntdEstoque;
 
 	//Construtor
-	public Sapato(String nS, String m, char mod, double p, double men, double mai, String d, ImageIcon img) { //Falta colocar fotoSapato.
+	public Sapato(String nS, String m, char mod, double p, double men, double mai, String d, int q, ImageIcon img) { //Falta colocar fotoSapato.
 		nomeSapato = nS;
 		marca = m;
 		modelo = mod;
@@ -23,9 +29,10 @@ public class Sapato {
 		menorTam = men;
 		maiorTam = mai;
 		descricao = d;
+		qntdEstoque = q;
 		fotoSapato = img;
 	}
-	
+
 	//Gets e Sets
 	public String getNomeSapato() {
 		return nomeSapato;
@@ -82,5 +89,49 @@ public class Sapato {
 	}
 	public void setFotoSapato(ImageIcon fotoSapato) {
 		this.fotoSapato = fotoSapato;
+	}
+	
+	public int getQntdEstoque() {
+		return qntdEstoque;
+	}
+
+	public void setQntdEstoque(int qntdEstoque) {
+		this.qntdEstoque = qntdEstoque;
+	}
+	
+	// Alterar Sapato cadastrado
+	public static void alterarSapato(Sapato s, String novoN, String novoMarca, char novoMod, double novoP, double novoMenor, double novoMaior, String novaD, ImageIcon novoImg) {
+		s.setNomeSapato(novoN);
+		s.setMarca(novoMarca);
+		s.setModelo(novoMod);
+		s.setPreco(novoP);
+		s.setMenorTam(novoMenor);
+		s.setMaiorTam(novoMaior);
+		s.setDescricao(novaD);
+		s.setFotoSapato(novoImg);
+	}
+	
+	// Listar Sapatos cadastrados
+	public static void listaSapatos(List<Sapato> lista) {
+		System.out.println("------------- Lista de Sapatos -------------\n");
+		for(int i = 0; i < lista.size(); i++) {
+			System.out.println("Nome:\t\t" + lista.get(i).getNomeSapato() + "\n" +
+							   "Marca:\t\t" + lista.get(i).getMarca() + "\n" +
+							   "Modelo:\t\t" + lista.get(i).getModelo() + "\n" +
+							   "getPreco:\tR$" + lista.get(i).getPreco() + "\n" +
+							   "Tamanhos:\t" + lista.get(i).getMenorTam() + " até " + lista.get(i).getMaiorTam()+ "\n" +
+							   "Descricao:\t" + lista.get(i).getDescricao() + "\n" +
+							   "Estoque:\t" + lista.get(i).getQntdEstoque() + "\n" +
+							   "Foto:\t");
+			JFrame frame = new JFrame("Foto Sapato");
+			Icon imagem = lista.get(i).getFotoSapato();
+			JLabel label = new JLabel(imagem);
+			frame.add(label);
+			frame.setDefaultCloseOperation
+			         (JFrame.EXIT_ON_CLOSE);
+			frame.pack();
+			frame.setVisible(true);
+			System.out.println("\n\n");
+		}
 	}
 }

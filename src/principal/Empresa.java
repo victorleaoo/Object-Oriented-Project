@@ -1,12 +1,13 @@
 package principal;
 
+import java.util.List;
+
 public class Empresa {
 
 	//Atributos
 	private String nomeEmpresa;
 	private String CNPJ;
 	private int anoFund;
-	private Sapato[] estoque = new Sapato[40];
 	private String telEmpresa;
 	private String endEmpresa;
 	
@@ -41,13 +42,6 @@ public class Empresa {
 		this.anoFund = anoFund;
 	}
 
-	public Sapato[] getEstoque() {
-		return estoque;
-	}
-	public void setEstoque(Sapato[] estoque) {
-		this.estoque = estoque;
-	}
-
 	public String getTelEmpresa() {
 		return telEmpresa;
 	}
@@ -60,6 +54,27 @@ public class Empresa {
 	}
 	public void setEndEmpresa(String endEmpresa) {
 		this.endEmpresa = endEmpresa;
+	}
+	
+	// Listar Empresa(s) cadastrados
+	public static void listaEmpresa(List<Empresa> lista) {
+		System.out.println("------------- Lista de Empresa(s) -------------\n");
+		for(int i = 0; i < lista.size(); i++) {
+			System.out.println("Nome:\t\t" + lista.get(i).getNomeEmpresa() + "\n" +
+							   "CNPJ:\t\t" + lista.get(i).getCNPJ() + "\n" +
+							   "Ano Fundação:\t" + lista.get(i).getAnoFund() + "\n" +
+							   "Telefone:\t" + lista.get(i).getTelEmpresa() + "\n" +
+							   "Endereço:\t" + lista.get(i).getEndEmpresa() + "\n" + "\n\n");
+		}
+	}
+	
+	// Alterar Empresa cadastrada
+	public static void alterarEmpresa(Empresa e, String novoN, String novoCNPJ, int novoAno, String novoT, String novoEnd) {
+		e.setNomeEmpresa(novoN);
+		e.setCNPJ(novoCNPJ);
+		e.setAnoFund(novoAno);
+		e.setTelEmpresa(novoT);
+		e.setEndEmpresa(novoEnd);
 	}
 	
 }

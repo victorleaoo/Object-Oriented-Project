@@ -1,5 +1,7 @@
 package principal;
 
+import java.util.List;
+
 //Classe filha de PessoaFisica
 public class Funcionario extends PessoaFisica{
 
@@ -44,5 +46,25 @@ public class Funcionario extends PessoaFisica{
 	public void setAnoIngresso(int anoIngresso) {
 		this.anoIngresso = anoIngresso;
 	}
+	
+	// Listar Funcionários cadastrados
+	public static void listaFuncionarios(List<Funcionario> lista) {
+		System.out.println("------------- Lista de Funcionários -------------\n");
+		for(int i = 0; i < lista.size(); i++) {
+			System.out.println("Nome:\t\t" + lista.get(i).getNome() + "\n" +
+							   "Telefone:\t" + lista.get(i).getTelefone() + "\n" +
+							   "Id Func.:\t" + lista.get(i).getIdFunc() + "\n" +
+							   "Salário:\tR$" + lista.get(i).getSalario() + "\n" +
+							   "Ingresso:\t" + lista.get(i).getAnoIngresso() + "\n\n");
+		}
+	}
 
+	// Alterar Funcionário cadastrado
+	public static void alterarFunc(Funcionario f, String novoN, String novoT, int novoId, double novoSal, int novoAno) {
+		f.setNome(novoN);
+		f.setTelefone(novoT);
+		f.setIdFunc(novoId);
+		f.setSalario(novoSal);
+		f.setAnoIngresso(novoAno);
+	}
 }
