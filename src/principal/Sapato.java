@@ -1,5 +1,8 @@
 package principal;
 
+import java.util.List;
+
+import javax.swing.Icon;
 import javax.swing.ImageIcon; //Importando ImageIcon
 
 public class Sapato {
@@ -82,5 +85,32 @@ public class Sapato {
 	}
 	public void setFotoSapato(ImageIcon fotoSapato) {
 		this.fotoSapato = fotoSapato;
+	}
+	
+	// Alterar Sapato cadastrado
+	public static void alterarSapato(Sapato s, String novoN, String novoMarca, char novoMod, double novoP, double novoMenor, double novoMaior, String novaD, ImageIcon novoImg) {
+		s.setNomeSapato(novoN);
+		s.setMarca(novoMarca);
+		s.setModelo(novoMod);
+		s.setPreco(novoP);
+		s.setMenorTam(novoMenor);
+		s.setMaiorTam(novoMaior);
+		s.setDescricao(novaD);
+		s.setFotoSapato(novoImg);
+	}
+	
+	// Listar Sapatos cadastrados
+	public static void listaSapatos(List<Sapato> lista) {
+		System.out.println("------------- Lista de Sapatos -------------\n");
+		for(int i = 0; i < lista.size(); i++) {
+			Icon imagem = lista.get(i).getFotoSapato();
+			System.out.println("Nome:\t\t" + lista.get(i).getNomeSapato() + "\n" +
+							   "Marca:\t\t" + lista.get(i).getMarca() + "\n" +
+							   "Modelo:\t\t" + lista.get(i).getModelo() + "\n" +
+							   "getPreco:\tR$" + lista.get(i).getPreco() + "\n" +
+							   "Tamanhos:\t" + lista.get(i).getMenorTam() + " até " + lista.get(i).getMaiorTam()+ "\n" +
+							   "Descricao:\t" + lista.get(i).getDescricao() + "\n" +
+							   "Foto:\t" + lista.get(i).getFotoSapato() + "\n\n");
+		}
 	}
 }
