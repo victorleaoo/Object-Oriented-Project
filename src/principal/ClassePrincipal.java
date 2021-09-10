@@ -45,31 +45,40 @@ public class ClassePrincipal {
 		listF.add(f3);
 		
 		List<Sapato> listS = new ArrayList<Sapato>();
-		//Cadastro Prévio de Sapatos - Sapato(String nS, String m, char mod, double p, double men, double mai, String d, ImageIcon img) -> Testando funcionamento do construtor dessa classe
+		//Cadastro Prévio de Sapatos - Sapato(String nS, String m, char mod, double p, double men, double mai, String d, int q, ImageIcon img) -> Testando funcionamento do construtor dessa classe
 		ImageIcon imgObsidian = new ImageIcon("../imgs/airjordan-obsidian.jpg");
-		s1 = new Sapato("Air Jordan 1 - Obsidian", "Nike", 'C', 1749.99, 34.5, 44.0, "Tênis de Couro/Borracha, com as cores em homenagem a Universidade que Jordan jogou.", imgObsidian);
+		s1 = new Sapato("Air Jordan 1 - Obsidian", "Nike", 'C', 1749.99, 34.5, 44.0, "Tênis de Couro/Borracha, com as cores em homenagem a Universidade que Jordan jogou.", 10, imgObsidian);
 		listS.add(s1);
 		ImageIcon imgSLX = new ImageIcon("../imgs/slx-rider.jpg");
-		s2 = new Sapato("Chinelo Slide - SLX", "Rider", 'S', 179.99, 35.0, 44.5, "Chinelo sandália macio, com elementos da NBA e do filme Space Jam para fãs.", imgSLX);
+		s2 = new Sapato("Chinelo Slide - SLX", "Rider", 'S', 179.99, 35.0, 44.5, "Chinelo sandália macio, com elementos da NBA e do filme Space Jam para fãs.", 20, imgSLX);
 		listS.add(s2);
 		ImageIcon imgGel6 = new ImageIcon("../imgs/gel6-asics.jpg");
-		s3 = new Sapato("Gel-Dedicate 6 - Tênis", "Asics", 'E', 275.49, 39.0, 45.0, "Tênis ideal para jogadores de Tênis, especialmente em quadras de Saibro, com muita estabilidade torsional.", imgGel6);
+		s3 = new Sapato("Gel-Dedicate 6 - Tênis", "Asics", 'E', 275.49, 39.0, 45.0, "Tênis ideal para jogadores de Tênis, especialmente em quadras de Saibro, com muita estabilidade torsional.", 30, imgGel6);
 		listS.add(s3);
 		
 		ImageIcon imgBoost = new ImageIcon("../imgs/ultraboost-adidas.jpg");
 		
 		List<Empresa> listE = new ArrayList<Empresa>();
-		//Cadastro Prévio da Empresa - Empresa(String nE, String c, int f, String t, String eE) //Falta colocar estoque -> Testando funcionamento do construtor dessa classe
+		//Cadastro Prévio da Empresa - Empresa(String nE, String c, int f, String t, String eE) -> Testando funcionamento do construtor dessa classe
 		e1 = new Empresa("Luv Sneakers", "59.546.515/0001-34", 2015, "(11) 4935-2323", "QG Luv Sneakers - DF");
 		listE.add(e1);
 		
 		List<Venda> listV = new ArrayList<Venda>();
+		Sapato[] arrVenda1 = new Sapato[1];
+		arrVenda1[0] = s1;
+		Sapato[] arrVenda2 = new Sapato[2];
+		arrVenda2[0] = s1; 
+		arrVenda2[1] = s2;
+		Sapato[] arrVenda3 = new Sapato[3];
+		arrVenda3[0] = s1; 
+		arrVenda3[1] = s2;
+		arrVenda3[2] = s3;
 		//Cadastro Prévio de Vendas - Venda(int qtdV, char mP, Funcionario fun, Cliente cli, Sapato sap) -> Testando funcionamento do construtor dessa classe
-		v1 = new Venda(1, 'C', f1, c1, s1);
+		v1 = new Venda(1, 'C', f1, c1, arrVenda1);
 		listV.add(v1);
-		v2 = new Venda(2, 'B', f2, c2, s2);
+		v2 = new Venda(2, 'B', f2, c2, arrVenda2);
 		listV.add(v2);
-		v3 = new Venda(3, 'P', f3, c3, s3);
+		v3 = new Venda(3, 'P', f3, c3, arrVenda3);
 		listV.add(v3);
 		
 		//Testando funcionamento dos sets da classe Cliente - alterarCliente(Cliente c, String novoN, String novoT, String novoE, String novoEd)
@@ -92,8 +101,10 @@ public class ClassePrincipal {
 		//Testando funcionamento dos gets da classe Empresa
 		Empresa.listaEmpresa(listE);
 		
+		
+		
 		//Testando funcionamento dos sets da classe Venda - alterarVenda(Venda v, int novaQntd, char novoMet, Funcionario novoFunc, Cliente novoCli, Sapato novoSap)
-		Venda.alterarVenda(v3, 33, 'C', f2, c2, s3);
+		Venda.alterarVenda(v3, 33, 'C', f2, c2, null);
 		//Testando funcionamento dos gets da classe Venda 
 		Venda.listaVendas(listV);
 	}

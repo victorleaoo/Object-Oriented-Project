@@ -9,10 +9,10 @@ public class Venda {
 	private char metPag; // 'C'/'c' para Cartão - 'B'/'b' para Boleto - 'P'/'p' para Pix
 	private Funcionario f;
 	private Cliente c; 
-	private Sapato s;
+	private Sapato[] s = new Sapato[100];
 	
 	//Construtor
-	public Venda(int qtdV, char mP, Funcionario fun, Cliente cli, Sapato sap) {
+	public Venda(int qtdV, char mP, Funcionario fun, Cliente cli, Sapato[] sap) {
 		qntdVenda = qtdV;
 		metPag = mP;
 		f = fun;
@@ -49,13 +49,13 @@ public class Venda {
 		this.c = c;
 	}
 
-	public Sapato getS() {
+	public Sapato[] getS() {
 		return s;
 	}
-	public void setS(Sapato s) {
+	public void setS(Sapato[] s) {
 		this.s = s;
 	}
-	
+
 	// Listar Vendas cadastradas
 	public static void listaVendas(List<Venda> lista) {
 		System.out.println("------------- Lista de Vendas -------------\n");
@@ -63,13 +63,12 @@ public class Venda {
 			System.out.println("Quantidade Vendida:\t" + lista.get(i).getQntdVenda() + "\n" +
 							   "Método de Pagamento:\t" + lista.get(i).getMetPag() + "\n" +
 							   "Funcionário que Vendeu:\t" + lista.get(i).getF().getNome() + "\n" +
-							   "Cliente Comprador:\t" + lista.get(i).getC().getNome() + "\n" +
-							   "Sapato Comprado:\t" + lista.get(i).getS().getNomeSapato() + "\n\n");
+							   "Cliente Comprador:\t" + lista.get(i).getC().getNome() + "\n\n");
 		}
 	}
 	
 	// Alterar Venda cadastrada
-	public static void alterarVenda(Venda v, int novaQntd, char novoMet, Funcionario novoFunc, Cliente novoCli, Sapato novoSap) {
+	public static void alterarVenda(Venda v, int novaQntd, char novoMet, Funcionario novoFunc, Cliente novoCli, Sapato[] novoSap) {
 		v.setQntdVenda(novaQntd);
 		v.setMetPag(novoMet);
 		v.setF(novoFunc);
