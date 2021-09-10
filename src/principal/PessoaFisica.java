@@ -2,9 +2,11 @@ package principal;
 
 public abstract class PessoaFisica {
 	
+	//Atributos
 	protected String nome;
-	protected int telefone;
+	protected String telefone;
 	
+	//Gets e Sets
 	public String getNome() {
 		return nome;
 	}
@@ -12,12 +14,11 @@ public abstract class PessoaFisica {
 		this.nome = nome;
 	}
 	
-	public int getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
-	public void setTelefone(int telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
 	
 }

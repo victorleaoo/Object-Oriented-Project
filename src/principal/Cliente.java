@@ -2,17 +2,19 @@ package principal;
 
 public class Cliente extends PessoaFisica{
 	
+	//Atributos
 	private String email;
 	private String endCliente;
-	//private char metPag;
 	
-	public Cliente(String nP, int t, String em, String eC) { //Falta colocar metodo de pagamento.
+	//Construtor
+	public Cliente(String nP, String t, String em, String eC) { 
 		nome = nP;
 		telefone = t;
 		email = em;
 		endCliente = eC;
 	}
-	
+
+	//Gets e Sets
 	public String getEmail() {
 		return email;
 	}

@@ -2,11 +2,13 @@ package principal;
 
 public class Funcionario extends PessoaFisica{
 
+	//Atributos
 	private int idFunc;
 	private double salario;
 	private int anoIngresso;
 	
-	public Funcionario(String nP, int t, int id, double s, int ano) { //Falta colocar modelo e fotoSapato.
+	//Construtor
+	public Funcionario(String nP, String t, int id, double s, int ano) {
 		nome = nP;
 		telefone = t;
 		idFunc = id;
@@ -14,6 +16,7 @@ public class Funcionario extends PessoaFisica{
 		anoIngresso = ano;
 	}
 	
+	//Gets e Sets
 	public int getIdFunc() {
 		return idFunc;
 	}
@@ -35,6 +38,4 @@ public class Funcionario extends PessoaFisica{
 		this.anoIngresso = anoIngresso;
 	}
 
-
-	
 }
