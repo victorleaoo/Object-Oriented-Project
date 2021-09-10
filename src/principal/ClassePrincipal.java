@@ -18,16 +18,20 @@ public class ClassePrincipal {
 	
 	static Empresa e1;
 	
+	static Venda v1;
+	static Venda v2;
+	static Venda v3;
+	
 	public static void main(String[] args) {
 		//Cadastro Prévio de Clientes - Cliente(String nP, String t, String em, String eC)
-		c1 = new Cliente("Victor", "61 991844198", "victor@gmail.com", "Rua 1 - Casa 1");
-		c2 = new Cliente("Felipe", "61 996357291", "felipe@gmail.com", "Rua 2 - Casa 2");
-		c3 = new Cliente("João Pedro", "61 996017244", "joaopedro@gmail.com", "Rua 3 - Casa 3");
+		c1 = new Cliente("Victor", "(61) 99184-4198", "victor@gmail.com", "Rua 1 - Casa 1");
+		c2 = new Cliente("Felipe", "(61) 99635-7291", "felipe@gmail.com", "Rua 2 - Casa 2");
+		c3 = new Cliente("João Pedro", "(61) 99601-7244", "joaopedro@gmail.com", "Rua 3 - Casa 3");
 		
 		//Cadastro Prévio de Funcionários - Funcionario(String nP, String t, int id, double s, int ano)
-		f1 = new Funcionario("Jorge", "61 983457102", 11, 3052.0, 2018);
-		f2 = new Funcionario("Yure", "61 992017202", 22, 2320.0, 2019);
-		f2 = new Funcionario("Daniel", "61 933317708", 33, 750.55, 2021);
+		f1 = new Funcionario("Jorge", "(61) 98345-7102", 11, 3052.0, 2018);
+		f2 = new Funcionario("Yure", "(61) 99201-7202", 22, 2320.0, 2019);
+		f2 = new Funcionario("Daniel", "(61) 93331-7708", 33, 750.55, 2021);
 		
 		//Cadastro Prévio de Sapatos - Sapato(String nS, String m, char mod, double p, double men, double mai, String d, ImageIcon img)
 		ImageIcon imgObsidian = new ImageIcon("../imgs/airjordan-obsidian.jpg");
@@ -37,8 +41,13 @@ public class ClassePrincipal {
 		ImageIcon imgGel6 = new ImageIcon("../imgs/gel6-asics");
 		s3 = new Sapato("Gel-Dedicate 6 - Tênis", "Asics", 'S', 275.49, 39.0, 45.0, "Tênis ideal para jogadores de Tênis, especialmente em quadras de Saibro, com muita estabilidade torsional.", imgGel6);
 	
-		//Cadastro Prévio de Empresa - Empresa(String nE, int c, int f, String t, String eE) //Falta colocar estoque
-		e1 = new Empresa("Luv Sneakers", );
+		//Cadastro Prévio da Empresa - Empresa(String nE, String c, int f, String t, String eE) //Falta colocar estoque
+		e1 = new Empresa("Luv Sneakers", "59.546.515/0001-34", 2015, "(11) 4935-2323", "QG Luv Sneakers - DF");
+		
+		//Cadastro Prévio de Vendas - Venda(int qtdV, char mP, Funcionario fun, Cliente cli, Sapato sap) //Analisar Array
+		v1 = new Venda(1, 'C', f1, c1, s1);
+		v2 = new Venda(2, 'B', f2, c2, s2);
+		v3 = new Venda(3, 'P', f3, c3, s3);
 	}
 
 }

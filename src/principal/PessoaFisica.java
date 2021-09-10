@@ -1,5 +1,6 @@
 package principal;
 
+// Caso de classe abstrata + Classe pai (herança)
 public abstract class PessoaFisica {
 	
 	//Atributos

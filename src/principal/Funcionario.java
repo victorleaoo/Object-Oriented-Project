@@ -1,5 +1,6 @@
 package principal;
 
+//Classe filha de PessoaFisica
 public class Funcionario extends PessoaFisica{
 
 	//Atributos
@@ -7,7 +8,13 @@ public class Funcionario extends PessoaFisica{
 	private double salario;
 	private int anoIngresso;
 	
-	//Construtor
+	//Construtor 1
+	public Funcionario(String nP, String t) {
+		nome = nP;
+		telefone = t;
+	}
+	
+	//Construtor 2 - Sobrecarga de Método.
 	public Funcionario(String nP, String t, int id, double s, int ano) {
 		nome = nP;
 		telefone = t;

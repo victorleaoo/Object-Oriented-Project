@@ -6,11 +6,11 @@ public class Venda {
 	private int qntdVenda;
 	private char metPag; // 'C'/'c' para Cartão - 'B'/'b' para Boleto - 'P'/'p' para Pix
 	private Funcionario f;
-	private Cliente c;
-	private Sapato s;
+	private Cliente c; //Analisar Array
+	private Sapato s; //Analisar Array
 	
 	//Construtor
-	public Venda(int qtdV, char mP, Funcionario fun, Cliente cli, Sapato sap) {
+	public Venda(int qtdV, char mP, Funcionario fun, Cliente cli, Sapato sap) { //Analisar Array
 		qntdVenda = qtdV;
 		metPag = mP;
 		f = fun;

@@ -11,7 +11,7 @@ public class Empresa {
 	private String endEmpresa;
 	
 	//Construtor
-	public Empresa(String nE, int c, int f, String t, String eE) { //Falta colocar estoque
+	public Empresa(String nE, String c, int f, String t, String eE) { //Falta colocar estoque
 		nomeEmpresa = nE;
 		CNPJ = c;
 		anoFund = f;
@@ -27,10 +27,10 @@ public class Empresa {
 		this.nomeEmpresa = nomeEmpresa;
 	}
 
-	public int getCNPJ() {
+	public String getCNPJ() {
 		return CNPJ;
 	}
-	public void setCNPJ(int cNPJ) {
+	public void setCNPJ(String cNPJ) {
 		CNPJ = cNPJ;
 	}
 	

@@ -1,5 +1,6 @@
 package principal;
 
+//Classe filha de PessoaFisica
 public class Cliente extends PessoaFisica{
 	
 	//Atributos
