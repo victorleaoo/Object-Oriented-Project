@@ -38,7 +38,7 @@ public class ClassePrincipal {
 		s3 = new Sapato("Gel-Dedicate 6 - Tênis", "Asics", 'S', 275.49, 39.0, 45.0, "Tênis ideal para jogadores de Tênis, especialmente em quadras de Saibro, com muita estabilidade torsional.", imgGel6);
 	
 		//Cadastro Prévio de Empresa - Empresa(String nE, int c, int f, String t, String eE) //Falta colocar estoque
-		e1 = new Empresa("Luv Sneakers")
+		e1 = new Empresa("Luv Sneakers", );
 	}
 
 }

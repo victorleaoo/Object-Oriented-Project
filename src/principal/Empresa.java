@@ -4,7 +4,7 @@ public class Empresa {
 
 	//Atributos
 	private String nomeEmpresa;
-	private int CNPJ;
+	private String CNPJ;
 	private int anoFund;
 	private Sapato[] estoque = new Sapato[40];
 	private String telEmpresa;
