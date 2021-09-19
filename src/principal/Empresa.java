@@ -10,6 +10,7 @@ public class Empresa {
 	private int anoFund;
 	private String telEmpresa;
 	private String endEmpresa;
+	private List<Sapato> estoque;
 	
 	//Construtor
 	public Empresa(String nE, String c, int f, String t, String eE) { //Falta colocar estoque
