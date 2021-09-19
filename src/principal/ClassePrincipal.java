@@ -64,15 +64,6 @@ public class ClassePrincipal {
 		listE.add(e1);
 		
 		List<Venda> listV = new ArrayList<Venda>();
-		Sapato[] arrVenda1 = new Sapato[1];
-		arrVenda1[0] = s1;
-		Sapato[] arrVenda2 = new Sapato[2];
-		arrVenda2[0] = s1; 
-		arrVenda2[1] = s2;
-		Sapato[] arrVenda3 = new Sapato[3];
-		arrVenda3[0] = s1; 
-		arrVenda3[1] = s2;
-		arrVenda3[2] = s3;
 		//Cadastro Prévio de Vendas - Venda(int qtdV, char mP, Funcionario fun, Cliente cli, Sapato sap) -> Testando funcionamento do construtor dessa classe
 		v1 = new Venda(1, 'C', f1, c1, arrVenda1);
 		listV.add(v1);
