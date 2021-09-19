@@ -6,29 +6,20 @@ import java.util.List;
 public class Venda {
 
 	//Atributos
-	private int qntdVenda;
 	private char metPag; // 'C'/'c' para Cartão - 'B'/'b' para Boleto - 'P'/'p' para Pix
 	private Funcionario f;
 	private Cliente c; 
-	private Sapato s;
+	private List<ItensVenda> sapatos;
 	
 	//Construtor
-	public Venda(int qtdV, char mP, Funcionario fun, Cliente cli, Sapato spt) {
-		qntdVenda = qtdV;
+	public Venda(char mP, Funcionario fun, Cliente cli) {
 		metPag = mP;
 		f = fun;
 		c = cli;
-		s = spt;
+		sapatos = new ArrayList<>();
 	}
 	
 	//Gets e Sets
-	public int getQntdVenda() {
-		return qntdVenda;
-	}
-	public void setQntdVenda(int qntdVenda) {
-		this.qntdVenda = qntdVenda;
-	}
-	
 	public char getMetPag() {
 		return metPag;
 	}
@@ -50,24 +41,44 @@ public class Venda {
 		this.c = c;
 	}
 
-	// Listar Vendas cadastradas
-	public static void listaVendas(List<Venda> lista) {
-		System.out.println("------------- Lista de Vendas -------------\n");
-		for(int i = 0; i < lista.size(); i++) {
-			System.out.println("Quantidade Vendida:\t" + lista.get(i).getQntdVenda() + "\n" +
-							   "Método de Pagamento:\t" + lista.get(i).getMetPag() + "\n" +
-							   "Funcionário que Vendeu:\t" + lista.get(i).getF().getNome() + "\n" +
-							   "Cliente Comprador:\t" + lista.get(i).getC().getNome() + "\n\n");
+	public List<ItensVenda> getSapatos() {
+		return sapatos;
+	}
+	public void setSapatos(List<ItensVenda> sapatos) {
+		this.sapatos = sapatos;
+	}
+	
+	//Colocar um sapato a uma única venda.
+	public void addItem(ItensVenda s) {
+		sapatos.add(s);
+	}
+	
+	//Alterar uma venda
+	public static void alterarVenda(Venda v, char mP, Funcionario func, Cliente cli) {
+		v.setMetPag(mP);
+		v.setF(func);
+		v.setC(cli);
+	}
+	
+	//Alterar quantidade vendida de uma venda
+	public void alterarItem(ItensVenda s, int nQ) {
+		for (ItensVenda itensVenda : sapatos) {
+			if(itensVenda.equals(s)) {
+				itensVenda.setQntdVenda(nQ);
+			}
 		}
 	}
 	
-	// Alterar Venda cadastrada
-	public static void alterarVenda(Venda v, int novaQntd, char novoMet, Funcionario novoFunc, Cliente novoCli, Sapato novoSap) {
-		v.setQntdVenda(novaQntd);
-		v.setMetPag(novoMet);
-		v.setF(novoFunc);
-		v.setC(novoCli);
-		v.setS(novoSap);
+	//Apagar um sapato de uma lista
+	public void deletarItem(ItensVenda s) {
+		sapatos.remove(s);
 	}
 	
+	public void listaItens() {
+		System.out.println("---"+c.getNome()+"---");
+		for (ItensVenda itensVenda : sapatos) {
+			System.out.println(itensVenda.getS().getNomeSapato() + " - " + itensVenda.getQntdVenda());
+		}
+		System.out.println("-------------------------------------------------------");
+	}
 }

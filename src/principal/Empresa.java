@@ -11,6 +11,7 @@ public class Empresa {
 	private String telEmpresa;
 	private String endEmpresa;
 	private List<Sapato> estoque;
+	private List<Funcionario> listaFunc;
 
 	//Construtor
 	public Empresa(String nE, String c, int f, String t, String eE) { //Falta colocar estoque
@@ -62,6 +63,13 @@ public class Empresa {
 	}
 	public void setEstoque(List<Sapato> estoque) {
 		this.estoque = estoque;
+	}
+	
+	public List<Funcionario> getlistaFunc() {
+		return listaFunc;
+	}
+	public void setlistaFunc(List<Funcionario> listaFunc) {
+		this.listaFunc = listaFunc;
 	}
 	
 	// Listar Empresa(s) cadastrados

@@ -64,13 +64,27 @@ public class ClassePrincipal {
 		listE.add(e1);
 		
 		List<Venda> listV = new ArrayList<Venda>();
-		//Cadastro Prévio de Vendas - Venda(int qtdV, char mP, Funcionario fun, Cliente cli, Sapato sap) -> Testando funcionamento do construtor dessa classe
-		v1 = new Venda(1, 'C', f1, c1, arrVenda1);
+		//Cadastro Prévio de Vendas - Venda(char mP, Funcionario fun, Cliente cli) -> Testando funcionamento do construtor dessa classe
+		v1 = new Venda('C', f1, c1);
+		v1.addItem(new ItensVenda(s1, 1));
 		listV.add(v1);
-		v2 = new Venda(2, 'B', f2, c2, arrVenda2);
+		v1.listaItens();
+		v1.listaItens();
+		v2 = new Venda('B', f2, c2);
+		v2.addItem(new ItensVenda(s1, 2));
+		v2.addItem(new ItensVenda(s2, 3));
 		listV.add(v2);
-		v3 = new Venda(3, 'P', f3, c3, arrVenda3);
+		v2.listaItens();
+		v3 = new Venda('P', f3, c3);
+		var itv = new ItensVenda(s2, 3);
+		v3.addItem(new ItensVenda(s1, 1));
+		v3.addItem(itv);
+		v3.addItem(new ItensVenda(s3, 5));
+		v3.listaItens();
+		v3.alterarItem(itv, 10);
+		v3.listaItens();
 		listV.add(v3);
+		
 		
 		//Testando funcionamento dos sets da classe Cliente - alterarCliente(Cliente c, String novoN, String novoT, String novoE, String novoEd)
 		Cliente.alterarCliente(c3, "Enzo", "(61) 999123-4134", "enzo@gmail.com", "Rua 10 - Casa 10");
@@ -92,12 +106,8 @@ public class ClassePrincipal {
 		//Testando funcionamento dos gets da classe Empresa
 		Empresa.listaEmpresa(listE);
 		
-		
-		
 		//Testando funcionamento dos sets da classe Venda - alterarVenda(Venda v, int novaQntd, char novoMet, Funcionario novoFunc, Cliente novoCli, Sapato novoSap)
-		Venda.alterarVenda(v3, 33, 'C', f2, c2, null);
-		//Testando funcionamento dos gets da classe Venda 
-		Venda.listaVendas(listV);
+		Venda.alterarVenda(v3, 'C', f2, c2);
 	}
 
 }
