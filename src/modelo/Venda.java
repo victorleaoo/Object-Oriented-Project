@@ -5,13 +5,11 @@ import java.util.List;
 
 public class Venda {
 
-	//Atributos
 	private char metPag; // 'C'/'c' para Cartão - 'B'/'b' para Boleto - 'P'/'p' para Pix
 	private Funcionario f;
 	private Cliente c; 
 	private List<ItensVenda> sapatos;
 	
-	//Construtor
 	public Venda(char mP, Funcionario fun, Cliente cli) {
 		metPag = mP;
 		f = fun;
@@ -19,7 +17,6 @@ public class Venda {
 		sapatos = new ArrayList<>();
 	}
 	
-	//Gets e Sets
 	public char getMetPag() {
 		return metPag;
 	}
@@ -53,12 +50,6 @@ public class Venda {
 		sapatos.add(s);
 	}
 	
-	//Alterar uma venda
-	public static void alterarVenda(Venda v, char mP, Funcionario func, Cliente cli) {
-		v.setMetPag(mP);
-		v.setF(func);
-		v.setC(cli);
-	}
 	
 	//Alterar quantidade vendida de uma venda
 	public void alterarItem(ItensVenda s, int nQ) {
@@ -74,11 +65,4 @@ public class Venda {
 		sapatos.remove(s);
 	}
 	
-	public void listaItens() {
-		System.out.println("---"+c.getNome()+"---");
-		for (ItensVenda itensVenda : sapatos) {
-			System.out.println(itensVenda.getS().getNomeSapato() + " - " + itensVenda.getQntdVenda());
-		}
-		System.out.println("-------------------------------------------------------");
-	}
 }

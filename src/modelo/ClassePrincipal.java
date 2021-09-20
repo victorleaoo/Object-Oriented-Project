@@ -68,46 +68,17 @@ public class ClassePrincipal {
 		v1 = new Venda('C', f1, c1);
 		v1.addItem(new ItensVenda(s1, 1));
 		listV.add(v1);
-		v1.listaItens();
-		v1.listaItens();
 		v2 = new Venda('B', f2, c2);
 		v2.addItem(new ItensVenda(s1, 2));
 		v2.addItem(new ItensVenda(s2, 3));
 		listV.add(v2);
-		v2.listaItens();
 		v3 = new Venda('P', f3, c3);
 		var itv = new ItensVenda(s2, 3);
 		v3.addItem(new ItensVenda(s1, 1));
 		v3.addItem(itv);
 		v3.addItem(new ItensVenda(s3, 5));
-		v3.listaItens();
 		v3.alterarItem(itv, 10);
-		v3.listaItens();
 		listV.add(v3);
-		
-		
-		//Testando funcionamento dos sets da classe Cliente - alterarCliente(Cliente c, String novoN, String novoT, String novoE, String novoEd)
-		Cliente.alterarCliente(c3, "Enzo", "(61) 999123-4134", "enzo@gmail.com", "Rua 10 - Casa 10");
-		//Testando funcionamento dos gets da classe Cliente
-		Cliente.listaClientes(listC); 
-		
-		//Testando funcionamento dos sets da classe Funcionário - alterarFunc(Funcionario f, String novoN, String novoT, int novoId, double novoSal, int novoAno)
-		Funcionario.alterarFunc(f3, "Guilherme", "(61) 988423-7734", 11, 10000.00, 2011);
-		//Testando funcionamento dos gets da classe Funcionario 
-		Funcionario.listaFuncionarios(listF);
-		
-		//Testando funcionamento dos sets da classe Sapato - alterarSapato(Sapato s, String novoN, String novoMarca, char novoMod, double novoP, double novoMenor, double novoMaior, String novaD, ImageIcon novoImg)
-		Sapato.alterarSapato(s3, "Ultraboost - Corrida", "Adidas", 'E', 999.99, 37.0, 44.0, "Tênis com tecnologia boost, extremamente confortável e ideal para corridas.", imgBoost);
-		//Testando funcionamento dos gets da classe Sapato 
-		Sapato.listaSapatos(listS);
-		
-		//Testando funcionamento dos sets da classe Empresa - alterarEmpresa(Empresa e, String novoN, String novoCNPJ, int novoAno, String novoT, String novoEnd)
-		Empresa.alterarEmpresa(e1, "Luv Sneakers <3", "61.546.515/0001-34", 2011, "(61) 4935-2323", "QG Luv Sneakers - Brasília/DF");
-		//Testando funcionamento dos gets da classe Empresa
-		Empresa.listaEmpresa(listE);
-		
-		//Testando funcionamento dos sets da classe Venda - alterarVenda(Venda v, int novaQntd, char novoMet, Funcionario novoFunc, Cliente novoCli, Sapato novoSap)
-		Venda.alterarVenda(v3, 'C', f2, c2);
 	}
 
 }
