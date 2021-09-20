@@ -1,7 +1,5 @@
 package modelo;
 
-import java.util.List;
-
 public class Cliente extends PessoaFisica{
 	
 	private String email;

@@ -1,11 +1,6 @@
 package modelo;
 
-import java.util.List;
-
-import javax.swing.Icon;
 import javax.swing.ImageIcon; //Importando ImageIcon
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 public class Sapato {
 	
