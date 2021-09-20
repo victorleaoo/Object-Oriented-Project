@@ -1,4 +1,4 @@
-package principal;
+package modelo;
 
 // Caso de classe abstrata + Classe pai (herança)
 public abstract class PessoaFisica {
