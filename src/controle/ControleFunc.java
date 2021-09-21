@@ -7,7 +7,7 @@ public class ControleFunc {
 	private Funcionario[] func;
 	private int qtdFuncionarios;
 	
-	public String[] getNomeSpts() {
+	public String[] getNomeFuncs() {
 		String[] s = new String[qtdFuncionarios];
 		for(int i = 0; i < qtdFuncionarios; i++) {
 			s[i] = func[i].getNome();

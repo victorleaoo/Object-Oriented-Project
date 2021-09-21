@@ -1,7 +1,5 @@
 package modelo;
 
-import javax.swing.ImageIcon; //Importando ImageIcon
-
 public class Sapato {
 	
 	private String nomeSapato;
@@ -11,10 +9,10 @@ public class Sapato {
 	private double menorTam;
 	private double maiorTam;
 	private String descricao;
-	private ImageIcon fotoSapato;
+	private String fotoSapato; //Será o diretório/URL para onde está a imagem do sapato (posteriormente será usado como ImageIcon)
 	private int qntdEstoque;
 
-	public Sapato(String nS, String m, char mod, double p, double men, double mai, String d, int q, ImageIcon img) { //Falta colocar fotoSapato.
+	public Sapato(String nS, String m, char mod, double p, double men, double mai, String d, int q, String img) { //Falta colocar fotoSapato.
 		nomeSapato = nS;
 		marca = m;
 		modelo = mod;
@@ -76,10 +74,10 @@ public class Sapato {
 		this.descricao = descricao;
 	}
 	
-	public ImageIcon getFotoSapato() {
+	public String getFotoSapato() {
 		return fotoSapato;
 	}
-	public void setFotoSapato(ImageIcon fotoSapato) {
+	public void setFotoSapato(String fotoSapato) {
 		this.fotoSapato = fotoSapato;
 	}
 	
