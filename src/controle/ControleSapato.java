@@ -54,7 +54,7 @@ public class ControleSapato {
 		return spt[i].getDescricao();
 	}
 	
-	public ImageIcon getFotoSapato(int i) {		
+	public String getFotoSapato(int i) {		
 		return spt[i].getFotoSapato();
 	}
 	
