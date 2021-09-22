@@ -1,13 +1,16 @@
 package controle;
 
-import javax.swing.ImageIcon;
-
 import modelo.Sapato;
 
 public class ControleSapato {
 
 	private Sapato[] spt;
 	private int qtdSapatos;
+	
+	public ControleSapato(ControleDados d) {
+		spt = d.getSapatos();
+		qtdSapatos = d.getQtdSapato();
+	}
 	
 	public String[] getNomeSpts() {
 		String[] s = new String[qtdSapatos];

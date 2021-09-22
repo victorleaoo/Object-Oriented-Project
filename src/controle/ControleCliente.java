@@ -7,6 +7,11 @@ public class ControleCliente {
 	private Cliente[] cli;
 	private int qtdClientes;
 	
+	public ControleCliente(ControleDados d) {
+		cli = d.getClientes();
+		qtdClientes = d.getQtdClientes();
+	}
+	
 	public String[] getNomeClientes() {
 		String[] s = new String[qtdClientes];
 		for(int i = 0; i < qtdClientes; i++) {

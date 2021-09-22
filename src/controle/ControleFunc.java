@@ -7,6 +7,11 @@ public class ControleFunc {
 	private Funcionario[] func;
 	private int qtdFuncionarios;
 	
+	public ControleFunc(ControleDados d) {
+		func = d.getFuncionarios();
+		qtdFuncionarios = d.getQtdFuncionario();
+	}
+	
 	public String[] getNomeFuncs() {
 		String[] s = new String[qtdFuncionarios];
 		for(int i = 0; i < qtdFuncionarios; i++) {

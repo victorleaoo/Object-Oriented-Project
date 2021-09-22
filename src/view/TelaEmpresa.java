@@ -7,4 +7,5 @@ public class TelaEmpresa {
 	private JLabel titulo = new JLabel("Controle da Empresa");
 	private JButton refresh = new JButton("Refresh");
 	
+	
 }

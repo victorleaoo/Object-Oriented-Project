@@ -64,22 +64,13 @@ public class MenuPrincipal implements ActionListener {
 					JOptionPane.INFORMATION_MESSAGE);
 		
 		if(src == sapato) 
-			JOptionPane.showMessageDialog(null, 
-					"Ainda precisam ser implementadas as funcionalidades\n"
-					+ "relacionadas a sapato", null, 
-					JOptionPane.INFORMATION_MESSAGE);
+			new TelaSapato().mostrarSapatos(dados);
 		
 		if(src == cliente) 
-			JOptionPane.showMessageDialog(null, 
-					"Ainda precisam ser implementadas as funcionalidades\n"
-					+ "relacionadas a cliente", null, 
-					JOptionPane.INFORMATION_MESSAGE);
+			new TelaCliente().mostrarClientes(dados);
 		
 		if(src == funcionario) 
-			JOptionPane.showMessageDialog(null, 
-					"Ainda precisam ser implementadas as funcionalidades\n"
-					+ "relacionadas a funcionario", null, 
-					JOptionPane.INFORMATION_MESSAGE);
+			new TelaFuncionario().mostrarFuncionarios(dados);
 		
 		if(src == venda) 
 			JOptionPane.showMessageDialog(null, 
