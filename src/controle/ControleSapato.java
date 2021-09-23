@@ -37,20 +37,24 @@ public class ControleSapato {
 		return spt[i].getMarca();
 	}
 	
-	public char getModelo(int i) {		
-		return spt[i].getModelo();
+	public String getModelo(int i) {	
+		String modelo = String.valueOf(spt[i].getModelo());
+		return modelo;
 	}
 	
-	public double getPreco(int i) {		
-		return spt[i].getPreco();
+	public String getPreco(int i) {		
+		String preco = String.valueOf(spt[i].getPreco());
+		return preco;
 	}
 	
-	public double getMenorTam(int i) {		
-		return spt[i].getMenorTam();
+	public String getMenorTam(int i) {
+		String menorTam = String.valueOf(spt[i].getMenorTam());
+		return menorTam;
 	}
 	
-	public double getMaiorTam(int i) {		
-		return spt[i].getMaiorTam();
+	public String getMaiorTam(int i) {	
+		String maiorTam = String.valueOf(spt[i].getMaiorTam());
+		return maiorTam;
 	}
 	
 	public String getDescricao(int i) {		
@@ -61,8 +65,9 @@ public class ControleSapato {
 		return spt[i].getFotoSapato();
 	}
 	
-	public int getEstoque(int i) {		
-		return spt[i].getQntdEstoque();
+	public String getEstoque(int i) {
+		String estoque = String.valueOf(spt[i].getQntdEstoque());
+		return estoque;
 	}
 	
 }

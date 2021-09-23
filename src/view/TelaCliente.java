@@ -1,18 +1,21 @@
 package view;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import controle.ControleCliente;
 import controle.ControleDados;
-import controle.ControleSapato;
 
-public class TelaCliente {
+public class TelaCliente implements ActionListener, ListSelectionListener {
 	private JFrame janela = new JFrame("Clientes");
 	private JLabel titulo = new JLabel("Controle de Clientes");
 	private JButton cadastrarCliente = new JButton("Cadastrar Cliente");
@@ -45,6 +48,36 @@ public class TelaCliente {
 
 		janela.setSize(400, 250);
 		janela.setVisible(true);
+		
+		cadastrarCliente.addActionListener(this);
+		refresh.addActionListener(this);
+		listaClientesCadastrados.addListSelectionListener(this);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object src = e.getSource();
+		
+		//Cadastro de novo cliente
+		if(src == cadastrarCliente)
+			new TelaDetalheCliente().inserirEditar(1, dados, this, 0);
+		
+		// Atualiza a lista de nomes de clientes mostrada no JList
+		if(src == refresh) {
+			listaClientesCadastrados.setListData(new ControleCliente(dados).getNomeClientes());			
+			listaClientesCadastrados.updateUI();
+		}
+		
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		Object src = e.getSource();
+
+		if(e.getValueIsAdjusting() && src == listaClientesCadastrados) {
+			new TelaDetalheCliente().inserirEditar(2, dados, this, 
+					listaClientesCadastrados.getSelectedIndex());
+		}
 	}
 	
 }

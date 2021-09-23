@@ -42,8 +42,8 @@ public class ControleFunc {
 		return IdFunc;
 	}
 	
-	public double getSalario(int i) {
-		return func[i].getSalario();
+	public String getSalario(int i) {
+		return String.valueOf(func[i].getSalario());
 	}
 	
 	public String getAnoIng(int i) {

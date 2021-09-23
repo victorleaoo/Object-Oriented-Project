@@ -1,18 +1,22 @@
 package view;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import controle.ControleCliente;
 import controle.ControleDados;
 import controle.ControleFunc;
 
-public class TelaFuncionario {
+public class TelaFuncionario implements ActionListener, ListSelectionListener {
 	private JFrame janela = new JFrame("Funcionários");
 	private JLabel titulo = new JLabel("Controle de Funcionários");
 	private JButton cadastrarFunc = new JButton("Cadastrar Funcionário");
@@ -45,5 +49,37 @@ public class TelaFuncionario {
 
 		janela.setSize(400, 250);
 		janela.setVisible(true);
+		
+		cadastrarFunc.addActionListener(this);
+		refresh.addActionListener(this);
+		listaFuncCadastrados.addListSelectionListener(this);
 	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object src = e.getSource();
+		
+		//Cadastro de novo funcionário
+		if(src == cadastrarFunc)
+			new TelaDetalheFunc().inserirEditar(1, dados, this, 0);
+		
+		// Atualiza a lista de nomes de funcionários mostrada no JList
+		if(src == refresh) {
+			listaFuncCadastrados.setListData(new ControleFunc(dados).getNomeFuncs());			
+			listaFuncCadastrados.updateUI();
+		}
+		
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		Object src = e.getSource();
+
+		if(e.getValueIsAdjusting() && src == listaFuncCadastrados) {
+			new TelaDetalheFunc().inserirEditar(2, dados, this, 
+					listaFuncCadastrados.getSelectedIndex());
+		}
+		
+	}
+	
 }
