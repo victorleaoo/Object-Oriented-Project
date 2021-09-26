@@ -20,14 +20,14 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 	private JLabel titulo = new JLabel("Controle de Clientes");
 	private JButton cadastrarCliente = new JButton("Cadastrar Cliente");
 	private JButton refresh = new JButton("Refresh");
-	public static ControleDados dados;
+	public static ControleCliente dados;
 	private JList<String> listaClientesCadastrados;
 	private String[] listaNomesClientes = new String[50];
 	
-	public void mostrarClientes(ControleDados d) {
-		dados = d;
+	public void mostrarClientes() {
+		dados = new ControleCliente();
 		
-		listaNomesClientes = new ControleCliente(dados).getNomeClientes();
+		listaNomesClientes = dados.getNomeClientes();
 		listaClientesCadastrados = new JList<String>(listaNomesClientes);
 		
 		titulo.setFont(new Font("Helvetica", Font.BOLD, 20));
@@ -64,7 +64,7 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 		
 		// Atualiza a lista de nomes de clientes mostrada no JList
 		if(src == refresh) {
-			listaClientesCadastrados.setListData(new ControleCliente(dados).getNomeClientes());			
+			listaClientesCadastrados.setListData(dados.getNomeClientes());			
 			listaClientesCadastrados.updateUI();
 		}
 		

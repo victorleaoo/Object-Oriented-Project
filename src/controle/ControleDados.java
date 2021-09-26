@@ -3,7 +3,7 @@ package controle;
 import modelo.*;
 
 public class ControleDados {
-	private Dados d = new Dados();
+	protected Dados d = new Dados();
 	
 	public ControleDados() {
 		d.preCadastro();
@@ -36,10 +36,7 @@ public class ControleDados {
 	public Cliente[] getClientes() {
 		return this.d.getdClientes();
 	}
-	
-	public int getQtdClientes() {
-		return this.d.getQtdClientes();
-	}
+
 	
 	public Funcionario[] getFuncionarios() {
 		return this.d.getdFuncs();

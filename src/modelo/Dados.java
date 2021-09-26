@@ -7,7 +7,6 @@ public class Dados {
 	private Empresa dEmpresa = new Empresa("Luv Sneakers", "59.546.515/0001-34", 2015, "(11) 4935-2323", "QG Luv Sneakers - DF");
 	private int qtdEmpresa = 1;
 	private Cliente[] dClientes = new Cliente[50];
-	private int qtdClientes = 0;
 	private Funcionario[] dFuncs = new Funcionario[50];
 	private int qtdFuncionarios = 0;
 	private ItensVenda[] dItens = new ItensVenda[150];
@@ -16,9 +15,9 @@ public class Dados {
 	
 	public void preCadastro() {
 		
-		dSapatos[0] = new Sapato("Air Jordan 1 - Obsidian", "Nike", 'C', 1749.99, 34.5, 44.0, "Tênis de Couro/Borracha, com as cores em homenagem a Universidade que Jordan jogou.", 10, "../imgs/airjordan-obsidian.jpg");
-		dSapatos[1] = new Sapato("Chinelo Slide - SLX", "Rider", 'S', 179.99, 35.0, 44.5, "Chinelo sandália macio, com elementos da NBA e do filme Space Jam para fãs.", 20, "../imgs/slx-rider.jpg");
-		dSapatos[2] = new Sapato("Gel-Dedicate 6 - Tênis", "Asics", 'E', 275.49, 39.0, 45.0, "Tênis ideal para jogadores de Tênis, especialmente em quadras de Saibro, com muita estabilidade torsional.", 30, "../imgs/gel6-asics.jpg");
+		dSapatos[0] = new Sapato("Air Jordan 1 - Obsidian", "Nike", 'C', 1749.99, 34.5, 44.0, "Tênis de Couro/Borracha, com as cores em homenagem a Universidade que Jordan jogou.", 10, "imagens/airjordan-obsidian.jpg");
+		dSapatos[1] = new Sapato("Chinelo Slide - SLX", "Rider", 'S', 179.99, 35.0, 44.5, "Chinelo sandália macio, com elementos da NBA e do filme Space Jam para fãs.", 20, "imagens/slx-rider.jpg");
+		dSapatos[2] = new Sapato("Gel-Dedicate 6 - Tênis", "Asics", 'E', 275.49, 39.0, 45.0, "Tênis ideal para jogadores de Tênis, especialmente em quadras de Saibro, com muita estabilidade torsional.", 30, "imagens/gel6-asics.jpg");
 		
 		dClientes[0] = new Cliente("Victor", "(61) 99184-4198", "victor@gmail.com", "Rua 1 - Casa 1");
 		dClientes[1] = new Cliente("Felipe", "(61) 99635-7291", "felipe@gmail.com", "Rua 2 - Casa 2");
@@ -39,7 +38,6 @@ public class Dados {
 		dVendas[2].addItem(new ItensVenda(dSapatos[2], 5));
 		
 		qtdSapatos = 3;
-		qtdClientes = 3;
 		qtdFuncionarios = 3;
 		qtdVendas = 3;
 	}
@@ -69,6 +67,9 @@ public class Dados {
 	public void setQtdEmpresa(int qtdEmpresa) {
 		this.qtdEmpresa = qtdEmpresa;
 	}
+	public void inserirEditaSapato(Sapato s, int pos) {
+		this.dSapatos[pos] = s;
+	}
 	
 	public Cliente[] getdClientes() {
 		return dClientes;
@@ -76,11 +77,8 @@ public class Dados {
 	public void setdClientes(Cliente[] dClientes) {
 		this.dClientes = dClientes;
 	}
-	public int getQtdClientes() {
-		return qtdClientes;
-	}
-	public void setQtdClientes(int qtdClientes) {
-		this.qtdClientes = qtdClientes;
+	public void inserirEditaCliente(Cliente c, int pos) {
+		this.dClientes[pos] = c;
 	}
 	
 	public Funcionario[] getdFuncs() {
@@ -95,6 +93,10 @@ public class Dados {
 	public void setQtdFuncionarios(int qtdFuncionarios) {
 		this.qtdFuncionarios = qtdFuncionarios;
 	}
+	public void inserirEditaFunc(Funcionario f, int pos) {
+		this.dFuncs[pos] = f;
+	}
+
 	
 	public ItensVenda[] getdItens() {
 		return dItens;

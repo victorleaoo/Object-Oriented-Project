@@ -6,9 +6,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import controle.ControleDados;
+import controle.ControleFunc;
 
 public class TelaDetalheFunc implements ActionListener {
 	
@@ -26,12 +28,12 @@ public class TelaDetalheFunc implements ActionListener {
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoSalvar = new JButton("Salvar");
 	private String[] novoDado = new String[9];
-	private static ControleDados dados;
+	private static ControleFunc dados;
 	private int posicao;
 	private int opcao;
 	private String s;
 	
-	public void inserirEditar(int op, ControleDados d, TelaFuncionario f, int pos) {
+	public void inserirEditar(int op, ControleFunc d, TelaFuncionario f, int pos) {
 		
 		opcao = op;
 		posicao = pos;
@@ -89,7 +91,6 @@ public class TelaDetalheFunc implements ActionListener {
 		this.janela.add(valorSalario);
 		this.janela.add(labelAnoIng);
 		this.janela.add(valorAnoIng);
-		this.janela.add(valorTelefone);
 		this.janela.add(botaoSalvar);
 
 		this.janela.setLayout(null);
@@ -104,8 +105,70 @@ public class TelaDetalheFunc implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		Object src = e.getSource();
 		
+		if(src == botaoSalvar) {
+			try {
+				boolean res;				
+				novoDado[1] = valorNome.getText();
+				novoDado[2] = valorTelefone.getText();
+				novoDado[3] = valorID.getText();
+				novoDado[4] = valorSalario.getText();
+				novoDado[5] = valorAnoIng.getText();
+				if(opcao == 1) { //Cadastro de novo funcionario
+					novoDado[0] = Integer.toString(dados.getQtd());
+					res = dados.inserirFunc(novoDado);
+				}
+				else { //Edição de funcionário				
+					novoDado[0] = Integer.toString(posicao);
+					res = dados.editarFunc(novoDado);
+				}
+												
+				if(res) {
+					mensagemSucessoCadastro();
+				} else mensagemErroCadastro();
+			}
+			catch (NullPointerException exc1) {
+				mensagemErroCadastro();
+			} catch (NumberFormatException exc2) {
+				mensagemErroCadastro();
+			}
+		}
+		
+		
+		if(src == botaoExcluir) { 
+			boolean res = false;
+		 
+		//exclui cliente
+			res = dados.removerFunc(posicao);
+			if (res) mensagemSucessoExclusao(); 
+			else mensagemErroExclusaoFunc(); 
+		}
+		
+	}
+	
+	public void mensagemSucessoCadastro() {
+		JOptionPane.showMessageDialog(null, "Os dados foram salvos com sucesso!", null, 
+				JOptionPane.INFORMATION_MESSAGE);
+		janela.dispose();
+	}
+	
+	public void mensagemSucessoExclusao() {
+		JOptionPane.showMessageDialog(null, "Os dados foram excluidos com sucesso!", null, 
+				JOptionPane.INFORMATION_MESSAGE);
+		janela.dispose();
+	}
+	
+	public void mensagemErroCadastro() {
+		JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n " + "Nem todos os campos foram preenchidos OU \n"
+	+ "Dados com tipos inválidos", null, 
+				JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public void mensagemErroExclusaoFunc() {
+		JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o dado.\n"+ 
+							"Dê o refresh antes de excluir o próximo funcionário.", null, 
+				JOptionPane.ERROR_MESSAGE);
 	}
 
 }

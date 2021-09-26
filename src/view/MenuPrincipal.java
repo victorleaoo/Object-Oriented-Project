@@ -1,10 +1,15 @@
 package view;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
+import controle.ControleCliente;
 import controle.ControleDados;
 
 public class MenuPrincipal implements ActionListener {
@@ -16,7 +21,6 @@ public class MenuPrincipal implements ActionListener {
 	private static JButton cliente = new JButton("Cliente");
 	private static JButton funcionario = new JButton("Funcionário");
 	private static JButton venda = new JButton("Venda");
-	public static ControleDados dados = new ControleDados();
 	
 	public MenuPrincipal() {
 		titulo.setFont(new Font("Helvetica", Font.BOLD, 20));
@@ -58,19 +62,16 @@ public class MenuPrincipal implements ActionListener {
 		Object src = e.getSource();
 		
 		if(src == empresa) 
-			JOptionPane.showMessageDialog(null, 
-					"Ainda precisam ser implementadas as funcionalidades\n"
-					+ "relacionadas a empresa", null, 
-					JOptionPane.INFORMATION_MESSAGE);
+			new TelaEmpresa().mostrarEmpresa(new ControleDados());
 		
 		if(src == sapato) 
-			new TelaSapato().mostrarSapatos(dados);
+			new TelaSapato().mostrarSapatos();
 		
 		if(src == cliente) 
-			new TelaCliente().mostrarClientes(dados);
+			new TelaCliente().mostrarClientes();
 		
 		if(src == funcionario) 
-			new TelaFuncionario().mostrarFuncionarios(dados);
+			new TelaFuncionario().mostrarFuncionarios();
 		
 		if(src == venda) 
 			JOptionPane.showMessageDialog(null, 

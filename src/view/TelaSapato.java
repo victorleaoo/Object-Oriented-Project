@@ -20,14 +20,14 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
 	private JLabel titulo = new JLabel("Controle de Sapatos");
 	private JButton cadastrarSapato = new JButton("Cadastrar Sapato");
 	private JButton refresh = new JButton("Refresh");
-	public static ControleDados dados;
+	public static ControleSapato dados;
 	private JList<String> listaSapatosCadastrados;
 	private String[] listaNomesSapatos = new String[50];
 	
-	public void mostrarSapatos(ControleDados d) {
-		dados = d;
+	public void mostrarSapatos() {
+		dados = new ControleSapato();
 		
-		listaNomesSapatos = new ControleSapato(dados).getNomeSpts();
+		listaNomesSapatos = dados.getNomeSpts();
 		listaSapatosCadastrados = new JList<String>(listaNomesSapatos);
 		
 		titulo.setFont(new Font("Helvetica", Font.BOLD, 20));
@@ -64,7 +64,7 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
 		
 		// Atualiza a lista de nomes de sapatos mostrada no JList
 		if(src == refresh) {
-			listaSapatosCadastrados.setListData(new ControleSapato(dados).getNomeSpts());			
+			listaSapatosCadastrados.setListData(dados.getNomeSpts());			
 			listaSapatosCadastrados.updateUI();
 		}
 		

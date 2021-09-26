@@ -21,14 +21,14 @@ public class TelaFuncionario implements ActionListener, ListSelectionListener {
 	private JLabel titulo = new JLabel("Controle de Funcionários");
 	private JButton cadastrarFunc = new JButton("Cadastrar Funcionário");
 	private JButton refresh = new JButton("Refresh");
-	public static ControleDados dados;
+	public static ControleFunc dados;
 	private JList<String> listaFuncCadastrados;
 	private String[] listaNomesFuncs = new String[50];
 	
-	public void mostrarFuncionarios(ControleDados d) {
-		dados = d;
+	public void mostrarFuncionarios() {
+		dados = new ControleFunc();
 		
-		listaNomesFuncs = new ControleFunc(dados).getNomeFuncs();
+		listaNomesFuncs = dados.getNomeFuncs();
 		listaFuncCadastrados = new JList<String>(listaNomesFuncs);
 		
 		titulo.setFont(new Font("Helvetica", Font.BOLD, 20));
@@ -65,7 +65,7 @@ public class TelaFuncionario implements ActionListener, ListSelectionListener {
 		
 		// Atualiza a lista de nomes de funcionários mostrada no JList
 		if(src == refresh) {
-			listaFuncCadastrados.setListData(new ControleFunc(dados).getNomeFuncs());			
+			listaFuncCadastrados.setListData(dados.getNomeFuncs());			
 			listaFuncCadastrados.updateUI();
 		}
 		
