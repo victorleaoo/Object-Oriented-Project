@@ -31,7 +31,7 @@ public final class Dados {
 		dVendas[2] = new Venda('P', dFuncs[2], dClientes[2]);
 		dVendas[2].addItem(new ItensVenda(dSapatos[0], 1));
 		dVendas[2].addItem(new ItensVenda(dSapatos[1], 3));
-		dVendas[2].addItem(new ItensVenda(dSapatos[2], 5));		
+		dVendas[2].addItem(new ItensVenda(dSapatos[2], 5));	
 	}
 
 	public Sapato[] getdSapatos() {

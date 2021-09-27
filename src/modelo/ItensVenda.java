@@ -1,6 +1,6 @@
 package modelo;
 
-public class ItensVenda {
+public class ItensVenda implements Model{
 	
 	private Sapato s;
 	private int qntdVenda;
@@ -22,6 +22,11 @@ public class ItensVenda {
 	}
 	public void setQntdVenda(int qntdVenda) {
 		this.qntdVenda = qntdVenda;
+	}
+
+	@Override
+	public String getModel() {
+		return "Sapato";
 	}
 	
 }

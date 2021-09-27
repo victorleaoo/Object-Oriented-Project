@@ -32,6 +32,14 @@ public class ControleVenda extends ControleDados {
 		return v;
 	}
 	
+	public String[] getNomeItens(List<ItensVenda> sapatos) {
+		String[] s = new String[sapatos.size()];
+		for(int i = 0; i < sapatos.size(); i++) {
+			s[i] = sapatos.get(i).getS().getNomeSapato();
+		}		
+		return s;
+	}
+	
 	public int getQtd() {
 		return qtdVendas;
 	}
@@ -58,14 +66,12 @@ public class ControleVenda extends ControleDados {
 
 
 	@Override
-	public boolean inserir(String[] dados) {
-		
+	public boolean inserir(String[] dados) {		
 		return false;
 	}
 
 	@Override
-	public boolean editar(String[] dados) {
-		
+	public boolean editar(String[] dados) {		
 		return false;
 	}
 
