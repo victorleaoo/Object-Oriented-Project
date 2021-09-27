@@ -62,7 +62,7 @@ public class MenuPrincipal implements ActionListener {
 		Object src = e.getSource();
 		
 		if(src == empresa) 
-			new TelaEmpresa().mostrarEmpresa(new ControleDados());
+			new TelaEmpresa().mostrarEmpresa();
 		
 		if(src == sapato) 
 			new TelaSapato().mostrarSapatos();
@@ -74,10 +74,7 @@ public class MenuPrincipal implements ActionListener {
 			new TelaFuncionario().mostrarFuncionarios();
 		
 		if(src == venda) 
-			JOptionPane.showMessageDialog(null, 
-					"Ainda precisam ser implementadas as funcionalidades\n"
-					+ "relacionadas a venda", null, 
-					JOptionPane.INFORMATION_MESSAGE);
+			new TelaVenda().mostrarVendas();
 	}
 
 }

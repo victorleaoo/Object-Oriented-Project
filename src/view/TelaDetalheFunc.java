@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import controle.ControleDados;
 import controle.ControleFunc;
 
 public class TelaDetalheFunc implements ActionListener {
@@ -46,11 +45,11 @@ public class TelaDetalheFunc implements ActionListener {
 		
 		if (op == 2) { //Preenche dados com dados do funcionário clicado
 			
-			valorNome = new JTextField(dados.getFuncionarios()[pos].getNome(), 200);
-			valorTelefone = new JTextField(dados.getFuncionarios()[pos].getTelefone(),200);
-			valorID = new JTextField(String.valueOf(dados.getFuncionarios()[pos].getIdFunc()), 200);
-			valorSalario = new JTextField(String.valueOf(dados.getFuncionarios()[pos].getSalario()),200);
-			valorAnoIng = new JTextField(String.valueOf(dados.getFuncionarios()[pos].getAnoIngresso()),4);
+			valorNome = new JTextField(dados.getLista()[pos].getNome(), 200);
+			valorTelefone = new JTextField(dados.getLista()[pos].getTelefone(),200);
+			valorID = new JTextField(String.valueOf(dados.getLista()[pos].getIdFunc()), 200);
+			valorSalario = new JTextField(String.valueOf(dados.getLista()[pos].getSalario()),200);
+			valorAnoIng = new JTextField(String.valueOf(dados.getLista()[pos].getAnoIngresso()),4);
 			
 		} else { //Não preenche com dados
 
@@ -117,11 +116,11 @@ public class TelaDetalheFunc implements ActionListener {
 				novoDado[5] = valorAnoIng.getText();
 				if(opcao == 1) { //Cadastro de novo funcionario
 					novoDado[0] = Integer.toString(dados.getQtd());
-					res = dados.inserirFunc(novoDado);
+					res = dados.inserir(novoDado);
 				}
 				else { //Edição de funcionário				
 					novoDado[0] = Integer.toString(posicao);
-					res = dados.editarFunc(novoDado);
+					res = dados.editar(novoDado);
 				}
 												
 				if(res) {
@@ -140,7 +139,7 @@ public class TelaDetalheFunc implements ActionListener {
 			boolean res = false;
 		 
 		//exclui cliente
-			res = dados.removerFunc(posicao);
+			res = dados.remover(posicao);
 			if (res) mensagemSucessoExclusao(); 
 			else mensagemErroExclusaoFunc(); 
 		}

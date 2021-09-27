@@ -3,7 +3,7 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Venda {
+public class Venda implements Model {
 
 	private char metPag; // 'C'/'c' para Cartão - 'B'/'b' para Boleto - 'P'/'p' para Pix
 	private Funcionario f;
@@ -63,6 +63,12 @@ public class Venda {
 	//Apagar um sapato de uma lista
 	public void deletarItem(ItensVenda s) {
 		sapatos.remove(s);
+	}
+
+	@Override
+	public String getModel() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

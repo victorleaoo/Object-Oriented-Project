@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import controle.ControleCliente;
-import controle.ControleDados;
 
 public class TelaDetalheCliente implements ActionListener {
 	
@@ -44,10 +43,10 @@ public class TelaDetalheCliente implements ActionListener {
 		
 		if (op == 2) { //Preenche dados com dados do cliente clicado
 			
-			valorNome = new JTextField(dados.getClientes()[pos].getNome(), 200);
-			valorTelefone = new JTextField(dados.getClientes()[pos].getTelefone(),200);
-			valorEmail = new JTextField(dados.getClientes()[pos].getEmail(),200);
-			valorEnd = new JTextField(dados.getClientes()[pos].getEndCliente(),200);
+			valorNome = new JTextField(dados.getLista()[pos].getNome(), 200);
+			valorTelefone = new JTextField(dados.getLista()[pos].getTelefone(),200);
+			valorEmail = new JTextField(dados.getLista()[pos].getEmail(),200);
+			valorEnd = new JTextField(dados.getLista()[pos].getEndCliente(),200);
 			
 		} else { //Não preenche com dados
 
@@ -107,11 +106,11 @@ public class TelaDetalheCliente implements ActionListener {
 				novoDado[4] = valorEnd.getText();
 				if(opcao == 1) { //Cadastro de novo cliente
 					novoDado[0] = Integer.toString(dados.getQtd());
-					res = dados.inserirCliente(novoDado);
+					res = dados.inserir(novoDado);
 				}
 				else { //Edição de Cliente				
 					novoDado[0] = Integer.toString(posicao);
-					res = dados.editarCliente(novoDado);
+					res = dados.editar(novoDado);
 				}
 												
 				if(res) {
@@ -130,7 +129,7 @@ public class TelaDetalheCliente implements ActionListener {
 			boolean res = false;
 		 
 		//exclui cliente
-			res = dados.removerCliente(posicao);
+			res = dados.remover(posicao);
 			if (res) mensagemSucessoExclusao(); 
 			else mensagemErroExclusaoCliente(); 
 		}

@@ -13,7 +13,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import controle.ControleDados;
 import controle.ControleSapato;
 
 public class TelaDetalheSapato implements ActionListener {
@@ -42,7 +41,7 @@ public class TelaDetalheSapato implements ActionListener {
 	private JTextField valorEstoque;
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoSalvar = new JButton("Salvar");
-	private String[] novoDado = new String[9];
+	private String[] novoDado = new String[10];
 	private static ControleSapato dados;
 	private int posicao;
 	private int opcao;
@@ -61,16 +60,16 @@ public class TelaDetalheSapato implements ActionListener {
 		
 		if (op == 2) { //Preenche dados com dados do sapato clicado
 			
-			valorNome = new JTextField(dados.getSapatos()[pos].getNomeSapato(), 200);
-			valorMarca = new JTextField(dados.getSapatos()[pos].getMarca(), 200);
-			valorModelo = new JTextField(String.valueOf(dados.getSapatos()[pos].getModelo()), 1);
-			valorPreco = new JTextField(String.valueOf(dados.getSapatos()[pos].getPreco()), 200);
-			valorMenor = new JTextField(String.valueOf(dados.getSapatos()[pos].getMenorTam()), 4);
-			valorMaior = new JTextField(String.valueOf(dados.getSapatos()[pos].getMaiorTam()), 4);
-			valorDescricao = new JTextArea(dados.getSapatos()[pos].getDescricao(), 0, 200);
+			valorNome = new JTextField(d.getLista()[pos].getNomeSapato(), 200);
+			valorMarca = new JTextField(dados.getLista()[pos].getMarca(), 200);
+			valorModelo = new JTextField(String.valueOf(dados.getLista()[pos].getModel()), 1);
+			valorPreco = new JTextField(String.valueOf(dados.getLista()[pos].getPreco()), 200);
+			valorMenor = new JTextField(String.valueOf(dados.getLista()[pos].getMenorTam()), 4);
+			valorMaior = new JTextField(String.valueOf(dados.getLista()[pos].getMaiorTam()), 4);
+			valorDescricao = new JTextArea(dados.getLista()[pos].getDescricao(), 0, 200);
 			valorDescricao.setLineWrap(true);
 			valorDescricao.setEditable(true);
-			valorEstoque = new JTextField(String.valueOf(dados.getSapatos()[pos].getQntdEstoque()), 200);
+			valorEstoque = new JTextField(String.valueOf(dados.getLista()[pos].getQntdEstoque()), 200);
 			
 		} else { //Não preenche com dados
 
@@ -91,7 +90,7 @@ public class TelaDetalheSapato implements ActionListener {
 		paneDescricao.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		paneDescricao.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		
-		valorFoto = new ImageIcon(new ImageIcon(getClass().getResource(dados.getSapatos()[pos].getFotoSapato())).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+		valorFoto = new ImageIcon(new ImageIcon(getClass().getResource(dados.getLista()[pos].getFotoSapato())).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
 		fotoSapato = new JLabel(valorFoto);
 		
 		var y = 20;
@@ -180,15 +179,16 @@ public class TelaDetalheSapato implements ActionListener {
 				novoDado[5] = valorMenor.getText();
 				novoDado[6] = valorMaior.getText();
 				novoDado[7] = valorDescricao.getText();
-				novoDado[8] = valorEstoque.getText();
-				novoDado[9] = valorURL.getText();
+				novoDado[8] = valorEstoque.getText();				
 				if(opcao == 1) { //Cadastro de novo sapato
 					novoDado[0] = Integer.toString(dados.getQtd());
-					res = dados.inserirSapato(novoDado);
+					novoDado[9] = valorURL.getText();
+					res = dados.inserir(novoDado);
 				}
 				else { //Edição de Sapato				
 					novoDado[0] = Integer.toString(posicao);
-					res = dados.editarSapato(novoDado);
+					novoDado[9] = dados.getLista()[posicao].getFotoSapato();
+					res = dados.editar(novoDado);
 				}
 												
 				if(res) {
@@ -196,8 +196,10 @@ public class TelaDetalheSapato implements ActionListener {
 				} else mensagemErroCadastro();
 			}
 			catch (NullPointerException exc1) {
+				exc1.printStackTrace();
 				mensagemErroCadastro();
 			} catch (NumberFormatException exc2) {
+				exc2.printStackTrace();
 				mensagemErroCadastro();
 			}
 		}
@@ -207,7 +209,7 @@ public class TelaDetalheSapato implements ActionListener {
 			boolean res = false;
 		 
 		//exclui sapato
-			res = dados.removerSapato(posicao);
+			res = dados.remover(posicao);
 			if (res) mensagemSucessoExclusao(); 
 			else mensagemErroExclusao(); 
 		}

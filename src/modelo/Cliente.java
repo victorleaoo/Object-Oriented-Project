@@ -1,6 +1,6 @@
 package modelo;
 
-public class Cliente extends PessoaFisica{
+public class Cliente extends PessoaFisica implements Model {
 	
 	private String email;
 	private String endCliente;
@@ -24,6 +24,11 @@ public class Cliente extends PessoaFisica{
 	}
 	public void setEndCliente(String endCliente) {
 		this.endCliente = endCliente;
+	}
+
+	@Override
+	public String getModel() {
+		return nome + " - " + telefone;
 	}
 	
 }

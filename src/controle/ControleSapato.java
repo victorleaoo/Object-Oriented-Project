@@ -1,6 +1,5 @@
 package controle;
 
-import modelo.Cliente;
 import modelo.Sapato;
 
 public class ControleSapato extends ControleDados {
@@ -10,21 +9,59 @@ public class ControleSapato extends ControleDados {
 	
 	public ControleSapato() {
 		super();
-		spt = this.getSapatos();
-		this.setQtd(qtde());
+		spt = this.getLista();
+		this.setQtd(super.getQtdeLista(spt));
 	}
 	
-	private int qtde() {
-		int count = -1;
-		for(int i = 0; i < spt.length; i++) {
-			if(spt[i] == null) {
-				break;
-			}
-			count = i+1;
+	@Override
+	public Sapato[] getLista() {
+		return super.getDados().getdSapatos();
+	}
+			
+	@Override
+	public boolean inserir(String[] dadosSapato) {
+		if(editar(dadosSapato)) {
+			setQtd(getQtd()+1);
 		}
-		return count;
+		return true;
 	}
 	
+	public boolean editar(String[] dadosSapato) { 
+		Sapato s = new Sapato(dadosSapato[1], dadosSapato[2], dadosSapato[3].toCharArray()[0], Double.valueOf(dadosSapato[4]),
+				Double.valueOf(dadosSapato[5]), Double.valueOf(dadosSapato[6]), dadosSapato[7],
+				Integer.valueOf(dadosSapato[8]), dadosSapato[9]);
+		getDados().inserirEditaSapato(s, Integer.parseInt(dadosSapato[0]));
+		return true;
+	}
+	
+	@Override
+	public boolean remover(int i) { 
+		if(i > getQtd()) {
+			return false;
+		}
+		
+		spt = this.getLista();
+		String sapatoRemovido = getDados().getdSapatos()[i].getNomeSapato();		
+		
+		if(i == (getQtd() -1)) { 
+			spt[i] = null;
+			setQtd(getQtd() -1);
+			return true;
+		}
+		
+		int cont = 0;
+		while(spt[cont].getNomeSapato().compareTo(sapatoRemovido) != 0) {
+			cont++;
+		} 
+		
+		for (int j = cont; j < getQtd() - 1; j++) {			
+			spt[j] = spt[j+1];
+		}
+		spt[getQtd()] = null;
+		setQtd(getQtd() - 1);
+		return true;
+	}
+
 	public String[] getNomeSpts() {
 		String[] s = new String[qtdSapatos];
 		for(int i = 0; i < qtdSapatos; i++) {
@@ -51,7 +88,7 @@ public class ControleSapato extends ControleDados {
 	}
 	
 	public String getModelo(int i) {	
-		String modelo = String.valueOf(spt[i].getModelo());
+		String modelo = String.valueOf(spt[i].getModel());
 		return modelo;
 	}
 	
@@ -81,49 +118,6 @@ public class ControleSapato extends ControleDados {
 	public String getEstoque(int i) {
 		String estoque = String.valueOf(spt[i].getQntdEstoque());
 		return estoque;
-	}
-	
-	public boolean inserirSapato(String[] dadosSapato) {
-		if(editarSapato(dadosSapato)) {
-			setQtd(getQtd()+1);
-		}
-		return true;
-	}
-	
-	public boolean editarSapato(String[] dadosSapato) {
-		Sapato s = new Sapato(dadosSapato[1], dadosSapato[2], dadosSapato[3].toCharArray()[0], Double.valueOf(dadosSapato[4]),
-				Double.valueOf(dadosSapato[5]), Double.valueOf(dadosSapato[6]), dadosSapato[7],
-				Integer.valueOf(dadosSapato[8]), dadosSapato[9]);
-		d.inserirEditaSapato(s, Integer.parseInt(dadosSapato[0]));
-		return true;
-	}
-	
-	public boolean removerSapato(int i) {
-		if(i > getQtd()) {
-			return false;
-		}
-		
-		String sapatoRemovido = d.getdSapatos()[i].getNomeSapato();
-		
-		
-		if(i == (getQtd() -1)) { //Se o cliente a ser removido está no final do array
-			d.getdSapatos()[getQtd()] = null;
-			setQtd(getQtd() -1);
-			return true;
-		} else {
-			int cont = 0;
-			while(d.getdSapatos()[cont].getNomeSapato().compareTo(sapatoRemovido) != 0) {
-				cont++;
-			} 
-			
-			for (int j = cont; j < getQtd() - 1; j++) {
-				d.getdSapatos()[j] = null;
-				d.getdSapatos()[j] = d.getdSapatos()[j+1];
-			}
-			d.getdSapatos()[getQtd()] = null;
-			setQtd(getQtd() - 1);
-			return true;
-		}
 	}
 	
 }

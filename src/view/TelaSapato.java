@@ -12,7 +12,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import controle.ControleDados;
 import controle.ControleSapato;
 
 public class TelaSapato implements ActionListener, ListSelectionListener {
@@ -59,8 +58,9 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
 		Object src = e.getSource();
 		
 		//Cadastro de novo sapato
-		if(src == cadastrarSapato)
+		if(src == cadastrarSapato) {
 			new TelaDetalheSapato().inserirEditar(1, dados, this, 0);
+		}
 		
 		// Atualiza a lista de nomes de sapatos mostrada no JList
 		if(src == refresh) {

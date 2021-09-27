@@ -2,55 +2,27 @@ package controle;
 
 import modelo.*;
 
-public class ControleDados {
-	protected Dados d = new Dados();
+public abstract class ControleDados {
+	private Dados d = new Dados();
 	
-	public ControleDados() {
-		d.preCadastro();
-	}
-
 	public Dados getDados() {
 		return d;
 	}
 
-	public void setDados(Dados d) {
-		this.d = d;
-	}
+	// CRUD 
+	public abstract Model[] getLista();  // cRud - Read
+	public abstract boolean inserir(String[] dados);  // Crud - create
+	public abstract boolean editar(String[] dados);  // crUd - Update
+	public abstract boolean remover(int i); // cruD - Delete
 	
-	public Sapato[] getSapatos() {
-		return this.d.getdSapatos();
-	}
-	
-	public int getQtdSapato() {
-		return this.d.getQtdSapatos();
-	}
-	
-	public Empresa getEmpresa() {
-		return this.d.getdEmpresa();
-	}
-	
-	public int getQtdEmpresa() {
-		return this.d.getQtdEmpresa();
-	}
-	
-	public Cliente[] getClientes() {
-		return this.d.getdClientes();
-	}
-
-	
-	public Funcionario[] getFuncionarios() {
-		return this.d.getdFuncs();
-	}
-	
-	public int getQtdFuncionario() {
-		return this.d.getQtdFuncionarios();
-	}
-	
-	public Venda[] getVendas() {
-		return this.d.getdVendas();
-	}
-	
-	public int getQtdVenda() {
-		return this.d.getQtdVendas();
+	protected int getQtdeLista(Model[] lista) {
+		int count = -1;
+		for(int i = 0; i < lista.length; i++) {
+			if(lista[i] == null) {
+				break;
+			}
+			count = i+1;
+		}
+		return count;
 	}
 }

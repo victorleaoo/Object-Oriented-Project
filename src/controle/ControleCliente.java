@@ -9,20 +9,15 @@ public class ControleCliente extends ControleDados {
 	
 	public ControleCliente() {
 		super();
-		cli = this.getClientes();
-		this.setQtd(qtdeClientes());		
+		cli = this.getLista();
+		this.setQtd(super.getQtdeLista(cli));		
+	}
+
+	@Override
+	public Cliente[] getLista() {	
+		return super.getDados().getdClientes();
 	}
 	
-	private int qtdeClientes() {
-		int count = -1;
-		for(int i = 0; i < cli.length; i++) {
-			if(cli[i] == null) {
-				break;
-			}
-			count = i+1;
-		}
-		return count;
-	}
 	public String[] getNomeClientes() {
 		String[] s = new String[qtdClientes];
 		for(int i = 0; i < qtdClientes; i++) {
@@ -55,45 +50,47 @@ public class ControleCliente extends ControleDados {
 		return cli[i].getEndCliente();
 	}
 	
-	public boolean editarCliente(String[] dadosCliente) {
+    @Override
+	public boolean editar(String[] dadosCliente) {
 		Cliente c = new Cliente(dadosCliente[1], dadosCliente[2], dadosCliente[3], dadosCliente[4]);
-		d.inserirEditaCliente(c, Integer.parseInt(dadosCliente[0]));
+		getDados().inserirEditaCliente(c, Integer.parseInt(dadosCliente[0]));
 		return true;
 	}
 
-	public boolean inserirCliente(String[] dadosCliente) {
-		if(editarCliente(dadosCliente)) {
+	@Override
+	public boolean inserir(String[] dadosCliente) {
+		if(editar(dadosCliente)) {
 			setQtd(getQtd()+1);			
 		}
 		return true;
 	}
 
-	public boolean removerCliente(int i) {
+	@Override
+	public boolean remover(int i) {
 		if(i > getQtd()) {
 			return false;
 		}
 		
-		String clienteRemovido = d.getdClientes()[i].getNome();
-		
-		
+		cli = this.getLista();
+		String clienteRemovido = cli[i].getNome();
+				
 		if(i == (getQtd() -1)) { //Se o cliente a ser removido está no final do array
-			d.getdClientes()[getQtd()] = null;
+			cli[i] = null;
 			setQtd(getQtd() -1);
 			return true;
-		} else {
-			int cont = 0;
-			while(d.getdClientes()[cont].getNome().compareTo(clienteRemovido) != 0) {
-				cont++;
-			} 
-			
-			for (int j = cont; j < getQtd() - 1; j++) {
-				d.getdClientes()[j] = null;
-				d.getdClientes()[j] = d.getdClientes()[j+1];
-			}
-			d.getdClientes()[getQtd()] = null;
-			setQtd(getQtd() - 1);
-			return true;
+		} 
+		
+		int cont = 0;
+		while(cli[cont].getNome().compareTo(clienteRemovido) != 0) {
+			cont++;
+		} 
+		
+		for (int j = cont; j < getQtd() - 1; j++) {
+			cli[j] = cli[j+1];
 		}
+		cli[getQtd()] = null;
+		setQtd(getQtd() - 1);
+		
+		return true;
 	}
-	
 }

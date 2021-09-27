@@ -1,6 +1,6 @@
 package modelo;
 
-public class Sapato {
+public class Sapato implements Model {
 	
 	private String nomeSapato;
 	private String marca;
@@ -87,6 +87,11 @@ public class Sapato {
 
 	public void setQntdEstoque(int qntdEstoque) {
 		this.qntdEstoque = qntdEstoque;
+	}
+
+	@Override
+	public String getModel() {
+		return nomeSapato + " - " + marca;
 	}
 	
 }

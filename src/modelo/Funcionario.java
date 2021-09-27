@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.List;
 
-public class Funcionario extends PessoaFisica{
+public class Funcionario extends PessoaFisica implements Model {
 
 	private int idFunc;
 	private double salario;
@@ -41,6 +41,11 @@ public class Funcionario extends PessoaFisica{
 	}
 	public void setAnoIngresso(int anoIngresso) {
 		this.anoIngresso = anoIngresso;
+	}
+
+	@Override
+	public String getModel() {
+		return nome + " - " + telefone;
 	}
 	
 }

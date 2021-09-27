@@ -1,34 +1,27 @@
 package controle;
 
-import modelo.Cliente;
 import modelo.Funcionario;
 
 public class ControleFunc extends ControleDados {
 	
-	private Funcionario[] func;
+	private Funcionario[] funcs;
 	private int qtdFuncionarios;
 	
 	public ControleFunc() {
 		super();
-		func = this.getFuncionarios();
-		this.setQtd(qtdeFuncs());
+		funcs = this.getLista();
+		this.setQtd(super.getQtdeLista(funcs));
 	}
 	
-	private int qtdeFuncs() {
-		int count = -1;
-		for(int i = 0; i < func.length; i++) {
-			if(func[i] == null) {
-				break;
-			}
-			count = i+1;
-		}
-		return count;
+	@Override
+	public Funcionario[] getLista() {
+		return super.getDados().getdFuncs();
 	}
 	
 	public String[] getNomeFuncs() {
 		String[] s = new String[qtdFuncionarios];
 		for(int i = 0; i < qtdFuncionarios; i++) {
-			s[i] = func[i].getNome();
+			s[i] = funcs[i].getNome();
 		}
 		
 		return s;
@@ -43,61 +36,67 @@ public class ControleFunc extends ControleDados {
 	}
 	
 	public String getNome(int i) {		
-		return func[i].getNome();
+		return funcs[i].getNome();
 	}
 	
 	public String getTelefone(int i) {		
-		return func[i].getTelefone();
+		return funcs[i].getTelefone();
 	}
 	
 	public String getID(int i) {
-		String IdFunc = String.valueOf(func[i].getIdFunc());
+		String IdFunc = String.valueOf(funcs[i].getIdFunc());
 		return IdFunc;
 	}
 	
 	public String getSalario(int i) {
-		return String.valueOf(func[i].getSalario());
+		return String.valueOf(funcs[i].getSalario());
 	}
 	
 	public String getAnoIng(int i) {
-		String AnoIng = String.valueOf(func[i].getAnoIngresso());
+		String AnoIng = String.valueOf(funcs[i].getAnoIngresso());
 		return AnoIng;
 	}
 	
-	public boolean editarFunc(String[] dadosFunc) {		
+	@Override
+	public boolean editar(String[] dadosFunc) {		
 		Funcionario f = new Funcionario(dadosFunc[1], dadosFunc[2], Integer.valueOf(dadosFunc[3]), Double.valueOf(dadosFunc[4]), Integer.valueOf(dadosFunc[5]));
-		d.inserirEditaFunc(f, Integer.parseInt(dadosFunc[0]));
+		getDados().inserirEditaFunc(f, Integer.parseInt(dadosFunc[0]));
 		return true;
 	}
 	
-	public boolean inserirFunc(String[] dadosFunc) {
-		if(editarFunc(dadosFunc)) {
+	@Override
+	public boolean inserir(String[] dadosFunc) {
+		if(editar(dadosFunc)) {
 			setQtd(getQtd()+1);			
 		}
 		return true;
 	}
 	
-	public boolean removerFunc(int i) {
-		String funcRemovido = d.getdFuncs()[i].getNome();
+	@Override
+	public boolean remover(int i) {
+		if(i > getQtd()) {
+			return false;
+		}
+
+		funcs = getDados().getdFuncs();
+		String funcRemovido = funcs[i].getNome();
 		
 		if(i == (getQtd() -1)) { //Se o funcionário a ser removido está no final do array
-			d.getdFuncs()[getQtd()] = null;
+			funcs[i] = null;
 			setQtd(getQtd() -1);
 			return true;
-		} else {
-			int cont = 0;
-			while(d.getdFuncs()[cont].getNome().compareTo(funcRemovido) != 0) {
-				cont++;
-			} 
-			
-			for (int j = cont; j < getQtd() - 1; j++) {
-				d.getdFuncs()[j] = null;
-				d.getdFuncs()[j] = d.getdFuncs()[j+1];
-			}
-			d.getdFuncs()[getQtd()] = null;
-			setQtd(getQtd() - 1);
-			return true;
+		} 
+		int cont = 0;
+		while(funcs[cont].getNome().compareTo(funcRemovido) != 0) {
+			cont++;
+		} 
+		
+		for (int j = cont; j < getQtd() - 1; j++) {
+			funcs[j] = funcs[j+1];
 		}
+		funcs[getQtd()] = null;
+		setQtd(getQtd() - 1);
+		return true;
 	}
 	
 }

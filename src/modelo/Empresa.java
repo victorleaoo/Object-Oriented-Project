@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.List;
 
-public class Empresa {
+public class Empresa implements Model {
 
 	private String nomeEmpresa;
 	private String CNPJ;
@@ -67,6 +67,11 @@ public class Empresa {
 	}
 	public void setlistaFunc(List<Funcionario> listaFunc) {
 		this.listaFunc = listaFunc;
+	}
+
+	@Override
+	public String getModel() {
+		return CNPJ + " - " + nomeEmpresa;
 	}
 	
 }
