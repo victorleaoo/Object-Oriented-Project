@@ -7,12 +7,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import modelo.Venda;
 
 public class TelaDetalheItem implements ActionListener {
-	private JFrame janela;
+	private JPanel janela;
+	private JPanel pai;
 	private JLabel labelSapato = new JLabel("Sapato: ");
 	private JTextField valorSapato;
 	private JLabel labelQntd = new JLabel("Quantidade: ");
@@ -24,15 +26,12 @@ public class TelaDetalheItem implements ActionListener {
 	private int posicaoItem = -1;
 	private Venda vendaSelecionada;
 	
-	public void inserirEditar(Venda venda, int item) {
+	public JPanel inserirEditar() {
 		
-		janela = new JFrame("Detalhe Item");
-		
-		posicaoItem = item;
-		vendaSelecionada = venda;
-		
-		valorSapato = new JTextField(venda.getSapatos().get(item).getS().getNomeSapato(), 200);
-		valorQntd = new JTextField(String.valueOf(venda.getSapatos().get(item).getQntdVenda()), 200);
+		janela = new JPanel();
+				
+		valorSapato = new JTextField("", 200);
+		valorQntd = new JTextField("", 200);
 		
 		labelSapato.setBounds(30, 20, 150, 25);
 		valorSapato.setBounds(180, 20, 180, 25);
@@ -56,6 +55,19 @@ public class TelaDetalheItem implements ActionListener {
 
 		botaoSalvar.addActionListener(this);
 		botaoExcluir.addActionListener(this);
+		
+		return janela;
+	}
+	
+	public void setVenda(Venda venda, int item) {
+		posicaoItem = item;
+		vendaSelecionada = venda;		
+		valorSapato.setText(venda.getSapatos().get(item).getS().getNomeSapato());
+		valorQntd.setText(String.valueOf(venda.getSapatos().get(item).getQntdVenda()));		
+	}
+	
+	public void setParent(JPanel pai) {
+		this.pai = pai;
 	}
 
 	@Override
@@ -65,11 +77,12 @@ public class TelaDetalheItem implements ActionListener {
 			vendaSelecionada.getSapatos().remove(posicaoItem);
 			mensagemSucessoExclusao();  
 		}
+		janela.setVisible(false);
+		this.pai.setVisible(true);		
 	}
 	
 	public void mensagemSucessoExclusao() {
 		JOptionPane.showMessageDialog(null, "Os dados foram excluidos com sucesso!", null, 
-				JOptionPane.INFORMATION_MESSAGE);
-		janela.dispose();
+				JOptionPane.INFORMATION_MESSAGE);		
 	}
 }

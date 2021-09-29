@@ -85,6 +85,7 @@ public class TelaDetalheCliente implements ActionListener {
 		this.janela.add(botaoSalvar);
 
 		this.janela.setLayout(null);
+		janela.setLocationRelativeTo(null);
 
 		this.janela.setSize(400, 250);
 		this.janela.setVisible(true);

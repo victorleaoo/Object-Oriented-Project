@@ -26,7 +26,7 @@ public class ControleVenda extends ControleDados {
 	public String[] getNomeVendas() {
 		String[] v = new String[qtdVendas];
 		for(int i = 0; i < qtdVendas; i++) {
-			v[i] = vnd[i].getC().getNome() + " - Venda feita por: " + vnd[i].getF().getNome();
+			v[i] = vnd[i].getF().getNome() + " - Funcionário           " + vnd[i].getC().getNome() + " - Cliente";
 		}
 		
 		return v;

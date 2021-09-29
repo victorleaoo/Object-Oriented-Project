@@ -7,10 +7,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import controle.ControleCliente;
-import controle.ControleDados;
 
 public class MenuPrincipal implements ActionListener {
 	
@@ -27,6 +23,7 @@ public class MenuPrincipal implements ActionListener {
 		titulo.setBounds(140, 10, 150, 30); //Posição X, Posição Y, Tamanho X, Tamanho Y
 		
 		janela.setLayout(null);
+		janela.setLocationRelativeTo(null);
 		
 		empresa.setBounds(140, 60, 100, 30);
 		sapato.setBounds(140, 100, 100, 30);

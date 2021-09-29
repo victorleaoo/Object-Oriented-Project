@@ -119,6 +119,7 @@ public class TelaDetalheSapato implements ActionListener {
 			valorEstoque.setBounds(180, y, 180, 25);
 			
 			this.janela.setSize(420, 450);
+			janela.setLocationRelativeTo(null);
 			
 			this.janela.add(botaoExcluir);
 			
@@ -133,6 +134,7 @@ public class TelaDetalheSapato implements ActionListener {
 			valorEstoque.setBounds(180, y, 180, 25);
 			
 			this.janela.setSize(420, 360);
+			janela.setLocationRelativeTo(null);
 			
 			this.janela.add(valorURL);
 			this.janela.add(labelURL);
@@ -156,6 +158,7 @@ public class TelaDetalheSapato implements ActionListener {
 		this.janela.add(botaoSalvar);
 
 		this.janela.setLayout(null);
+		janela.setLocationRelativeTo(null);
 
 		
 		this.janela.setVisible(true);

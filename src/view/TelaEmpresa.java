@@ -83,6 +83,7 @@ public class TelaEmpresa implements ActionListener {
 		this.janela.add(botaoExcluir);
 
 		this.janela.setLayout(null);
+		janela.setLocationRelativeTo(null);
 
 		this.janela.setSize(405, 250);
 		this.janela.setVisible(true);

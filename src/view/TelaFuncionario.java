@@ -41,6 +41,7 @@ public class TelaFuncionario implements ActionListener, ListSelectionListener {
 		refresh.setBounds(200, 177, 100, 30);
 		
 		janela.setLayout(null);
+		janela.setLocationRelativeTo(null);
 
 		janela.add(titulo);
 		janela.add(listaFuncCadastrados);
