@@ -30,7 +30,15 @@ public class TelaDetalheCliente implements ActionListener {
 	private int opcao;
 	private String s;
 	
-	public void inserirEditar(int op, ControleCliente d, TelaCliente c, int pos) {
+	public void inserirEditar(int op, ControleCliente d, TelaCliente c, String nome) {
+		
+		int pos = 0;
+		
+		for(int i = 0; i < d.getQtd(); i++) {
+			if(d.getLista()[i].getNome().equals(nome)) {
+				pos = i;
+			}
+		}
 		
 		opcao = op;
 		posicao = pos;

@@ -47,7 +47,15 @@ public class TelaDetalheSapato implements ActionListener {
 	private int opcao;
 	private String s;
 	
-	public void inserirEditar(int op, ControleSapato d, TelaSapato spt, int pos) {
+	public void inserirEditar(int op, ControleSapato d, TelaSapato spt, String nome) {
+		
+		int pos = 0;
+		
+		for(int i = 0; i < d.getQtd(); i++) {
+			if(d.getLista()[i].getNomeSapato().equals(nome)) {
+				pos = i;
+			}
+		}
 		
 		opcao = op;
 		posicao = pos;
@@ -186,9 +194,9 @@ public class TelaDetalheSapato implements ActionListener {
 				if(opcao == 1) { //Cadastro de novo sapato
 					novoDado[0] = Integer.toString(dados.getQtd());
 					novoDado[9] = valorURL.getText();
-					res = dados.inserir(novoDado);
+					res = dados.inserir(novoDado); //Caso queira cadastrar um tênis para testar, use: imagens/dunk-brazil.png como diretório.
 				}
-				else { //Edição de Sapato				
+				else { //Edição de Sapato
 					novoDado[0] = Integer.toString(posicao);
 					novoDado[9] = dados.getLista()[posicao].getFotoSapato();
 					res = dados.editar(novoDado);

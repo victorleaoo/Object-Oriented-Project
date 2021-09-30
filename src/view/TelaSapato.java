@@ -11,6 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
@@ -27,19 +30,26 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
 	private JButton cadastrarSapato = new JButton("Cadastrar Sapato");
 	private JButton refresh = new JButton("Refresh");
 	private JTextField busca;
+	private JMenuBar menuBar = new JMenuBar();
+	private JMenu filtroMenu = new JMenu("Filtros");
+	private JMenuItem todosFiltro = new JMenuItem("Todos Sapatos");
+	private JMenuItem casualFiltro = new JMenuItem("Casual");
+	private JMenuItem sandaliaFiltro = new JMenuItem("Sandália");
+	private JMenuItem esportivoFiltro = new JMenuItem("Esportivo");
 	public static ControleSapato dados;
 	private JList<String> listaSapatosCadastrados = new JList<String>(createDefaultListModel());
 	private String[] listaNomesSapatos = new String[50];
 
-	public JTextField createTextField() {
+	public JTextField createTextField() { // Caixa de texto para buscar sapato
 		final JTextField field = new JTextField("Nome do Sapato", 200);
+		DefaultListModel model = (DefaultListModel<String>)listaSapatosCadastrados.getModel();
         field.getDocument().addDocumentListener(new DocumentListener(){
             @Override public void insertUpdate(DocumentEvent e) { filter(); }
             @Override public void removeUpdate(DocumentEvent e) { filter(); }
             @Override public void changedUpdate(DocumentEvent e) {}
             private void filter() {
                 String filter = field.getText();
-                filterModel((DefaultListModel<String>)listaSapatosCadastrados.getModel(), filter);
+                filterModel(model, filter);
             }
         });
         return field;
@@ -75,6 +85,17 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
 		
 		busca = createTextField();
 		
+		menuBar.add(filtroMenu);
+		filtroMenu.add(todosFiltro);
+		filtroMenu.add(casualFiltro);
+		filtroMenu.add(sandaliaFiltro);
+		filtroMenu.add(esportivoFiltro);
+		
+		todosFiltro.addActionListener(this);
+		casualFiltro.addActionListener(this);
+		sandaliaFiltro.addActionListener(this);
+		esportivoFiltro.addActionListener(this);
+		
 		titulo.setFont(new Font("Helvetica", Font.BOLD, 20));
 		titulo.setBounds(95, 0, 250, 30);
 		busca.setBounds(220, 30, 150, 20);
@@ -94,8 +115,10 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
 		janela.add(refresh);
 		janela.add(busca);
 
-		janela.setSize(400, 250);
+		janela.setJMenuBar(menuBar);
+		janela.setSize(400, 275);
 		janela.setVisible(true);
+		
 		
 		cadastrarSapato.addActionListener(this);
 		refresh.addActionListener(this);
@@ -108,24 +131,42 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
 		
 		//Cadastro de novo sapato
 		if(src == cadastrarSapato) {
-			new TelaDetalheSapato().inserirEditar(1, dados, this, 0);
+			new TelaDetalheSapato().inserirEditar(1, dados, this, null);
 		}
 		
 		// Atualiza a lista de nomes de sapatos mostrada no JList
-		if(src == refresh) {
-			listaSapatosCadastrados.setListData(dados.getNomeSpts());			
+		if(src == refresh || src == todosFiltro) {
+			listaSapatosCadastrados.setListData(dados.getNomeSpts());	
 			listaSapatosCadastrados.updateUI();
 		}
 		
+		// Atualiza a lista de nomes de sapatos para sapatos casuais
+		if(src == casualFiltro) {
+			listaSapatosCadastrados.setListData(dados.getNomeCasual());	
+			listaSapatosCadastrados.updateUI();
+		}
+		
+		// Atualiza a lista de nomes de sapatos para sandalias
+		if(src == sandaliaFiltro) {
+			listaSapatosCadastrados.setListData(dados.getNomeSandalia());	
+			listaSapatosCadastrados.updateUI();
+		}
+		
+		// Atualiza a lista de nomes de sapatos para sapatos esportivos
+		if(src == esportivoFiltro) {
+			listaSapatosCadastrados.setListData(dados.getNomeEsportivo());	
+			listaSapatosCadastrados.updateUI();
+		}
 	}
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
+		dados = new ControleSapato();
 
 		if(e.getValueIsAdjusting() && src == listaSapatosCadastrados) {
 			new TelaDetalheSapato().inserirEditar(2, dados, this, 
-					listaSapatosCadastrados.getSelectedIndex());
+					listaSapatosCadastrados.getSelectedValue());
 		}
 		
 	}

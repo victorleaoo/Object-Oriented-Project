@@ -14,6 +14,8 @@ public final class Dados {
 		dSapatos[0] = new Sapato("Air Jordan 1 - Obsidian", "Nike", 'C', 1749.99, 34.5, 44.0, "Tênis de Couro/Borracha, com as cores em homenagem a Universidade que Jordan jogou.", 10, "imagens/airjordan-obsidian.jpg");
 		dSapatos[1] = new Sapato("Chinelo Slide - SLX", "Rider", 'S', 179.99, 35.0, 44.5, "Chinelo sandália macio, com elementos da NBA e do filme Space Jam para fãs.", 20, "imagens/slx-rider.jpg");
 		dSapatos[2] = new Sapato("Gel-Dedicate 6 - Tênis", "Asics", 'E', 275.49, 39.0, 45.0, "Tênis ideal para jogadores de Tênis, especialmente em quadras de Saibro, com muita estabilidade torsional.", 30, "imagens/gel6-asics.jpg");
+		dSapatos[3] = new Sapato("Phantom GT2 Elite - Chuteira", "Nike", 'E', 1599.99, 35.0, 44.0, "Chuteira de campo com toque preciso para qualquer clima, além de cano alto, possui palmilha com amortecimento.", 70, "imagens/phantom-nike.jpg");
+		dSapatos[4] = new Sapato("Slide Pure - Yeezy", "Adidas", 'S', 650.00, 37.5, 43.5, "Chinelo do modelo slide com acabamento bege. Com espuma EVA injetada, compõe a composição de uma peça única.", 2, "imagens/yeezy-slide.jpeg");
 		
 		dClientes[0] = new Cliente("Victor", "(61) 99184-4198", "victor@gmail.com", "Rua 1 - Casa 1");
 		dClientes[1] = new Cliente("Felipe", "(61) 99635-7291", "felipe@gmail.com", "Rua 2 - Casa 2");

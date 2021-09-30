@@ -13,6 +13,24 @@ public class ControleSapato extends ControleDados {
 		this.setQtd(super.getQtdeLista(spt));
 	}
 	
+	public String[] getNomeSpts() {
+		String[] s = new String[qtdSapatos];
+		for(int i = 0; i < qtdSapatos; i++) {
+			s[i] = spt[i].getNomeSapato();
+		}
+		
+		return s;
+	}
+	
+	
+	public int getQtd() {
+		return qtdSapatos;
+	}
+
+	public void setQtd(int qtd) {
+		this.qtdSapatos = qtd;
+	}
+	
 	@Override
 	public Sapato[] getLista() {
 		return super.getDados().getdSapatos();
@@ -41,9 +59,9 @@ public class ControleSapato extends ControleDados {
 		}
 		
 		spt = this.getLista();
-		String sapatoRemovido = getDados().getdSapatos()[i].getNomeSapato();		
+		String sapatoRemovido = spt[i].getNomeSapato();		
 		
-		if(i == (getQtd() -1)) { 
+		if(i == (getQtd() -1)) {  //Se o sapato a ser removido está no final do array
 			spt[i] = null;
 			setQtd(getQtd() -1);
 			return true;
@@ -52,7 +70,7 @@ public class ControleSapato extends ControleDados {
 		int cont = 0;
 		while(spt[cont].getNomeSapato().compareTo(sapatoRemovido) != 0) {
 			cont++;
-		} 
+		}
 		
 		for (int j = cont; j < getQtd() - 1; j++) {			
 			spt[j] = spt[j+1];
@@ -61,22 +79,38 @@ public class ControleSapato extends ControleDados {
 		setQtd(getQtd() - 1);
 		return true;
 	}
-
-	public String[] getNomeSpts() {
+	
+	public String[] getNomeCasual() {
 		String[] s = new String[qtdSapatos];
 		for(int i = 0; i < qtdSapatos; i++) {
-			s[i] = spt[i].getNomeSapato();
+			if(spt[i].getModelo() == 'C' || spt[i].getModelo() == 'c') {
+				s[i] = spt[i].getNomeSapato();
+			}	
+		}
+		
+		return s;
+	}
+
+	public String[] getNomeSandalia() {
+		String[] s = new String[qtdSapatos];
+		for(int i = 0; i < qtdSapatos; i++) {
+			if(spt[i].getModelo() == 'S' || spt[i].getModelo() == 's') {
+				s[i] = spt[i].getNomeSapato();
+			}	
 		}
 		
 		return s;
 	}
 	
-	public int getQtd() {
-		return qtdSapatos;
-	}
-
-	public void setQtd(int qtd) {
-		this.qtdSapatos = qtd;
+	public String[] getNomeEsportivo() {
+		String[] s = new String[qtdSapatos];
+		for(int i = 0; i < qtdSapatos; i++) {
+			if(spt[i].getModelo() == 'E' || spt[i].getModelo() == 'e') {
+				s[i] = spt[i].getNomeSapato();
+			}	
+		}
+		
+		return s;
 	}
 	
 	public String getNome(int i) {		

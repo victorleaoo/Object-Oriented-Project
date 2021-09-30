@@ -78,7 +78,7 @@ public class ControleCliente extends ControleDados {
 			cli[i] = null;
 			setQtd(getQtd() -1);
 			return true;
-		} 
+		}
 		
 		int cont = 0;
 		while(cli[cont].getNome().compareTo(clienteRemovido) != 0) {

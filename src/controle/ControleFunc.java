@@ -86,6 +86,7 @@ public class ControleFunc extends ControleDados {
 			setQtd(getQtd() -1);
 			return true;
 		} 
+		
 		int cont = 0;
 		while(funcs[cont].getNome().compareTo(funcRemovido) != 0) {
 			cont++;
