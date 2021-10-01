@@ -134,26 +134,30 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
 		
 		// Atualiza a lista de nomes de sapatos mostrada no JList
 		if(src == refresh || src == todosFiltro) {
-			listaSapatosCadastrados.setListData(dados.getNomeSpts());	
+			listaSapatosCadastrados.setListData(dados.getNomeSpts());
 			listaSapatosCadastrados.updateUI();
+			busca.setVisible(true);
 		}
 		
 		// Atualiza a lista de nomes de sapatos para sapatos casuais
 		if(src == casualFiltro) {
 			listaSapatosCadastrados.setListData(dados.getNomeCasual());	
 			listaSapatosCadastrados.updateUI();
+			busca.setVisible(false);
 		}
 		
 		// Atualiza a lista de nomes de sapatos para sandalias
 		if(src == sandaliaFiltro) {
 			listaSapatosCadastrados.setListData(dados.getNomeSandalia());	
 			listaSapatosCadastrados.updateUI();
+			busca.setVisible(false);
 		}
 		
 		// Atualiza a lista de nomes de sapatos para sapatos esportivos
 		if(src == esportivoFiltro) {
 			listaSapatosCadastrados.setListData(dados.getNomeEsportivo());	
 			listaSapatosCadastrados.updateUI();
+			busca.setVisible(false);
 		}
 	}
 

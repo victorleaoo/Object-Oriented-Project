@@ -93,7 +93,7 @@ public class TelaVenda implements ActionListener, ListSelectionListener {
 		panelListaVendas.add(botaoCadastrar);
 		panelListaVendas.add(refresh);
 		janela.add(busca);
-		panelListaVendas.setSize(400, 250);		
+		panelListaVendas.setSize(400, 400);
 		
 		janela.setLayout(null);
 		janela.getContentPane().add(BorderLayout.CENTER, panelListaVendas);
@@ -104,7 +104,7 @@ public class TelaVenda implements ActionListener, ListSelectionListener {
 		manterVenda.setVisible(false);
 		janela.getContentPane().add(BorderLayout.CENTER, manterVenda);
 		
-		janela.setSize(400, 250);
+		janela.setSize(400, 320);
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
 		
@@ -119,8 +119,9 @@ public class TelaVenda implements ActionListener, ListSelectionListener {
 		
 		//Cadastro de nova Venda
 		if(src == botaoCadastrar) {
-			telaDetalheVenda.setVenda(0);
+			telaDetalheVenda.setVenda(-1);
 			panelListaVendas.setVisible(false);
+			busca.setVisible(false);
 			manterVenda.setVisible(true);
 		}
 		
@@ -137,6 +138,7 @@ public class TelaVenda implements ActionListener, ListSelectionListener {
 		if(e.getValueIsAdjusting() && src == listaVendasCadastradas) {
 			telaDetalheVenda.setVenda(listaVendasCadastradas.getSelectedIndex());
 			panelListaVendas.setVisible(false);
+			busca.setVisible(false);
 			manterVenda.setVisible(true);
 		}
 		

@@ -9,14 +9,18 @@ public class Venda implements Model {
 	private Funcionario f;
 	private Cliente c; 
 	private List<ItensVenda> sapatos;
+	private int id;
 	
-	public Venda(char mP, Funcionario fun, Cliente cli) {
+	public Venda(char mP, Funcionario fun, Cliente cli, int ID) {
 		metPag = mP;
 		f = fun;
 		c = cli;
 		sapatos = new ArrayList<>();
+		id = ID;
 	}
 	
+
+
 	public char getMetPag() {
 		return metPag;
 	}
@@ -43,6 +47,14 @@ public class Venda implements Model {
 	}
 	public void setSapatos(List<ItensVenda> sapatos) {
 		this.sapatos = sapatos;
+	}
+	
+	public int getID() {
+		return id;
+	}
+
+	public void setID(int iD) {
+		id = iD;
 	}
 	
 	//Colocar um sapato a uma única venda.

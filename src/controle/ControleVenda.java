@@ -1,6 +1,8 @@
 package controle;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 import modelo.Cliente;
 import modelo.Funcionario;
@@ -8,7 +10,7 @@ import modelo.ItensVenda;
 import modelo.Venda;
 
 public class ControleVenda extends ControleDados {
-
+	
 	private Venda[] vnd;
 	private int qtdVendas;
 	
@@ -26,7 +28,7 @@ public class ControleVenda extends ControleDados {
 	public String[] getNomeVendas() {
 		String[] v = new String[qtdVendas];
 		for(int i = 0; i < qtdVendas; i++) {
-			v[i] = vnd[i].getF().getNome() + " - Funcionário           " + vnd[i].getC().getNome() + " - Cliente";
+			v[i] = vnd[i].getF().getNome() + " - Funcionário           " + vnd[i].getC().getNome() + " - Cliente           - ID: " + vnd[i].getID();
 		}
 		
 		return v;
@@ -63,22 +65,66 @@ public class ControleVenda extends ControleDados {
 	public List<ItensVenda> getItens(int i){
 		return vnd[i].getSapatos();
 	}
-
-
-	@Override
-	public boolean inserir(String[] dados) {		
-		return false;
+	
+	public int getIDVenda(int i) {
+		return vnd[i].getID();
 	}
 
 	@Override
-	public boolean editar(String[] dados) {		
-		return false;
+	public boolean inserir(String[] dadosVenda) {		
+		if(editar(dadosVenda)) {
+			setQtd(getQtd()+1);			
+		}
+		return true;
+	}
+
+	@Override
+	public boolean editar(String[] dadosVenda) {
+		Funcionario funcVenda = null;
+		for(Funcionario func : getDados().getdFuncs()) {
+			if(dadosVenda[2].equals(func.getNome())) {
+				funcVenda = func;
+				break;
+			}
+		}
+		Cliente clienteVenda = null;
+		for(Cliente cli : getDados().getdClientes()) {
+			if(dadosVenda[3].equals(cli.getNome())) {
+				clienteVenda = cli;
+				break;
+			}
+		}
+		Venda v = new Venda(dadosVenda[1].charAt(0), funcVenda, clienteVenda, Integer.valueOf(dadosVenda[4]));
+		getDados().inserirEditaVenda(v, Integer.parseInt(dadosVenda[0]));
+		return true;
 	}
 
 	@Override
 	public boolean remover(int i) {
-		// TODO Auto-generated method stub
-		return false;
+		if(i > getQtd()) {
+			return false;
+		}
+
+		vnd = getDados().getdVendas();
+		int vendaRemovida = vnd[i].getID();
+		
+		if(i == (getQtd() -1)) { //Se o funcionário a ser removido está no final do array
+			vnd[i] = null;
+			setQtd(getQtd() -1);
+			return true;
+		} 
+		
+		int cont = 0;
+		while(String.valueOf(vnd[cont].getID()).compareTo(String.valueOf(vendaRemovida)) != 0) {
+			cont++;
+		} 
+		
+		for (int j = cont; j < getQtd() - 1; j++) {
+			vnd[j] = vnd[j+1];
+		}
+		vnd[getQtd()] = null;
+		setQtd(getQtd() - 1);
+		return true;
 	}
 	
 }

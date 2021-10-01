@@ -25,15 +25,15 @@ public final class Dados {
 		dFuncs[1] = new Funcionario("Yure", "(61) 99201-7202", 22, 2320.0, 2019);
 		dFuncs[2] = new Funcionario("Daniel", "(61) 93331-7708", 33, 750.55, 2021);
 		
-		dVendas[0] = new Venda('C', dFuncs[0], dClientes[0]);
+		dVendas[0] = new Venda('C', dFuncs[0], dClientes[0], 1);
 		dVendas[0].addItem(new ItensVenda(dSapatos[0], 1));
-		dVendas[1] = new Venda('B', dFuncs[1], dClientes[1]);
+		dVendas[1] = new Venda('B', dFuncs[1], dClientes[1], 2);
 		dVendas[1].addItem(new ItensVenda(dSapatos[0], 2));
 		dVendas[1].addItem(new ItensVenda(dSapatos[1], 3));
-		dVendas[2] = new Venda('P', dFuncs[2], dClientes[2]);
+		dVendas[2] = new Venda('P', dFuncs[2], dClientes[2], 3);
 		dVendas[2].addItem(new ItensVenda(dSapatos[0], 1));
 		dVendas[2].addItem(new ItensVenda(dSapatos[1], 3));
-		dVendas[2].addItem(new ItensVenda(dSapatos[2], 5));	
+		dVendas[2].addItem(new ItensVenda(dSapatos[2], 5));
 	}
 
 	public Sapato[] getdSapatos() {
@@ -65,5 +65,8 @@ public final class Dados {
 	}
 	public Venda[] getdVendas() {
 		return dVendas;
+	}
+	public void inserirEditaVenda(Venda v, int pos) {
+		Dados.dVendas[pos] = v;
 	}
 }
