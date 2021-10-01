@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,7 +20,7 @@ public class TelaDetalheItem implements ActionListener {
 	private JTextField valorQntd;
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoSalvar = new JButton("Salvar");
-	private String[] novoDado = new String[9];
+	//private String[] novoDado = new String[9];
 
 	private int posicaoItem = -1;
 	private Venda vendaSelecionada;
@@ -81,8 +80,25 @@ public class TelaDetalheItem implements ActionListener {
 		this.pai.setVisible(true);		
 	}
 	
+	public void mensagemSucessoCadastro() {
+		JOptionPane.showMessageDialog(null, "Os dados foram salvos com sucesso!", null, 
+				JOptionPane.INFORMATION_MESSAGE);
+	}
+	
 	public void mensagemSucessoExclusao() {
 		JOptionPane.showMessageDialog(null, "Os dados foram excluidos com sucesso!", null, 
-				JOptionPane.INFORMATION_MESSAGE);		
+				JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	public void mensagemErroCadastro() {
+		JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n " + "Nem todos os campos foram preenchidos OU \n"
+	+ "Dados com tipos inválidos", null, 
+				JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public void mensagemErroExclusao() {
+		JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o dado.\n"+ 
+							"Dê o refresh antes de excluir o próximo funcionário.", null, 
+				JOptionPane.ERROR_MESSAGE);
 	}
 }
