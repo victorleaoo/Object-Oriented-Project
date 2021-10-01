@@ -39,8 +39,8 @@ public final class Dados {
 	public Sapato[] getdSapatos() {
 		return dSapatos;
 	}
-	public void inserirEditaSapato(Sapato s, int pos) {
-		Dados.dSapatos[pos] = s;
+	public void inserirEditaSapato(Sapato sap, int pos) {
+		Dados.dSapatos[pos] = sap;
 	}	
 	public Empresa getdEmpresa() {
 		return dEmpresa;

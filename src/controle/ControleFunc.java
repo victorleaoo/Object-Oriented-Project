@@ -58,19 +58,20 @@ public class ControleFunc extends ControleDados {
 	}
 	
 	@Override
-	public boolean editar(String[] dadosFunc) {		
-		Funcionario f = new Funcionario(dadosFunc[1], dadosFunc[2], Integer.valueOf(dadosFunc[3]), Double.valueOf(dadosFunc[4]), Integer.valueOf(dadosFunc[5]));
-		getDados().inserirEditaFunc(f, Integer.parseInt(dadosFunc[0]));
-		return true;
-	}
-	
-	@Override
 	public boolean inserir(String[] dadosFunc) {
 		if(editar(dadosFunc)) {
 			setQtd(getQtd()+1);			
 		}
 		return true;
 	}
+	
+	@Override
+	public boolean editar(String[] dadosFunc) {		
+		Funcionario f = new Funcionario(dadosFunc[1], dadosFunc[2], Integer.valueOf(dadosFunc[3]), Double.valueOf(dadosFunc[4]), Integer.valueOf(dadosFunc[5]));
+		getDados().inserirEditaFunc(f, Integer.parseInt(dadosFunc[0]));
+		return true;
+	}
+
 	
 	@Override
 	public boolean remover(int i) {

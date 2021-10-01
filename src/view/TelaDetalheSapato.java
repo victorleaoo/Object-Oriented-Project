@@ -190,7 +190,7 @@ public class TelaDetalheSapato implements ActionListener {
 				novoDado[5] = valorMenor.getText();
 				novoDado[6] = valorMaior.getText();
 				novoDado[7] = valorDescricao.getText();
-				novoDado[8] = valorEstoque.getText();				
+				novoDado[8] = valorEstoque.getText();
 				if(opcao == 1) { //Cadastro de novo sapato
 					novoDado[0] = Integer.toString(dados.getQtd());
 					novoDado[9] = valorURL.getText();

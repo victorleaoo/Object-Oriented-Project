@@ -45,7 +45,7 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
         return field;
 	}
 	
-	private ListModel<String> createDefaultListModel(){ // Transformando os nomes dos clientes em uma ListModel para buscar
+	public ListModel<String> createDefaultListModel(){ // Transformando os nomes dos clientes em uma ListModel para buscar
 		dados = new ControleCliente();
 		listaNomesClientes = dados.getNomeClientes();
 		DefaultListModel<String> model = new DefaultListModel<>();

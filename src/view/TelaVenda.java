@@ -19,7 +19,6 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import controle.ControleCliente;
 import controle.ControleVenda;
 
 public class TelaVenda implements ActionListener, ListSelectionListener {

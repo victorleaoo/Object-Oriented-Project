@@ -4,8 +4,6 @@ import java.awt.Font;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -42,7 +40,7 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
 
 	public JTextField createTextField() { // Caixa de texto para buscar sapato
 		final JTextField field = new JTextField("Nome do Sapato", 200);
-		DefaultListModel model = (DefaultListModel<String>)listaSapatosCadastrados.getModel();
+		DefaultListModel<String> model = (DefaultListModel<String>)listaSapatosCadastrados.getModel();
         field.getDocument().addDocumentListener(new DocumentListener(){
             @Override public void insertUpdate(DocumentEvent e) { filter(); }
             @Override public void removeUpdate(DocumentEvent e) { filter(); }

@@ -140,7 +140,7 @@ public class TelaDetalheCliente implements ActionListener {
 		//exclui cliente
 			res = dados.remover(posicao);
 			if (res) mensagemSucessoExclusao(); 
-			else mensagemErroExclusaoCliente(); 
+			else mensagemErroExclusao(); 
 		}
 		
 	}
@@ -162,7 +162,7 @@ public class TelaDetalheCliente implements ActionListener {
 				JOptionPane.ERROR_MESSAGE);
 	}
 	
-	public void mensagemErroExclusaoCliente() {
+	public void mensagemErroExclusao() {
 		JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o dado.\n", null, 
 				JOptionPane.ERROR_MESSAGE);
 	}

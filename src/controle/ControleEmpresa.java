@@ -52,15 +52,15 @@ public class ControleEmpresa extends ControleDados {
 	}
 	
 	@Override
+	public boolean inserir(String[] dados) {
+		return editar(dados);
+	}
+	
+	@Override
 	public boolean editar(String[] dadosEmpresa) {
 		Empresa e = new Empresa(dadosEmpresa[1], dadosEmpresa[2], Integer.valueOf(dadosEmpresa[3]), dadosEmpresa[4], dadosEmpresa[5]);
 		getDados().inserirEditaEmpresa(e);
 		return true;
-	}
-
-	@Override
-	public boolean inserir(String[] dados) {
-		return editar(dados);
 	}
 
 	@Override

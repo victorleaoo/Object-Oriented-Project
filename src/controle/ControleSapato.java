@@ -63,7 +63,7 @@ public class ControleSapato extends ControleDados {
 		
 		if(i == (getQtd() -1)) {  //Se o sapato a ser removido está no final do array
 			spt[i] = null;
-			setQtd(getQtd() -1);
+			setQtd(getQtd()-1);
 			return true;
 		}
 		

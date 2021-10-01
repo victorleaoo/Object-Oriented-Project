@@ -30,7 +30,6 @@ public class TelaEmpresa implements ActionListener {
 	private JTextField valorEndereco;
 	public static ControleEmpresa dados;
 	private String[] novoDado = new String[9];
-	private String e;
 	
 	public void mostrarEmpresa() {
 		dados = new ControleEmpresa();
@@ -151,16 +150,16 @@ public class TelaEmpresa implements ActionListener {
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
-	public void mensagemErroCadastro() {
-		JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n " + "Nem todos os campos foram preenchidos OU \n"
-	+ "Dados com tipos inválidos", null, 
-				JOptionPane.ERROR_MESSAGE);
-	}
-	
 	public void mensagemSucessoExclusao() {
 		JOptionPane.showMessageDialog(null, "Os dados foram excluidos com sucesso!", null, 
 				JOptionPane.INFORMATION_MESSAGE);
 		janela.dispose();
+	}
+	
+	public void mensagemErroCadastro() {
+		JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n " + "Nem todos os campos foram preenchidos OU \n"
+	+ "Dados com tipos inválidos", null, 
+				JOptionPane.ERROR_MESSAGE);
 	}
 	
 	public void mensagemErroExclusao() {
