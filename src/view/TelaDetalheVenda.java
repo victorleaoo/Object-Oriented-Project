@@ -33,7 +33,7 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 	private JTextField valorMetPag;
 	private JLabel labelID = new JLabel("ID da venda: ");
 	private JTextField valorID;
-	private JScrollPane paneItens;
+	private JButton botaoAlterar = new JButton("Salvar");
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoVoltar = new JButton("Voltar");
 	private JButton botaoVoltarCadastro = new JButton("Voltar");
@@ -85,10 +85,12 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 		editarVenda = new JPanel();
 		editarVenda.setSize(400, 300);
 		editarVenda.setBounds(140, y+=90, 120, 40);
+		botaoAlterar.setBounds(340, y, 115, 30);
 		botaoExcluir.setBounds(300, y, 115, 30);
 		botaoVoltar.setBounds(260, y, 115, 30);
 		botaoItem.setBounds(10, y, 115, 30);
 		editarVenda.add(listaItensVenda);
+		editarVenda.add(botaoAlterar);
 		editarVenda.add(botaoVoltar);
 		editarVenda.add(botaoExcluir);
 		//editarVenda.add(botaoItem);
@@ -124,6 +126,7 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 		
 		this.janela.setVisible(true);
 		
+		botaoAlterar.addActionListener(this);
 		botaoExcluir.addActionListener(this);
 		botaoVoltarCadastro.addActionListener(this);
 		botaoVoltar.addActionListener(this);
@@ -177,6 +180,27 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 				novoDado[0] = Integer.toString(dados.getQtd());
 				res = dados.inserir(novoDado);
 								
+				if(res) {
+					mensagemSucessoCadastro();
+				} else mensagemErroCadastro();
+			}
+			catch (NullPointerException exc1) {
+				mensagemErroCadastro();
+			} catch (NumberFormatException exc2) {
+				mensagemErroCadastro();
+			}
+		}
+		
+		if(src == botaoAlterar) {
+			try {
+				boolean res;
+				novoDado[1] = valorMetPag.getText();
+				novoDado[2] = valorFuncionario.getText();
+				novoDado[3] = valorCliente.getText();
+				novoDado[4] = valorID.getText();
+				novoDado[0] = Integer.toString(posicao);
+				res = dados.editar(novoDado);
+												
 				if(res) {
 					mensagemSucessoCadastro();
 				} else mensagemErroCadastro();
