@@ -66,15 +66,12 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 		valorMetPag = new JTextField(1);	
 		valorID = new JTextField(2);
 				
+		//Não foi possível implementar a lista de itens.
 		var y = 20;		
 		listaItensVenda = new JList<String>(listaNomesItens);
-		listaItensVenda.setBounds(20, 50, 350, 120);
+		listaItensVenda.setBounds(20, 50, 200, 200);
 		listaItensVenda.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		listaItensVenda.setVisibleRowCount(6);
-
-		paneItens = new JScrollPane(listaItensVenda);
-		paneItens.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		paneItens.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);		
+		listaItensVenda.setVisibleRowCount(10);
 		
 		labelCliente.setBounds(30, y, 150, 25);
 		valorCliente.setBounds(180, y, 150, 25);
@@ -85,16 +82,13 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 		labelID.setBounds(30, y+=30, 150, 25);
 		valorID.setBounds(180, y, 180, 25);
 		
-		paneItens.setBounds(60, y+=30, 260, 80);
-		
-		//Coloca botoes de excluir e salvar
-//		if (op == 2) {
 		editarVenda = new JPanel();
 		editarVenda.setSize(400, 300);
 		editarVenda.setBounds(140, y+=90, 120, 40);
 		botaoExcluir.setBounds(300, y, 115, 30);
 		botaoVoltar.setBounds(260, y, 115, 30);
 		botaoItem.setBounds(10, y, 115, 30);
+		editarVenda.add(listaItensVenda);
 		editarVenda.add(botaoVoltar);
 		editarVenda.add(botaoExcluir);
 		//editarVenda.add(botaoItem);
@@ -107,7 +101,6 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 		cadastrarVenda.add(botaoVoltarCadastro);
 		cadastrarVenda.add(botaoSalvar);
 		cadastrarVenda.setVisible(false);
-//		}
 		
 		this.janela.add(labelCliente);
 		this.janela.add(valorCliente);
@@ -117,19 +110,19 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 		this.janela.add(valorMetPag);
 		this.janela.add(labelID);
 		this.janela.add(valorID);
-		this.janela.add(paneItens);
 		this.janela.add(editarVenda);
 		this.janela.add(cadastrarVenda);
 
 		this.janela.setLayout(new FlowLayout(FlowLayout.LEFT));
 
 		this.janela.setSize(400, 400);
-		this.janela.setVisible(true);
 		
 		detalheItem = telaDetalheItem.inserirEditar();
 		telaDetalheItem.setParent(janela);
 		detalheItem.setVisible(false);		
 		janela.add(BorderLayout.CENTER, detalheItem);
+		
+		this.janela.setVisible(true);
 		
 		botaoExcluir.addActionListener(this);
 		botaoVoltarCadastro.addActionListener(this);
