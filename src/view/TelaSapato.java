@@ -22,6 +22,13 @@ import javax.swing.event.DocumentListener;
 
 import controle.ControleSapato;
 
+/**
+ * Tela que lista os sapatos. Pode-se selecionar algum Sapato na lista para o alterar ou excluir. Também há o botão de cadastro e o de refresh da lista.
+ * Há a possibilidade de buscar os sapatos por seu nome. Além de filtrá-los por modelo.
+ * @author Victor Leão
+ * @version 1.0 (Out. 2021)
+ */
+
 public class TelaSapato implements ActionListener, ListSelectionListener {
 	private JFrame janela = new JFrame("Sapatos");
 	private JLabel titulo = new JLabel("Controle de Sapatos");
@@ -38,7 +45,11 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
 	private JList<String> listaSapatosCadastrados = new JList<String>(createDefaultListModel());
 	private String[] listaNomesSapatos = new String[50];
 
-	public JTextField createTextField() { // Caixa de texto para buscar sapato
+	/**
+	 * Cria o TextField em que se buscará o nome dos sapatos na lista.
+	 * @return TextField
+	 */
+	public JTextField createTextField() {
 		final JTextField field = new JTextField("Nome do Sapato", 200);
 		DefaultListModel<String> model = (DefaultListModel<String>)listaSapatosCadastrados.getModel();
         field.getDocument().addDocumentListener(new DocumentListener(){
@@ -53,7 +64,11 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
         return field;
 	}
 	
-	private ListModel<String> createDefaultListModel(){ // Transformando os nomes dos sapatos em uma ListModel para buscar
+	/**
+	 * Transforma a lista com o nome dos sapatos em uma ListModel, para que seja possível implementar o recurso de busca.
+	 * @return ListModel<String>
+	 */
+	private ListModel<String> createDefaultListModel(){
 		dados = new ControleSapato();
 		listaNomesSapatos = dados.getNomeSpts();
 		DefaultListModel<String> model = new DefaultListModel<>();
@@ -63,6 +78,11 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
 		return model;
 	}
 	
+	/**
+	 * Método que implementa o sistema de busca de sapatos na lista por seu nome.
+	 * @param model -> Lista com o nome dos sapatos.
+	 * @param filter-> String que o usuário escreve no TextField de busca.
+	 */
     public void filterModel(DefaultListModel<String> model, String filter) { // Sistema de Busca
 		dados = new ControleSapato();
 		listaNomesSapatos = dados.getNomeSpts();
@@ -79,6 +99,9 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
         }
     }
 	
+    /**
+     * Design dos elementos da Tela.
+     */
 	public void mostrarSapatos() {
 		
 		busca = createTextField();

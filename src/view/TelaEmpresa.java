@@ -12,6 +12,12 @@ import javax.swing.JTextField;
 
 import controle.ControleEmpresa;
 
+/**
+ * Tela que apresenta os dados da Empresa. Pode-se alterar os dados da Empresa ou apagá-los.
+ * Caso os dados estejam vazios (Empresa foi deletada), o botão de cadastrar empresa ficará ativo e o usuário poderá cadastrá-la.
+ * @author Victor Leão
+ * @version 1.0 (Out. 2021)
+ */
 public class TelaEmpresa implements ActionListener {
 	private JFrame janela = new JFrame("Empresa");
 	private JLabel titulo = new JLabel("Controle da Empresa");
@@ -31,6 +37,10 @@ public class TelaEmpresa implements ActionListener {
 	public static ControleEmpresa dados;
 	private String[] novoDado = new String[9];
 	
+	
+    /**
+     * Design dos elementos da Tela.
+     */
 	public void mostrarEmpresa() {
 		dados = new ControleEmpresa();
 		
@@ -145,6 +155,9 @@ public class TelaEmpresa implements ActionListener {
 		}
 	}
 	
+	/**
+	 * Mensagens de Sucesso ou Erro tanto de cadastro, quanto de exclusão.
+	 */
 	public void mensagemSucessoCadastro() {
 		JOptionPane.showMessageDialog(null, "Os dados foram alterados com sucesso!", null, 
 				JOptionPane.INFORMATION_MESSAGE);

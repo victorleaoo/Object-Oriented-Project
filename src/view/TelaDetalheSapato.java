@@ -15,6 +15,12 @@ import javax.swing.JTextField;
 
 import controle.ControleSapato;
 
+/**
+ * Tela que apresenta os dados do sapato (vazios ou preenchidos dependendo do selecionado na TelaSapato). Pode-se alterar os dados do Sapato ou excluí-lo.
+ * @author Victor Leão
+ * @version 1.0 (Out. 2021)
+ */
+
 public class TelaDetalheSapato implements ActionListener {
 	
 	private JFrame janela;
@@ -47,6 +53,15 @@ public class TelaDetalheSapato implements ActionListener {
 	private int opcao;
 	private String s;
 	
+	/**
+	 * Design dos elementos da tela.
+	 * @param op  -> Opção:
+	 * (1) Cadastro de Sapato: Os campos que deveriam conter os dados estarão vazios, esperando os dados de cadastro do novo Sapato.
+	 * (2) Detalhe de Sapato: Os campos estarão preenchidos com dados do Sapato selecionado na lista. O botão de excluir estará disponível.
+	 * @param d   -> Dados de Cliente.
+	 * @param spt -> TelaSapato (no caso, a única que o programa possui).
+	 * @param nome-> String contendo nome do Sapato selecionado (necessário para encontrar a posição do Sapato no array de sapatos).
+	 */
 	public void inserirEditar(int op, ControleSapato d, TelaSapato spt, String nome) {
 		
 		int pos = 0;
@@ -227,6 +242,9 @@ public class TelaDetalheSapato implements ActionListener {
 		
 	}
 	
+	/**
+	 * Mensagens de Sucesso ou Erro tanto de cadastro, quanto de exclusão.
+	 */
 	public void mensagemSucessoCadastro() {
 		JOptionPane.showMessageDialog(null, "Os dados foram salvos com sucesso!", null, 
 				JOptionPane.INFORMATION_MESSAGE);

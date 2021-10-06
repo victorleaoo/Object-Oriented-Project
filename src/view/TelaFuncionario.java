@@ -14,6 +14,12 @@ import javax.swing.event.ListSelectionListener;
 
 import controle.ControleFunc;
 
+/**
+ * Tela que lista os funcionários. Pode-se selecionar algum Funcionário na lista para o alterar ou excluir. Também há o botão de cadastro e o de refresh da lista.
+ * @author Victor Leão
+ * @version 1.0 (Out. 2021)
+ */
+
 public class TelaFuncionario implements ActionListener, ListSelectionListener {
 	private JFrame janela = new JFrame("Funcionários");
 	private JLabel titulo = new JLabel("Controle de Funcionários");
@@ -22,6 +28,10 @@ public class TelaFuncionario implements ActionListener, ListSelectionListener {
 	public static ControleFunc dados;
 	private JList<String> listaFuncCadastrados;
 	private String[] listaNomesFuncs = new String[50];
+	
+    /**
+     * Design dos elementos da Tela.
+     */
 	
 	public void mostrarFuncionarios() {
 		dados = new ControleFunc();

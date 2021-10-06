@@ -11,6 +11,12 @@ import javax.swing.JTextField;
 
 import controle.ControleFunc;
 
+/**
+ * Tela que apresenta os dados do Funcionário (vazios ou preenchidos dependendo do selecionado na TelaFuncionario). Pode-se alterar os dados do Funcionário ou excluí-lo.
+ * @author Victor Leão
+ * @version 1.0 (Out. 2021)
+ */
+
 public class TelaDetalheFunc implements ActionListener {
 	
 	private JFrame janela;
@@ -32,6 +38,15 @@ public class TelaDetalheFunc implements ActionListener {
 	private int opcao;
 	private String s;
 	
+	/**
+	 * Design dos elementos da tela.
+	 * @param op -> Opção:
+	 * (1) Cadastro de Funcionário: Os campos que deveriam conter os dados estarão vazios, esperando os dados de cadastro do novo Funcionário.
+	 * (2) Detalhe de Funcionário: Os campos estarão preenchidos com dados do Funcionário selecionado na lista. O botão de excluir estará disponível.
+	 * @param d  -> Dados de Funcionário.
+	 * @param f  -> TelaFuncionario (no caso, a única que o programa possui).
+	 * @param pos-> Posição do Funcionário selecionado no array de funcionários.
+	 */
 	public void inserirEditar(int op, ControleFunc d, TelaFuncionario f, int pos) {
 		
 		opcao = op;
@@ -146,6 +161,10 @@ public class TelaDetalheFunc implements ActionListener {
 		}
 		
 	}
+	
+	/**
+	 * Mensagens de Sucesso ou Erro tanto de cadastro, quanto de exclusão.
+	 */
 	
 	public void mensagemSucessoCadastro() {
 		JOptionPane.showMessageDialog(null, "Os dados foram salvos com sucesso!", null, 

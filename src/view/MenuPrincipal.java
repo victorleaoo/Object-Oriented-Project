@@ -8,6 +8,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+/**
+ * Menu principal do sistema, em que, por meio de botões, pode-se acessar as telas das outras classes.
+ * @author Victor Leão
+ * @version 1.0 (Out. 2021)
+ */
+
 public class MenuPrincipal implements ActionListener {
 	
 	private static JFrame janela = new JFrame("Loja de Sapatos");
@@ -18,6 +24,9 @@ public class MenuPrincipal implements ActionListener {
 	private static JButton funcionario = new JButton("Funcionário");
 	private static JButton venda = new JButton("Venda");
 	
+	/**
+	 * Design dos elementos do Menu.
+	 */
 	public MenuPrincipal() {
 		titulo.setFont(new Font("Helvetica", Font.BOLD, 20));
 		titulo.setBounds(140, 10, 150, 30); //Posição X, Posição Y, Tamanho X, Tamanho Y
@@ -43,7 +52,6 @@ public class MenuPrincipal implements ActionListener {
 		janela.setVisible(true);
 	}
 	
-
 	public static void main(String[] args) {
 		MenuPrincipal menu = new MenuPrincipal();
 

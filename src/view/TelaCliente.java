@@ -18,8 +18,13 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import controle.ControleCliente;
-import controle.ControleDados;
-import controle.ControleSapato;
+
+/**
+ * Tela que lista os clientes. Pode-se selecionar algum Cliente na lista para o alterar ou excluir. Também há o botão de cadastro e o de refresh da lista.
+ * Há a possibilidade de buscar os clientes por seu nome.
+ * @author Victor Leão
+ * @version 1.0 (Out. 2021)
+ */
 
 public class TelaCliente implements ActionListener, ListSelectionListener {
 	private JFrame janela = new JFrame("Clientes");
@@ -31,6 +36,10 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 	private JList<String> listaClientesCadastrados = new JList<String>(createDefaultListModel());
 	private String[] listaNomesClientes = new String[50];
 	
+	/**
+	 * Cria o TextField em que se buscará o nome dos clientes na lista.
+	 * @return TextField
+	 */
 	public JTextField createTextField() {
 		final JTextField field = new JTextField("Nome do Cliente", 200);
         field.getDocument().addDocumentListener(new DocumentListener(){
@@ -45,7 +54,11 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
         return field;
 	}
 	
-	public ListModel<String> createDefaultListModel(){ // Transformando os nomes dos clientes em uma ListModel para buscar
+	/**
+	 * Transforma a lista com o nome dos clientes em uma ListModel, para que seja possível implementar o recurso de busca.
+	 * @return ListModel<String>
+	 */
+	public ListModel<String> createDefaultListModel(){
 		dados = new ControleCliente();
 		listaNomesClientes = dados.getNomeClientes();
 		DefaultListModel<String> model = new DefaultListModel<>();
@@ -55,7 +68,12 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 		return model;
 	}
 	
-    public void filterModel(DefaultListModel<String> model, String filter) { // Sistema de Busca
+	/**
+	 * Método que implementa o sistema de busca de clientes na lista por seu nome.
+	 * @param model -> Lista com o nome dos clientes.
+	 * @param filter-> String que o usuário escreve no TextField de busca.
+	 */
+    public void filterModel(DefaultListModel<String> model, String filter) {
 		dados = new ControleCliente();
 		listaNomesClientes = dados.getNomeClientes();
         for (String s : listaNomesClientes) {
@@ -71,6 +89,10 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
         }
     }
 	
+    /**
+     * Design dos elementos da Tela.
+     */
+    
 	public void mostrarClientes() {
 		
 		busca = createTextField();

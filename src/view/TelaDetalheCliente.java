@@ -11,6 +11,12 @@ import javax.swing.JTextField;
 
 import controle.ControleCliente;
 
+/**
+ * Tela que apresenta os dados do cliente (vazios ou preenchidos dependendo do selecionado na TelaCliente). Pode-se alterar os dados do Cliente ou excluí-lo.
+ * @author Victor Leão
+ * @version 1.0 (Out. 2021)
+ */
+
 public class TelaDetalheCliente implements ActionListener {
 	
 	private JFrame janela;
@@ -29,6 +35,16 @@ public class TelaDetalheCliente implements ActionListener {
 	private int posicao;
 	private int opcao;
 	private String s;
+	
+	/**
+	 * Design dos elementos da tela.
+	 * @param op  -> Opção:
+	 * (1) Cadastro de Cliente: Os campos que deveriam conter os dados estarão vazios, esperando os dados de cadastro do novo Cliente.
+	 * (2) Detalhe de Cliente: Os campos estarão preenchidos com dados do Cliente selecionado na lista. O botão de excluir estará disponível.
+	 * @param d   -> Dados de Cliente.
+	 * @param c   -> TelaCliente (no caso, a única que o programa possui).
+	 * @param nome-> String contendo nome do Cliente selecionado (necessário para encontrar a posição do Cliente no array de clientes).
+	 */
 	
 	public void inserirEditar(int op, ControleCliente d, TelaCliente c, String nome) {
 		
@@ -145,6 +161,9 @@ public class TelaDetalheCliente implements ActionListener {
 		
 	}
 	
+	/**
+	 * Mensagens de Sucesso ou Erro tanto de cadastro, quanto de exclusão.
+	 */
 	public void mensagemSucessoCadastro() {
 		JOptionPane.showMessageDialog(null, "Os dados foram salvos com sucesso!", null, 
 				JOptionPane.INFORMATION_MESSAGE);
