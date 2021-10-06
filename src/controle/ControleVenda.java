@@ -94,9 +94,15 @@ public class ControleVenda extends ControleDados {
 				break;
 			}
 		}
-		Venda v = new Venda(dadosVenda[1].charAt(0), funcVenda, clienteVenda, Integer.valueOf(dadosVenda[4]));
-		getDados().inserirEditaVenda(v, Integer.parseInt(dadosVenda[0]));
-		return true;
+		
+		if(Servicos.validaMetPag(dadosVenda[1].charAt(0))){
+			Venda v = new Venda(dadosVenda[1].charAt(0), funcVenda, clienteVenda, Integer.valueOf(dadosVenda[4]));
+			getDados().inserirEditaVenda(v, Integer.parseInt(dadosVenda[0]));
+			return true;
+		}
+		
+		return false;
+
 	}
 
 	@Override

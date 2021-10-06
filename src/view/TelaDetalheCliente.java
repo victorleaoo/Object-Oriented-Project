@@ -158,7 +158,8 @@ public class TelaDetalheCliente implements ActionListener {
 	}
 	
 	public void mensagemErroCadastro() {
-		JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n " + "Nem todos os campos foram preenchidos \n", null, 
+		JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n " + "Nem todos os campos foram preenchidos OU \n"
+	+ "Email incorreto", null, 
 				JOptionPane.ERROR_MESSAGE);
 	}
 	

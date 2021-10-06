@@ -3,14 +3,34 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe modelo de Venda. Possui seus atributos, construtor e gets/sets.
+ * Caso de Agregação
+ * @author Victor Leão
+ * @version 1.0 (Out. 2021)
+ */
+
 public class Venda implements Model {
 
+	/**
+	 * Atributos de Venda.
+	 */
 	private char metPag; // 'C'/'c' para Cartão - 'B'/'b' para Boleto - 'P'/'p' para Pix
 	private Funcionario f;
 	private Cliente c; 
 	private List<ItensVenda> sapatos;
 	private int id;
 	
+	/**
+	 * Construtor de Venda.
+	 * @param mP -> Char contendo metódo de pagamento da Venda:
+	 * (1) 'C'/'c' para Cartão
+	 * (2) 'B'/'b' para Boleto
+	 * (3) 'P'/'p' para Pix
+	 * @param fun-> Funcionario contendo funcionário responsável pela Venda.
+	 * @param cli-> Cliente contendo cliente que comprou a Venda.
+	 * @param ID -> Int contendo ID da Venda.
+	 */
 	public Venda(char mP, Funcionario fun, Cliente cli, int ID) {
 		metPag = mP;
 		f = fun;
@@ -18,8 +38,6 @@ public class Venda implements Model {
 		sapatos = new ArrayList<>();
 		id = ID;
 	}
-	
-
 
 	public char getMetPag() {
 		return metPag;
@@ -57,13 +75,19 @@ public class Venda implements Model {
 		id = iD;
 	}
 	
-	//Colocar um sapato a uma única venda.
+	/**
+	 * Adiciona um item à lista de Itens da Venda.
+	 * @param s -> ItensVenda contendo o item a ser adicionado à lista de itens da Venda.
+	 */
 	public void addItem(ItensVenda s) {
 		sapatos.add(s);
 	}
 	
-	
-	//Alterar quantidade vendida de uma venda
+	/**
+	 * Altera quantidade vendida de um item da Venda.
+	 * @param s -> ItensVenda contendo o item a ter a quantidade vendida alterada.
+	 * @param nQ-> Int contendo a quantidade do item a ser alterada.
+	 */
 	public void alterarItem(ItensVenda s, int nQ) {
 		for (ItensVenda itensVenda : sapatos) {
 			if(itensVenda.equals(s)) {
@@ -72,7 +96,10 @@ public class Venda implements Model {
 		}
 	}
 	
-	//Apagar um sapato de uma lista
+	/**
+	 * Deleta um item da Venda.
+	 * @param s -> ItensVenda contendo o item a ser deletado da Venda. 
+	 */
 	public void deletarItem(ItensVenda s) {
 		sapatos.remove(s);
 	}

@@ -1,7 +1,18 @@
 package modelo;
 
+/**
+ * Classe modelo de Dados. Basicamente, é o "banco de dados" do projeto. Possui gets e métodos que inserem ou modificam os dados das classes.
+ * Carregamento de dados aleatórios no seu software.
+ * @author Victor Leão
+ * @version 1.0 (Out. 2021)
+ */
+
 public final class Dados {
 	
+	/**
+	 * Arrays de cada tipo de classe do projeto.
+	 * A empresa não é um array porque só é possível a existência de uma empresa no sistema.
+	 */
 	private static Sapato[] dSapatos = new Sapato[50];
 	private static Empresa dEmpresa = new Empresa("Luv Sneakers", "59.546.515/0001-34", 2015, "(11) 4935-2323", "QG Luv Sneakers - DF");
 	private static Cliente[] dClientes = new Cliente[50];
@@ -9,6 +20,9 @@ public final class Dados {
 	private static ItensVenda[] dItens = new ItensVenda[150];
 	private static Venda[] dVendas = new Venda[50];
 	
+	/**
+	 * Dados pré carregados.
+	 */
 	static {
 		
 		dSapatos[0] = new Sapato("Air Jordan 1 - Obsidian", "Nike", 'C', 1749.99, 34.5, 44.0, "Tênis de Couro/Borracha, com as cores em homenagem a Universidade que Jordan jogou.", 10, "imagens/airjordan-obsidian.jpg");

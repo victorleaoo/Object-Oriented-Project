@@ -1,10 +1,24 @@
 package modelo;
 
+/**
+ * Classe modelo de ItensVenda. Possui seus atributos, construtor e gets/sets.
+ * @author Victor Leão
+ * @version 1.0 (Out. 2021)
+ */
+
 public class ItensVenda implements Model{
 	
+	/**
+	 * Atributos de ItensVenda.
+	 */
 	private Sapato s;
 	private int qntdVenda;
 	
+	/**
+	 * Construtor de ItensVenda
+	 * @param sap -> Sapato contendo sapato que será o item da Venda.
+	 * @param q   -> Int contendo quantidade vendida do sapato.
+	 */
 	public ItensVenda(Sapato sap, int q) {
 		s = sap;
 		qntdVenda = q;

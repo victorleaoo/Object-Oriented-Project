@@ -2,8 +2,17 @@ package modelo;
 
 import java.util.List;
 
+/**
+ * Classe modelo de Empresa. Possui seus atributos, construtor e gets/sets.
+ * @author Victor Leão
+ * @version 1.0 (Out. 2021)
+ */
+
 public class Empresa implements Model {
 
+	/**
+	 * Atributos de Empresa.
+	 */
 	private String nomeEmpresa;
 	private String CNPJ;
 	private int anoFund;
@@ -12,6 +21,14 @@ public class Empresa implements Model {
 	private List<Sapato> estoque;
 	private List<Funcionario> listaFunc;
 
+	/**
+	 * Construtor de Empresa.
+	 * @param nE -> String contendo nome da Empresa.
+	 * @param c  -> String contendo CNPJ da Empresa.
+	 * @param f  -> Int contendo ano de fundação da Empresa.
+	 * @param t  -> String contendo telefone da Empresa.
+	 * @param eE -> String contendo endereço da Empresa.
+	 */
 	public Empresa(String nE, String c, int f, String t, String eE) { //Falta colocar estoque
 		nomeEmpresa = nE;
 		CNPJ = c;

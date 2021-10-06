@@ -70,7 +70,7 @@ public class TelaDetalheSapato implements ActionListener {
 			
 			valorNome = new JTextField(d.getLista()[pos].getNomeSapato(), 200);
 			valorMarca = new JTextField(dados.getLista()[pos].getMarca(), 200);
-			valorModelo = new JTextField(String.valueOf(dados.getLista()[pos].getModel()), 1);
+			valorModelo = new JTextField(String.valueOf(dados.getLista()[pos].getModelo()), 1);
 			valorPreco = new JTextField(String.valueOf(dados.getLista()[pos].getPreco()), 200);
 			valorMenor = new JTextField(String.valueOf(dados.getLista()[pos].getMenorTam()), 4);
 			valorMaior = new JTextField(String.valueOf(dados.getLista()[pos].getMaiorTam()), 4);
@@ -241,7 +241,7 @@ public class TelaDetalheSapato implements ActionListener {
 	
 	public void mensagemErroCadastro() {
 		JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n " + "Nem todos os campos foram preenchidos OU \n"
-	+ "Dados com tipos inválidos", null, 
+	+ "Ano de Fundação inválido", null, 
 				JOptionPane.ERROR_MESSAGE);
 	}
 	

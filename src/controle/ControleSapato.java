@@ -40,16 +40,20 @@ public class ControleSapato extends ControleDados {
 	public boolean inserir(String[] dadosSapato) {
 		if(editar(dadosSapato)) {
 			setQtd(getQtd()+1);
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
 	public boolean editar(String[] dadosSapato) { 
-		Sapato s = new Sapato(dadosSapato[1], dadosSapato[2], dadosSapato[3].toCharArray()[0], Double.valueOf(dadosSapato[4]),
-				Double.valueOf(dadosSapato[5]), Double.valueOf(dadosSapato[6]), dadosSapato[7],
-				Integer.valueOf(dadosSapato[8]), dadosSapato[9]);
-		getDados().inserirEditaSapato(s, Integer.parseInt(dadosSapato[0]));
-		return true;
+		if(Servicos.validaModelo(dadosSapato[3].toCharArray()[0]) && Servicos.validaDouble(Double.valueOf(dadosSapato[4])) && Servicos.validaTamanho(Double.valueOf(dadosSapato[5])) && Servicos.validaTamanho(Double.valueOf(dadosSapato[6]))) {
+			Sapato s = new Sapato(dadosSapato[1], dadosSapato[2], dadosSapato[3].toCharArray()[0], Double.valueOf(dadosSapato[4]),
+					Double.valueOf(dadosSapato[5]), Double.valueOf(dadosSapato[6]), dadosSapato[7],
+					Integer.valueOf(dadosSapato[8]), dadosSapato[9]);
+			getDados().inserirEditaSapato(s, Integer.parseInt(dadosSapato[0]));
+			return true;
+		}
+		return false;
 	}
 	
 	@Override

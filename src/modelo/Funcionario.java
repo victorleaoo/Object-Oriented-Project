@@ -1,19 +1,39 @@
 package modelo;
 
-import java.util.List;
+/**
+ * Classe modelo de Funcionário e filha de PessoaFisica. Possui seus atributos, construtor e gets/sets. 
+ * Sobrecarga de Método + Caso de Herança 
+ * @author Victor Leão
+ * @version 1.0 (Out. 2021)
+ */
 
 public class Funcionario extends PessoaFisica implements Model {
 
+	/**
+	 * Atributos de Funcionário.
+	 */
 	private int idFunc;
 	private double salario;
 	private int anoIngresso;
 	
+	/**
+	 * Construtor de Funcionário com os atributos de PessoaFisica.
+	 * @param nP -> String contendo nome do Funcionário.
+	 * @param t  -> String contendo telefone do Funcionário.
+	 */
 	public Funcionario(String nP, String t) {
 		nome = nP;
 		telefone = t;
 	}
 	
-	//Sobrecarga de Método.
+	/**
+	 * Construtor de Funcionário. Sobrecarga do Método acima.
+	 * @param nP -> String contendo nome do Funcionário.
+	 * @param t  -> String contendo telefone do Funcionário.
+	 * @param id -> Int contendo ID do Funcionário.
+	 * @param s  -> Double contendo salário do Funcionário.
+	 * @param ano-> Int contendo ano de ingresso na empresa do Funcionário
+	 */
 	public Funcionario(String nP, String t, int id, double s, int ano) {
 		nome = nP;
 		telefone = t;

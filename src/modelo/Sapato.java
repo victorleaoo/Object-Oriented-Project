@@ -1,17 +1,42 @@
 package modelo;
 
+/**
+ * Classe modelo de Sapato. Possui seus atributos, construtor e gets/sets.
+ * @author Victor Leão
+ * @version 1.0 (Out. 2021)
+ */
+
 public class Sapato implements Model {
 	
+	/**
+	 * Atributos de Sapato.
+	 */
 	private String nomeSapato;
 	private String marca;
-	private char modelo; // 'C'/'c' para Casual - 'S'/'s' para Sandália - 'E'/'e' para Esportivo
+	private char modelo;
 	private double preco;
 	private double menorTam;
 	private double maiorTam;
 	private String descricao;
-	private String fotoSapato; //Será o diretório/URL para onde está a imagem do sapato (posteriormente será usado como ImageIcon)
+	private String fotoSapato;
 	private int qntdEstoque;
 
+	/**
+	 * Construtor de Sapato.
+	 * @param nS -> String contendo nome do Sapato.
+	 * @param m  -> String contendo marca do Sapato.
+	 * @param mod-> Char contendo modelo do Sapato:
+	 * (1) 'C'/'c' para Casual
+	 * (2) 'S'/'s' para Sandália
+	 * (3) 'E'/'e' para Esportivo
+	 * @param p  -> Double contendo preço do Sapato.
+	 * Grade de Tamanho:
+	 * @param men-> Double contendo menor tamanho disponível do Sapato.
+	 * @param mai-> Double contendo maior tamanho disponível do Sapato.
+	 * @param d  -> String contendo descrição do Sapato.
+	 * @param q  -> Int contendo quantidade em estoque do Sapato.
+	 * @param img-> String contendo a URL/diretório para a imagem do sapato. Posteriormente, será exibida como ImageIcon.
+	 */
 	public Sapato(String nS, String m, char mod, double p, double men, double mai, String d, int q, String img) { //Falta colocar fotoSapato.
 		nomeSapato = nS;
 		marca = m;

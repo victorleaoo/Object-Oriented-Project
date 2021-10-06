@@ -53,16 +53,20 @@ public class ControleCliente extends ControleDados {
 	@Override
 	public boolean inserir(String[] dadosCliente) {
 		if(editar(dadosCliente)) {
-			setQtd(getQtd()+1);			
+			setQtd(getQtd()+1);
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
     @Override
 	public boolean editar(String[] dadosCliente) {
-		Cliente c = new Cliente(dadosCliente[1], dadosCliente[2], dadosCliente[3], dadosCliente[4]);
-		getDados().inserirEditaCliente(c, Integer.parseInt(dadosCliente[0]));
-		return true;
+    	if(Servicos.validaEmail(dadosCliente[3])) {
+    		Cliente c = new Cliente(dadosCliente[1], dadosCliente[2], dadosCliente[3], dadosCliente[4]);
+    		getDados().inserirEditaCliente(c, Integer.parseInt(dadosCliente[0]));
+    		return true;
+    	}
+    	return false;
 	}
 
 	@Override
