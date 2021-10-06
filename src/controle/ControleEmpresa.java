@@ -2,9 +2,15 @@ package controle;
 
 import modelo.Empresa;
 
+/**
+ * Classe de Controle da classe Empresa. Possui os principais métodos relacionados a essa classe, como por exemplo: inserir, editar ou remover a empresa.
+ * Lembrando que só é possível uma empresa estar cadastrada por vez no programa.
+ * @author mixer
+ * @version 1.0 (Out. 2021)
+ */
 public class ControleEmpresa extends ControleDados {
 
-	private Empresa empresa; //Só pode ter uma empresa cadastrada por vez
+	private Empresa empresa;
 	private int qtdEmpresa;
 	
 	public ControleEmpresa() {
@@ -51,11 +57,25 @@ public class ControleEmpresa extends ControleDados {
 		return empresa.getEndEmpresa();
 	}
 	
+	/**
+	 * Método que cadastra/insere a Empresa.
+	 * @param dados ->  Um array de String com os dados da nova Empresa a ser inserida.
+	 * @return boolean:
+	 * (1) True/Verdadeiro: caso a empresa tenha sido inserida com sucesso.
+	 * (2) False/Falso: caso ocorra um erro ao inserir a empresa, provavelmente ano de fundação inválido.
+	 */
 	@Override
 	public boolean inserir(String[] dados) {
-			return editar(dados);
+		return editar(dados);
 	}
 	
+	/**
+	 * Método que edita os dados de uma Empresa.
+	 * @param dadosEmpresa -> Um array de String com os novos dados da Empresa a ser editada.
+	 * @return boolean:
+	 * (1) True/Verdadeiro: caso a empresa tenha sido editada com sucesso.
+	 * (2) False/Falso: caso ocorra um erro ao editar a empresa, provavelmente ano de fundação inválido.
+	 */
 	@Override
 	public boolean editar(String[] dadosEmpresa) {
 		if(Servicos.validaAnoFund(Integer.valueOf(dadosEmpresa[3]))) {
@@ -66,6 +86,12 @@ public class ControleEmpresa extends ControleDados {
 		return false;
 	}
 
+	/**
+	 * Método que remove a Empresa.
+	 * @param i -> "Posição" da empresa a ser removida. O parâmetro não é usado para empresa.
+	 * @return boolean:
+	 * (1) True/Verdadeiro: caso a empresa tenha sido removida com sucesso (não há motivo de erro, uma vez que só há uma empresa cadastrada).
+	 */
 	@Override
 	public boolean remover(int i) {
 		getDados().inserirEditaEmpresa(null);

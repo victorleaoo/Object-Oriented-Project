@@ -2,6 +2,11 @@ package controle;
 
 import modelo.Sapato;
 
+/**
+ * Classe de Controle da classe Sapato. Possui os principais métodos relacionados a essa classe, como por exemplo: listar os nomes (geral e por modelo), inserir, editar ou remover sapatos.
+ * @author mixer
+ * @version 1.0 (Out. 2021)
+ */
 public class ControleSapato extends ControleDados {
 
 	private Sapato[] spt;
@@ -13,6 +18,10 @@ public class ControleSapato extends ControleDados {
 		this.setQtd(super.getQtdeLista(spt));
 	}
 	
+	/**
+	 * Cria um array com os nomes dos sapatos. Será usado na camada view para listar os sapatos cadastrados, independente de seus modelos.
+	 * @return Array de String com o nome de cada sapato.
+	 */
 	public String[] getNomeSpts() {
 		String[] s = new String[qtdSapatos];
 		for(int i = 0; i < qtdSapatos; i++) {
@@ -35,7 +44,14 @@ public class ControleSapato extends ControleDados {
 	public Sapato[] getLista() {
 		return super.getDados().getdSapatos();
 	}
-			
+		
+	/**
+	 * Método que insere um novo sapato cadastrado. Com isso, o número de sapatos é acrescido em 1.
+	 * @param dadosSapato -> Um array de String com os dados do novo Sapato a ser inserido.
+	 * @return boolean:
+	 * (1) True/Verdadeiro: caso o sapato tenha sido inserido com sucesso.
+	 * (2) False/Falso: caso ocorra um erro ao inserir o sapato, provavelmente algum dado com tipo ou valor inválido.
+	 */
 	@Override
 	public boolean inserir(String[] dadosSapato) {
 		if(editar(dadosSapato)) {
@@ -45,6 +61,13 @@ public class ControleSapato extends ControleDados {
 		return false;
 	}
 	
+	/**
+	 * Método que edita os dados de um Sapato (menos o diretório de imagem, uma vez que mostrará o ImageIcon).
+	 * @param dadosSapato -> Um array de String com os novos dados do Sapato a ser editado.
+	 * @return boolean:
+	 * (1) True/Verdadeiro: caso o sapato tenha sido editado com sucesso.
+	 * (2) False/Falso: caso ocorra um erro ao editar o funcionário, provavelmente algum dado com tipo ou valor inválido.
+	 */
 	public boolean editar(String[] dadosSapato) { 
 		if(Servicos.validaModelo(dadosSapato[3].toCharArray()[0]) && Servicos.validaDouble(Double.valueOf(dadosSapato[4])) && Servicos.validaTamanho(Double.valueOf(dadosSapato[5])) && Servicos.validaTamanho(Double.valueOf(dadosSapato[6]))) {
 			Sapato s = new Sapato(dadosSapato[1], dadosSapato[2], dadosSapato[3].toCharArray()[0], Double.valueOf(dadosSapato[4]),
@@ -56,6 +79,13 @@ public class ControleSapato extends ControleDados {
 		return false;
 	}
 	
+	/**
+	 * Método que remove um Sapato. Com isso, o número de sapatos é reduzido em 1 e as posições dos sapatos ajustadas.
+	 * @param i -> Posição do sapato a ser removido.
+	 * @return boolean:
+	 * (1) True/Verdadeiro: caso o sapato tenha sido removido com sucesso.
+	 * (2) False/Falso: caso ocorra um erro ao remover o sapato, provavelmente o usuário não tenha dado o refresh após alguma alteração na lista.
+	 */
 	@Override
 	public boolean remover(int i) { 
 		if(i > getQtd()) {
@@ -84,6 +114,10 @@ public class ControleSapato extends ControleDados {
 		return true;
 	}
 	
+	/**
+	 * Cria um array com os nomes dos sapatos com modelo igual a Casual. Será usado na camada view para filtrar os sapatos cadastrados.
+	 * @return Array de String com o nome de cada sapato com modelo 'C'/'c'.
+	 */
 	public String[] getNomeCasual() {
 		String[] s = new String[qtdSapatos];
 		for(int i = 0; i < qtdSapatos; i++) {
@@ -95,6 +129,10 @@ public class ControleSapato extends ControleDados {
 		return s;
 	}
 
+	/**
+	 * Cria um array com os nomes dos sapatos com modelo igual a Sandália. Será usado na camada view para filtrar os sapatos cadastrados.
+	 * @return Array de String com o nome de cada sapato com modelo 'S'/'s'.
+	 */
 	public String[] getNomeSandalia() {
 		String[] s = new String[qtdSapatos];
 		for(int i = 0; i < qtdSapatos; i++) {
@@ -106,6 +144,10 @@ public class ControleSapato extends ControleDados {
 		return s;
 	}
 	
+	/**
+	 * Cria um array com os nomes dos sapatos com modelo igual a Esportivo. Será usado na camada view para filtrar os sapatos cadastrados.
+	 * @return Array de String com o nome de cada sapato com modelo 'E'/'e'.
+	 */
 	public String[] getNomeEsportivo() {
 		String[] s = new String[qtdSapatos];
 		for(int i = 0; i < qtdSapatos; i++) {
