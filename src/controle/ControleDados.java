@@ -1,6 +1,7 @@
 package controle;
 
-import modelo.*;
+import modelo.Dados;
+import modelo.Model;
 
 public abstract class ControleDados {
 	private Dados d = new Dados();

@@ -18,13 +18,18 @@ public class ControleSapato extends ControleDados {
 		this.setQtd(super.getQtdeLista(spt));
 	}
 	
+	@Override
+	public Sapato[] getLista() {
+		return super.getDados().getdSapatos();
+	}
+	
 	/**
 	 * Cria um array com os nomes dos sapatos. Será usado na camada view para listar os sapatos cadastrados, independente de seus modelos.
 	 * @return Array de String com o nome de cada sapato.
 	 */
 	public String[] getNomeSpts() {
-		String[] s = new String[qtdSapatos];
-		for(int i = 0; i < qtdSapatos; i++) {
+		String[] s = new String[getQtd()];
+		for(int i = 0; i < getQtd(); i++) {
 			s[i] = spt[i].getNomeSapato();
 		}
 		
@@ -33,17 +38,13 @@ public class ControleSapato extends ControleDados {
 	
 	
 	public int getQtd() {
-		return qtdSapatos;
+		return this.qtdSapatos;
 	}
 
 	public void setQtd(int qtd) {
 		this.qtdSapatos = qtd;
 	}
 	
-	@Override
-	public Sapato[] getLista() {
-		return super.getDados().getdSapatos();
-	}
 		
 	/**
 	 * Método que insere um novo sapato cadastrado. Com isso, o número de sapatos é acrescido em 1.
@@ -109,7 +110,7 @@ public class ControleSapato extends ControleDados {
 		for (int j = cont; j < getQtd() - 1; j++) {			
 			spt[j] = spt[j+1];
 		}
-		spt[getQtd()] = null;
+		spt[getQtd()-1] = null;
 		setQtd(getQtd() - 1);
 		return true;
 	}

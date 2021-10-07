@@ -74,7 +74,7 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 	 * @param filter-> String que o usuário escreve no TextField de busca.
 	 */
     public void filterModel(DefaultListModel<String> model, String filter) {
-		dados = new ControleCliente();
+		//dados = new ControleCliente();
 		listaNomesClientes = dados.getNomeClientes();
         for (String s : listaNomesClientes) {
             if (!s.startsWith(filter)) {

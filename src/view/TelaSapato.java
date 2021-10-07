@@ -51,14 +51,12 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
 	 */
 	public JTextField createTextField() {
 		final JTextField field = new JTextField("Nome do Sapato", 200);
-		DefaultListModel<String> model = (DefaultListModel<String>)listaSapatosCadastrados.getModel();
         field.getDocument().addDocumentListener(new DocumentListener(){
             @Override public void insertUpdate(DocumentEvent e) { filter(); }
             @Override public void removeUpdate(DocumentEvent e) { filter(); }
             @Override public void changedUpdate(DocumentEvent e) {}
-            private void filter() {
-                String filter = field.getText();
-                filterModel(model, filter);
+            private void filter() {            	
+                filterModel(field.getText());
             }
         });
         return field;
@@ -70,12 +68,7 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
 	 */
 	private ListModel<String> createDefaultListModel(){
 		dados = new ControleSapato();
-		listaNomesSapatos = dados.getNomeSpts();
-		DefaultListModel<String> model = new DefaultListModel<>();
-		for (String s : listaNomesSapatos) {
-			model.addElement(s);
-		}
-		return model;
+		return getModel("");
 	}
 	
 	/**
@@ -83,21 +76,21 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
 	 * @param model -> Lista com o nome dos sapatos.
 	 * @param filter-> String que o usuário escreve no TextField de busca.
 	 */
-    public void filterModel(DefaultListModel<String> model, String filter) { // Sistema de Busca
-		dados = new ControleSapato();
-		listaNomesSapatos = dados.getNomeSpts();
-        for (String s : listaNomesSapatos) {
-            if (!s.startsWith(filter)) {
-                if (model.contains(s)) {
-                    model.removeElement(s);
-                }
-            } else {
-                if (!model.contains(s)) {
-                    model.addElement(s);
-                }
-            }
-        }
+    public void filterModel(String filter) { // Sistema de Busca
+        listaSapatosCadastrados.setModel(getModel(filter)); 
+        listaSapatosCadastrados.updateUI();
     }
+
+	private ListModel<String> getModel(String filter) {
+		DefaultListModel<String> model = new DefaultListModel<>();
+		listaNomesSapatos = dados.getNomeSpts();
+        for (String s : listaNomesSapatos) {        	
+        	if("".equals(filter.trim()) || s.startsWith(filter)) {
+        		model.addElement(s);
+        	}        	
+        }
+        return model;
+	}
 	
     /**
      * Design dos elementos da Tela.
@@ -187,7 +180,7 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
-		dados = new ControleSapato();
+		//dados = new ControleSapato();
 
 		if(e.getValueIsAdjusting() && src == listaSapatosCadastrados) {
 			new TelaDetalheSapato().inserirEditar(2, dados, this, 

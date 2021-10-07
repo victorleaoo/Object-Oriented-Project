@@ -29,8 +29,8 @@ public class ControleCliente extends ControleDados {
 	 * @return Array de String com o nome de cada cliente.
 	 */
 	public String[] getNomeClientes() {
-		String[] s = new String[qtdClientes];
-		for(int i = 0; i < qtdClientes; i++) {
+		String[] s = new String[getQtd()];
+		for(int i = 0; i < getQtd(); i++) {
 			s[i] = cli[i].getNome();
 		}		
 		return s;
@@ -123,7 +123,7 @@ public class ControleCliente extends ControleDados {
 		for (int j = cont; j < getQtd() - 1; j++) {
 			cli[j] = cli[j+1];
 		}
-		cli[getQtd()] = null;
+		cli[getQtd()-1] = null;
 		setQtd(getQtd() - 1);
 		
 		return true;
