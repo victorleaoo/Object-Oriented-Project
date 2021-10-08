@@ -13,6 +13,11 @@ public class ControleCliente extends ControleDados {
 	private Cliente[] cli;
 	private int qtdClientes;
 	
+	/**
+	 * Construtor de ControleCliente:
+	 * (1) O array de Clientes será os clientes atribuídos à lista de Clientes.
+	 * (2) A quantidade será setada pela quantidade de elementos no array de Clientes.
+	 */
 	public ControleCliente() {
 		super();
 		cli = this.getLista();

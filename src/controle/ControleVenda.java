@@ -17,6 +17,11 @@ public class ControleVenda extends ControleDados {
 	private Venda[] vnd;
 	private int qtdVendas;
 	
+	/**
+	 * Construtor de ControleVenda:
+	 * (1) O array de Vendas será as vendas atribuídos à lista de Vendas.
+	 * (2) A quantidade será setada pela quantidade de elementos no array de Vendas.
+	 */
 	public ControleVenda() {
 		super();
 		vnd = this.getLista();
@@ -48,7 +53,8 @@ public class ControleVenda extends ControleDados {
 	
 	/**
 	 * Cria um array com os nomes dos itens de uma venda, mais especificamente o nome dos sapatos. Será usado na camada view para listar os itens cadastrados de uma venda.
-	 * @param List<ItensVenda> sapatos -> Uma lista com os itens cadastrados de uma venda.
+	 * @param List<ItensVenda> sapatos 
+	 * -> Uma lista com os itens cadastrados de uma venda.
 	 * @return Array de String com o nome de cada sapato na lista de ItensVenda de uma Venda específica.
 	 */
 	public String[] getNomeItens(List<ItensVenda> sapatos) {

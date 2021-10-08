@@ -4,13 +4,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 import controle.ControleSapato;
+import controle.ControleVenda;
+import modelo.ItensVenda;
 import controle.ControleCliente;
-import controle.ControleFunc;
 
 /**
- * Pacote com os testes unitários. Teste de métodos relacionados ao CRUD das classes, uma vez que são cruciais para o funcionamento do Software (boa parte dele é rodeado por esses):
- * (1) crUd: Teste do método de edição. Foi usado o da classe ControleSapato, já que possui uma grande variedade de atributos, mas a lógica desse método é a mesma para as outras classes. Além disso, o cadastro (C de CRUD), também tem uma dinâmica parecida a desse método.
+ * Pacote com os testes unitários. 
+ * Teste de métodos relacionados ao CRUD das classes, uma vez que são cruciais para o funcionamento do Software (boa parte dele é rodeado por esses). Além do teste da inserção de item em uma venda:
+ * (1) crUd: Teste do método de edição. Foi usado o da classe ControleSapato, já que possui uma grande variedade de atributos, mas a lógica desse método é a mesma para as outras classes. Além disso, os métodos de cadastro, também tem uma dinâmica parecida a desse método.
  * (2) cruD: Teste do método de remoção. Foi usado o da classe ControleCliente, mas para todas as classes, a ideia do método é a mesma.
+ * (3) Teste do método de inserção de um item em uma venda. 
  * @author Victor Leão
  * @version 1.0 (Out. 2021)
  */
@@ -18,7 +21,7 @@ class TesteCRUD {
 	
 	ControleSapato s = new ControleSapato();
 	ControleCliente c = new ControleCliente();
-	ControleFunc f = new ControleFunc(); 
+	ControleVenda v = new ControleVenda();
 	
 	@Test
 	void testEditar() {
@@ -38,8 +41,10 @@ class TesteCRUD {
 
 	
 	@Test
-	void testGetNomeFuncs() {
-		String[] funcs = {"Jorge", "Yure", "Daniel"}; 
-		assertEquals(funcs, f.getNomeFuncs());
+	void testAddItem() {
+		ItensVenda item1 = new ItensVenda(s.getDados().getdSapatos()[0], 1);
+		ItensVenda item2 = new ItensVenda(s.getDados().getdSapatos()[0], 30);
+		assertTrue(v.addItem(item1, 1));
+		assertFalse(v.addItem(item2, 1));
 	}
 }

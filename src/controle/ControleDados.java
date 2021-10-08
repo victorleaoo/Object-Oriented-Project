@@ -22,13 +22,25 @@ public abstract class ControleDados {
 	/**
 	 * Métodos que serão destrinchados em cada uma das outras classes de Controle:
 	 * (1) getLista -> Relacionado ao R de CRUD;
-	 * (2) inserir  -> Relacionado ao C de CRUD;
-	 * (3) editar   -> Relacionado ao U de CRUD; 
-	 * (4) remover  -> Relacionado ao D de CRUD;
 	 */
 	public abstract Model[] getLista();
+	/**
+	 * (2) inserir  -> Relacionado ao C de CRUD;
+	 * @param dados -> Dados relacionados à classe.
+	 * @return boolean
+	 */
 	public abstract boolean inserir(String[] dados);
+	/**
+	 * (3) editar   -> Relacionado ao U de CRUD;
+	 * @param dados -> Dados relacionados à classe.
+	 * @return boolean
+	 */
 	public abstract boolean editar(String[] dados);
+	/**
+	 * (4) remover  -> Relacionado ao D de CRUD;
+	 * @param i -> Posição do elemento.
+	 * @return boolean
+	 */
 	public abstract boolean remover(int i);
 	
 	/**

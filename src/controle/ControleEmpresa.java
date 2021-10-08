@@ -13,6 +13,11 @@ public class ControleEmpresa extends ControleDados {
 	private Empresa empresa;
 	private int qtdEmpresa;
 	
+	/**
+	 * Construtor de ControleEmpresa:
+	 * (1) A empresa será aquela única cadastrada no programa.
+	 * (2) A quantidade será 1 ou 0, dependendo se há empresa cadastrada ou não.
+	 */
 	public ControleEmpresa() {
 		super();
 		empresa = this.getEmpresa();

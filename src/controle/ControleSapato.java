@@ -12,6 +12,11 @@ public class ControleSapato extends ControleDados {
 	private Sapato[] spt;
 	private int qtdSapatos;
 	
+	/**
+	 * Construtor de ControleSapato:
+	 * (1) O array de Sapatos será os sapatos atribuídos à lista de Sapatos.
+	 * (2) A quantidade será setada pela quantidade de elementos no array de Sapatos.
+	 */
 	public ControleSapato() {
 		super();
 		spt = this.getLista();

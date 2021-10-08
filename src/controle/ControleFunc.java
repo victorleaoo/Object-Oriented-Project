@@ -12,6 +12,11 @@ public class ControleFunc extends ControleDados {
 	private Funcionario[] funcs;
 	private int qtdFuncionarios;
 	
+	/**
+	 * Construtor de ControleFunc:
+	 * (1) O array de Funcionários será os funcionários atribuídos à lista de Funcionários.
+	 * (2) A quantidade será setada pela quantidade de elementos no array de Funcionários.
+	 */
 	public ControleFunc() {
 		super();
 		funcs = this.getLista();
