@@ -141,6 +141,7 @@ public class ControleVenda extends ControleDados {
 	}
 	
 	public void deletarItem(ItensVenda s, int i) {
+		s.getS().setQntdEstoque(s.getS().getQntdEstoque() + s.getQntdVenda());
 		vnd[i].getSapatos().remove(s);
 	}
 }

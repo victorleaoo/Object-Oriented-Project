@@ -49,10 +49,6 @@ public class Sapato implements Model {
 		fotoSapato = img;
 	}
 
-	public Sapato(String string) {
-		this.nomeSapato = string;
-	}
-
 	public String getNomeSapato() {
 		return nomeSapato;
 	}

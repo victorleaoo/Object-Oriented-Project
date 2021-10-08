@@ -3,6 +3,8 @@ package view;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -13,16 +15,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import controle.ControleVenda;
 import modelo.ItensVenda;
-import modelo.Sapato;
 import modelo.Venda;
 
-public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
+public class TelaDetalheVenda implements ActionListener {
 	private JPanel janela;
 	private JPanel pai;
 	private JPanel editarVenda;
@@ -61,7 +60,8 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 		valorFuncionario = new JTextField(200);
 		valorMetPag = new JTextField(1);	
 		valorID = new JTextField(2);				
-												
+										
+		table.setName("table");
 		table.setModel(createTableModel());
 		
 		JPanel panel = new JPanel();
@@ -108,20 +108,34 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 		botaoVoltarCadastro.addActionListener(this);
 		botaoVoltar.addActionListener(this);
 		botaoItem.addActionListener(this);
-		//listaItensVenda.addListSelectionListener(this);
 		botaoSalvar.addActionListener(this);		
-		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-	        public void valueChanged(ListSelectionEvent e) {
-    			var confirma = JOptionPane.showConfirmDialog(pai, "Deseja excluir esse item?");
-    			if(confirma == JOptionPane.YES_OPTION) {			
-    				var qtde = Integer.valueOf(table.getValueAt(table.getSelectedRow(), 1).toString());
-    				var sapato = new Sapato(table.getValueAt(table.getSelectedRow(), 0).toString());    	
-    				var item = new ItensVenda(sapato, qtde);
-    				dados.deletarItem(item, table.getSelectedRow());    		
-    			}
-	        }
-	    });
-		
+		table.setRowSelectionAllowed(true);
+        table.setColumnSelectionAllowed(false);        
+        table.addMouseListener(new MouseAdapter() {
+        	public void mouseClicked(MouseEvent e) {
+				 //if (e.getClickCount() == 2) {
+				 
+				 JTable target = (JTable)e.getSource();
+				 int row = target.getSelectedRow();
+				 var confirma = JOptionPane.showConfirmDialog(pai, "Deseja excluir esse item?");
+				 if(confirma == JOptionPane.YES_OPTION) {								 
+					 for(ItensVenda item : venda.getSapatos()) {
+						 if(item.getS().getNomeSapato().equals(table.getValueAt(row, 0).toString())) {
+							 dados.deletarItem(item, posicao);
+							 venda = dados.getLista()[posicao];
+							 var mTable = createTableModel();
+							 for (ItensVenda item1 : venda.getSapatos()) {				
+								mTable.addRow(new Object[]{
+										item1.getS().getNomeSapato(), item1.getQntdVenda(), false});
+							 }			
+							 table.setModel(mTable);
+							 table.updateUI();
+						 }
+					 }		
+				 }					 
+			 }
+		});	
+        
 		return janela;
 	}
 
@@ -253,9 +267,4 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 							"Dê o refresh antes de excluir a próxima venda.", null, 
 				JOptionPane.ERROR_MESSAGE);
 	}
-
-	@Override
-	public void valueChanged(ListSelectionEvent e) {
-	}
-
 }
