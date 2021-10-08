@@ -18,6 +18,11 @@ import controle.ControleSapato;
 import controle.ControleVenda;
 import modelo.ItensVenda;
 
+/**
+ * Tela para inserir item a uma venda. Lista os sapatos, podendo, então, selecionar um e adicionar a quantidade vendida.
+ * @author Victor Leão
+ * @version 1.0 (Out. 2021)
+ */
 public class TelaInserirItem implements ActionListener, ListSelectionListener {
 	private JFrame janela = new JFrame("Inserir Item em Venda");
 	private JLabel titulo = new JLabel("Inserção de Item");
@@ -33,6 +38,10 @@ public class TelaInserirItem implements ActionListener, ListSelectionListener {
 	private int indexSapato;
 	private ItensVenda item;
 	
+	/**
+	 * Design dos elementos da Tela.
+	 * @param pos -> Posição da venda em que o item será inserido.
+	 */
 	public void inserirItem(int pos) {
 		
 		posicao = pos;
@@ -110,14 +119,18 @@ public class TelaInserirItem implements ActionListener, ListSelectionListener {
 	}
 	
 	/**
-	 * Mensagens de Sucesso ou Erro tanto de cadastro, quanto de exclusão.
+	 * Mensagem de Sucesso de inserção.
 	 */
 	public void mensagemSucessoCadastro() {
-		JOptionPane.showMessageDialog(null, "Os dados foram salvos com sucesso!", null, 
+		JOptionPane.showMessageDialog(null, "Item adicionado com sucesso!", null, 
 				JOptionPane.INFORMATION_MESSAGE);
 		janela.dispose();
 	}
 	
+	/**
+	 * Mensagem de Erro de inserção.
+	 * Aparece caso todos os campos não estejam preenchidos ou a quantidade vendida é inválida.
+	 */
 	public void mensagemErroCadastro() {
 		JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n " + "Nem todos os campos foram preenchidos OU \n" + "Quantidade vendida maior que a quantidade em Estoque!", null, 
 				JOptionPane.ERROR_MESSAGE);

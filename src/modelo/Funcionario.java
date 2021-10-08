@@ -63,6 +63,10 @@ public class Funcionario extends PessoaFisica implements Model {
 		this.anoIngresso = anoIngresso;
 	}
 
+	/**
+	 * Função para implementar a interface Model (não é realmente usada no programa).
+	 * @return String
+	 */
 	@Override
 	public String getModel() {
 		return nome + " - " + telefone;

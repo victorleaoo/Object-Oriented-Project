@@ -81,6 +81,20 @@ public class Servicos {
 	}
 	
 	/**
+	 * Método que valida a quantidade em estoque de um sapato a ser cadastrado.
+	 * @param qtdEstoque -> Quantidade a ser verificada.
+	 * @return boolean:
+	 * (1) True/Verdadeiro: Caso a quantidade seja válida.
+	 * (2) False/Falso: Caso a quantidade seja inválida.
+	 */
+	public static boolean validaEstoque(int qtdEstoque) {
+		if(qtdEstoque > 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
 	 * Método que valida a grade de tamanhos de um sapato. Nesse caso, o sapato pode ter tamanho mínimo de 15 e tamanho máximo de 46 (tamanhos comuns).
 	 * @param tamanho -> Tamanho a ser verificado.
 	 * @return boolean:

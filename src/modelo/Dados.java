@@ -55,7 +55,7 @@ public final class Dados {
 	}
 	public void inserirEditaSapato(Sapato sap, int pos) {
 		Dados.dSapatos[pos] = sap;
-	}	
+	}
 	public Empresa getdEmpresa() {
 		return dEmpresa;
 	}

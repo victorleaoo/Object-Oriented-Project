@@ -156,25 +156,35 @@ public class TelaEmpresa implements ActionListener {
 	}
 	
 	/**
-	 * Mensagens de Sucesso ou Erro tanto de cadastro, quanto de exclusão.
+	 * Mensagem de Sucesso de cadastro.
 	 */
 	public void mensagemSucessoCadastro() {
 		JOptionPane.showMessageDialog(null, "Os dados foram alterados com sucesso!", null, 
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	/**
+	 * Mensagem de Sucesso de exclusão.
+	 */
 	public void mensagemSucessoExclusao() {
 		JOptionPane.showMessageDialog(null, "Os dados foram excluidos com sucesso!", null, 
 				JOptionPane.INFORMATION_MESSAGE);
 		janela.dispose();
 	}
 	
+	/**
+	 * Mensagem de Erro de cadastro.
+	 * Aparece caso todos os campos não estejam preenchidos ou dados com tipo inválido.
+	 */
 	public void mensagemErroCadastro() {
 		JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n " + "Nem todos os campos foram preenchidos OU \n"
 	+ "Dados com tipos inválidos", null, 
 				JOptionPane.ERROR_MESSAGE);
 	}
 	
+	/**
+	 * Mensagem de Erro de exclusão
+	 */
 	public void mensagemErroExclusao() {
 		JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o dado.\n", null, 
 				JOptionPane.ERROR_MESSAGE);

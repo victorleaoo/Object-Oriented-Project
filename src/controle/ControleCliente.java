@@ -19,6 +19,10 @@ public class ControleCliente extends ControleDados {
 		this.setQtd(super.getQtdeLista(cli));		
 	}
 
+	/**
+	 * Método que retorna um array (lista) contendo os clientes cadastrados no software.
+	 * @return Cliente[]
+	 */
 	@Override
 	public Cliente[] getLista() {	
 		return super.getDados().getdClientes();

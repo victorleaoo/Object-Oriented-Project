@@ -21,6 +21,11 @@ import controle.ControleVenda;
 import modelo.ItensVenda;
 import modelo.Venda;
 
+/**
+ * Tela que apresenta os dados da Venda (vazios ou preenchidos dependendo do selecionado na TelaVenda). Pode-se alterar os dados da Venda ou excluí-la. Além disso, pode-se excluir os Itens de uma Venda.
+ * @author Victor Leão
+ * @version 1.0 (Out. 2021)
+ */
 public class TelaDetalheVenda implements ActionListener {
 	private JPanel janela;
 	private JPanel pai;
@@ -47,6 +52,11 @@ public class TelaDetalheVenda implements ActionListener {
 	private Venda venda;
 	private JTable table = new JTable();
 	
+	/**
+	 * Design dos elementos da tela.
+	 * @param d -> Dados de Venda.
+	 * @return JPanel: uma vez que a TelaVenda e essa tela são a mesma.
+	 */
 	public JPanel inserirEditar(ControleVenda d) {
 			
 		dados = d;
@@ -74,8 +84,6 @@ public class TelaDetalheVenda implements ActionListener {
 		JPanel panelDados = new JPanel(new GridLayout(5, 2));
 				
 		editarVenda = new JPanel();
-//		editarVenda.setSize(400, 300);
-		//editarVenda.add(listaItensVenda);
 		editarVenda.add(botaoAlterar);
 		editarVenda.add(botaoVoltar);
 		editarVenda.add(botaoExcluir);
@@ -113,8 +121,6 @@ public class TelaDetalheVenda implements ActionListener {
         table.setColumnSelectionAllowed(false);        
         table.addMouseListener(new MouseAdapter() {
         	public void mouseClicked(MouseEvent e) {
-				 //if (e.getClickCount() == 2) {
-				 
 				 JTable target = (JTable)e.getSource();
 				 int row = target.getSelectedRow();
 				 var confirma = JOptionPane.showConfirmDialog(pai, "Deseja excluir esse item?");
@@ -139,11 +145,18 @@ public class TelaDetalheVenda implements ActionListener {
 		return janela;
 	}
 
+	/**
+	 * Set do JPanel pai.
+	 * @param pai -> JPanel pai
+	 */
 	public void setParent(JPanel pai) {
 		this.pai = pai;
 	}
 	
-	
+	/**
+	 * Set dos dados de uma venda que vai ser alterada ou cadastrada.
+	 * @param pos -> Analisa se deve mostrar os dados de uma venda ou os JTextField vazios para que se possa cadastrar uma nova Venda.
+	 */
 	public void setVenda(int pos) {
 		posicao = pos;
 		if(pos >= 0) {	
@@ -246,22 +259,35 @@ public class TelaDetalheVenda implements ActionListener {
 		}
 	}
 	
+	/**
+	 * Mensagem de Sucesso de cadastro.
+	 */
 	public void mensagemSucessoCadastro() {
 		JOptionPane.showMessageDialog(null, "Os dados foram salvos com sucesso!", null, 
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	/**
+	 * Mensagem de Sucesso de exclusão.
+	 */
 	public void mensagemSucessoExclusao() {
 		JOptionPane.showMessageDialog(null, "Os dados foram excluidos com sucesso!", null, 
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	/**
+	 * Mensagem de Erro de cadastro.
+	 * Aparece caso todos os campos não estejam preenchidos, dados com tipo inválido ou cliente/funcionário inserido inexistente.
+	 */
 	public void mensagemErroCadastro() {
 		JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n " + "Nem todos os campos foram preenchidos, \n"
 	+ "Dados com tipos inválidos\n" + "OU Cliente/Funcionário inexistente.", null, 
 				JOptionPane.ERROR_MESSAGE);
 	}
 	
+	/**
+	 * Mensagem de Erro de exclusão
+	 */
 	public void mensagemErroExclusao() {
 		JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o dado.\n"+ 
 							"Dê o refresh antes de excluir a próxima venda.", null, 

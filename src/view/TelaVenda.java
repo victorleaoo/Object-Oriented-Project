@@ -21,6 +21,12 @@ import javax.swing.event.ListSelectionListener;
 
 import controle.ControleVenda;
 
+/**
+ * Tela que lista as vendas (funcionário - cliente - ID). Pode-se selecionar alguma Venda na lista para o alterar ou excluir. Também há o botão de cadastro e o de refresh da lista.
+ * Há a possibilidade de buscar as vendas pelo nome do funcionário.
+ * @author Victor Leão
+ * @version 1.0 (Out. 2021)
+ */
 public class TelaVenda implements ActionListener, ListSelectionListener {
 	private JFrame janela = new JFrame("Vendas");
 	private JLabel titulo = new JLabel("Controle de Vendas");
@@ -34,6 +40,10 @@ public class TelaVenda implements ActionListener, ListSelectionListener {
 	private JPanel manterVenda;
 	private TelaDetalheVenda telaDetalheVenda = new TelaDetalheVenda();
 	
+	/**
+	 * Cria o TextField em que se buscará o nome dos funcionários na lista.
+	 * @return TextField
+	 */
 	public JTextField createTextField() {
 		final JTextField field = new JTextField("Nome do Funcionário", 200);
         field.getDocument().addDocumentListener(new DocumentListener(){
@@ -47,16 +57,29 @@ public class TelaVenda implements ActionListener, ListSelectionListener {
         return field;
 	}
 	
+	/**
+	 * Cria ListModel de vendas (com todas as vendas).
+	 * @return ListModel<String>
+	 */
 	private ListModel<String> createDefaultListModel(){
 		dados = new ControleVenda();
 		return getModel("");
 	}
 	
+	/**
+	 * Atualiza a lista de vendas enquanto ocorre a busca.
+	 * @param filter -> String que o usuário escreve em busca da venda pelo nome do funcionário.
+	 */
     public void filterModel(String filter) {
     	listaVendasCadastradas.setModel(getModel(filter)); 
     	listaVendasCadastradas.updateUI();
     }
     
+    /**
+     * Sistema de busca de Venda por nome do funcionário.
+     * @param filter -> String que o usuário escreve em busca do venda pelo funcionário (em branco, mostra todos).
+     * @return ListModel<String>
+     */
 	private ListModel<String> getModel(String filter) {
 		DefaultListModel<String> model = new DefaultListModel<>();
 		listaNomeVendas = dados.getNomeVendas();
@@ -68,6 +91,9 @@ public class TelaVenda implements ActionListener, ListSelectionListener {
         return model;
 	}
 	
+	/**
+     * Design dos elementos da Tela.
+     */
 	public void mostrarVendas() {
 		
 		busca = createTextField();

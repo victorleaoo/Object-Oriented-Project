@@ -28,7 +28,6 @@ import controle.ControleSapato;
  * @author Victor Leão
  * @version 1.0 (Out. 2021)
  */
-
 public class TelaSapato implements ActionListener, ListSelectionListener {
 	private JFrame janela = new JFrame("Sapatos");
 	private JLabel titulo = new JLabel("Controle de Sapatos");
@@ -61,9 +60,9 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
         });
         return field;
 	}
-	
+
 	/**
-	 * Transforma a lista com o nome dos sapatos em uma ListModel, para que seja possível implementar o recurso de busca.
+	 * Cria ListModel de sapatos (com todos os sapatos).
 	 * @return ListModel<String>
 	 */
 	private ListModel<String> createDefaultListModel(){
@@ -72,15 +71,19 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
 	}
 	
 	/**
-	 * Método que implementa o sistema de busca de sapatos na lista por seu nome.
-	 * @param model -> Lista com o nome dos sapatos.
-	 * @param filter-> String que o usuário escreve no TextField de busca.
+	 * Atualiza a lista de sapatos enquanto ocorre a busca.
+	 * @param filter -> String que o usuário escreve em busca do sapato pelo nome.
 	 */
     public void filterModel(String filter) {
         listaSapatosCadastrados.setModel(getModel(filter)); 
         listaSapatosCadastrados.updateUI();
     }
 
+    /**
+     * Sistema de busca de Sapato por seu nome.
+     * @param filter -> String que o usuário escreve em busca do sapato pelo nome (em branco, mostra todos).
+     * @return ListModel<String>
+     */
 	private ListModel<String> getModel(String filter) {
 		DefaultListModel<String> model = new DefaultListModel<>();
 		listaNomesSapatos = dados.getNomeSpts();

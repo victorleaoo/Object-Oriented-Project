@@ -7,6 +7,11 @@ import modelo.Funcionario;
 import modelo.ItensVenda;
 import modelo.Venda;
 
+/**
+ * Classe de Controle da classe Venda. Possui os principais métodos relacionados a essa classe e a ItensVenda, como por exemplo: listar os nomes, inserir, editar ou remover vendas e itens dessas vendas.
+ * @author mixer
+ * @version 1.0 (Out. 2021)
+ */
 public class ControleVenda extends ControleDados {
 	
 	private Venda[] vnd;
@@ -18,11 +23,20 @@ public class ControleVenda extends ControleDados {
 		this.setQtd(super.getQtdeLista(vnd));
 	}
 	
+	/**
+	 * Método que retorna um array (lista) contendo as vendas cadastradas no software.
+	 * @return Venda[]
+	 */
 	@Override
 	public Venda[] getLista() {
 		return super.getDados().getdVendas();
 	}
 	
+	/**
+	 * Cria um array com os nomes dos funcionários responsáveis pelas vendas, clientes que compraram e IDs das vendas. Será usado na camada view para listar as vendas cadastradas.
+	 * @return Array de String com o seguinte formato:
+	 * (1) Fulano - Funcionário            Ciclano - Cliente            - ID: X
+	 */
 	public String[] getNomeVendas() {
 		String[] v = new String[qtdVendas];
 		for(int i = 0; i < qtdVendas; i++) {
@@ -32,6 +46,11 @@ public class ControleVenda extends ControleDados {
 		return v;
 	}
 	
+	/**
+	 * Cria um array com os nomes dos itens de uma venda, mais especificamente o nome dos sapatos. Será usado na camada view para listar os itens cadastrados de uma venda.
+	 * @param List<ItensVenda> sapatos -> Uma lista com os itens cadastrados de uma venda.
+	 * @return Array de String com o nome de cada sapato na lista de ItensVenda de uma Venda específica.
+	 */
 	public String[] getNomeItens(List<ItensVenda> sapatos) {
 		String[] s = new String[sapatos.size()];
 		for(int i = 0; i < sapatos.size(); i++) {
@@ -68,14 +87,29 @@ public class ControleVenda extends ControleDados {
 		return vnd[i].getID();
 	}
 
+	/**
+	 * Método que insere uma nova venda cadastrada. Com isso, o número de vendas é acrescido em 1.
+	 * @param dadosVenda -> Um array de String com os dados da nova Venda a ser inserida (os Itens da Venda são cadastrados posteriormente).
+	 * @return boolean:
+	 * (1) True/Verdadeiro: caso a venda tenha sido inserida com sucesso.
+	 * (2) False/Falso: caso ocorra um erro ao inserir a venda, provavelmente funcionário ou cliente não encontrado ou método de pagamento inválido.
+	 */
 	@Override
 	public boolean inserir(String[] dadosVenda) {		
 		if(editar(dadosVenda)) {
 			setQtd(getQtd()+1);			
+			return true;
 		}
-		return true;
+		return false;
 	}
 
+	/**
+	 * Método que edita os dados de uma Venda. Se certifica que o Funcionário e o Cliente digitados existem no programa.
+	 * @param dadosVenda -> Um array de String com os novos dados da Vemda a ser editada.
+	 * @return boolean:
+	 * (1) True/Verdadeiro: caso a venda tenha sido editada com sucesso.
+	 * (2) False/Falso: caso ocorra um erro ao inserir a venda, provavelmente funcionário ou cliente não encontrado ou método de pagamento inválido.
+	 */
 	@Override
 	public boolean editar(String[] dadosVenda) {
 		Funcionario funcVenda = null;
@@ -103,6 +137,13 @@ public class ControleVenda extends ControleDados {
 
 	}
 
+	/**
+	 * Método que remove uma Venda. Com isso, o número de vendas é reduzido em 1 e as posições das vendas ajustadas.
+	 * @param i -> Posição da venda a ser removida.
+	 * @return boolean:
+	 * (1) True/Verdadeiro: caso a venda tenha sido removida com sucesso.
+	 * (2) False/Falso: caso ocorra um erro ao remover a venda, provavelmente o usuário não tenha dado o refresh após alguma alteração na lista.
+	 */
 	@Override
 	public boolean remover(int i) {
 		if(i > getQtd()) {
@@ -131,6 +172,14 @@ public class ControleVenda extends ControleDados {
 		return true;
 	}
 	
+	/**
+	 * Adiciona um item à lista de Itens da Venda. Além de atualizar o estoque (diminuir a quantidade vendida).
+	 * @param s -> Item a ser adicionado na venda.
+	 * @param i -> Posição da venda em que o item vai ser adicionado.
+	 * @return boolean:
+	 * (1) True/Verdadeiro: caso a quantidade vendida seja menor que a quantidade em estoque e o item adicionado com sucesso.
+	 * (2) False/Falso: caso a quantidade vendida seja maior que a quantidade em estoque. Logo, o item não será adicionado.
+	 */
 	public boolean addItem(ItensVenda s, int i) {
 		if(s.getQntdVenda() > s.getS().getQntdEstoque()) {
 			return false;
@@ -140,6 +189,11 @@ public class ControleVenda extends ControleDados {
 		return true;
 	}
 	
+	/**
+	 * Deleta um item da Venda. Além de atualizar o estoque (aumentar a quantidade do item excluído).
+	 * @param s -> Item a ser excluído.
+	 * @param i -> Posição da venda do item a ser excluído.
+	 */
 	public void deletarItem(ItensVenda s, int i) {
 		s.getS().setQntdEstoque(s.getS().getQntdEstoque() + s.getQntdVenda());
 		vnd[i].getSapatos().remove(s);

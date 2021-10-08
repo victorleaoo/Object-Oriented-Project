@@ -92,10 +92,13 @@ public class Venda implements Model {
 		sapatos.remove(s);
 	}
 
+	/**
+	 * Função para implementar a interface Model (não é realmente usada no programa).
+	 * @return String
+	 */
 	@Override
 	public String getModel() {
-		// TODO Auto-generated method stub
-		return null;
+		return "ID";
 	}
 	
 }

@@ -86,6 +86,10 @@ public class Empresa implements Model {
 		this.listaFunc = listaFunc;
 	}
 
+	/**
+	 * Função para implementar a interface Model (não é realmente usada no programa).
+	 * @return String
+	 */
 	@Override
 	public String getModel() {
 		return CNPJ + " - " + nomeEmpresa;

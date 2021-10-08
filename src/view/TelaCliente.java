@@ -25,7 +25,6 @@ import controle.ControleCliente;
  * @author Victor Leão
  * @version 1.0 (Out. 2021)
  */
-
 public class TelaCliente implements ActionListener, ListSelectionListener {
 	private JFrame janela = new JFrame("Clientes");
 	private JLabel titulo = new JLabel("Controle de Clientes");
@@ -53,21 +52,29 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
         return field;
 	}
 	
+	/**
+	 * Cria ListModel de clientes (com todos os clientes).
+	 * @return ListModel<String>
+	 */
 	private ListModel<String> createDefaultListModel(){
 		dados = new ControleCliente();
 		return getModel("");
 	}
 	
 	/**
-	 * Método que implementa o sistema de busca de clientes na lista por seu nome.
-	 * @param model -> Lista com o nome dos clientes.
-	 * @param filter-> String que o usuário escreve no TextField de busca.
+	 * Atualiza a lista de clientes enquanto ocorre a busca.
+	 * @param filter -> String que o usuário escreve em busca do cliente pelo nome.
 	 */
     public void filterModel(String filter) {
     	listaClientesCadastrados.setModel(getModel(filter)); 
         listaClientesCadastrados.updateUI();
     }
     
+    /**
+     * Sistema de busca de Cliente por seu nome.
+     * @param filter -> String que o usuário escreve em busca do cliente pelo nome (em branco, mostra todos).
+     * @return ListModel<String>
+     */
 	private ListModel<String> getModel(String filter) {
 		DefaultListModel<String> model = new DefaultListModel<>();
 		listaNomesClientes = dados.getNomeClientes();
@@ -82,7 +89,6 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
     /**
      * Design dos elementos da Tela.
      */
-    
 	public void mostrarClientes() {
 		
 		busca = createTextField();

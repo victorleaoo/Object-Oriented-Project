@@ -9,7 +9,7 @@ package modelo;
 public class ItensVenda implements Model{
 	
 	/**
-	 * Atributos de ItensVenda.
+	 * Atributos de ItensVenda -> Sapato e a quantidade vendida deste.
 	 */
 	private Sapato s;
 	private int qntdVenda;
@@ -38,6 +38,10 @@ public class ItensVenda implements Model{
 		this.qntdVenda = qntdVenda;
 	}
 
+	/**
+	 * Função para implementar a interface Model (não é realmente usada no programa).
+	 * @return String
+	 */
 	@Override
 	public String getModel() {
 		return "Sapato";

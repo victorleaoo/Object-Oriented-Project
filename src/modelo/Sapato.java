@@ -114,6 +114,10 @@ public class Sapato implements Model {
 		this.qntdEstoque = qntdEstoque;
 	}
 
+	/**
+	 * Função para implementar a interface Model (não é realmente usada no programa).
+	 * @return String
+	 */
 	@Override
 	public String getModel() {
 		return nomeSapato + " - " + marca;

@@ -16,7 +16,6 @@ import controle.ControleCliente;
  * @author Victor Leão
  * @version 1.0 (Out. 2021)
  */
-
 public class TelaDetalheCliente implements ActionListener {
 	
 	private JFrame janela;
@@ -45,7 +44,6 @@ public class TelaDetalheCliente implements ActionListener {
 	 * @param c   -> TelaCliente (no caso, a única que o programa possui).
 	 * @param nome-> String contendo nome do Cliente selecionado (necessário para encontrar a posição do Cliente no array de clientes).
 	 */
-	
 	public void inserirEditar(int op, ControleCliente d, TelaCliente c, String nome) {
 		
 		int pos = 0;
@@ -162,7 +160,7 @@ public class TelaDetalheCliente implements ActionListener {
 	}
 	
 	/**
-	 * Mensagens de Sucesso ou Erro tanto de cadastro, quanto de exclusão.
+	 * Mensagem de Sucesso de cadastro.
 	 */
 	public void mensagemSucessoCadastro() {
 		JOptionPane.showMessageDialog(null, "Os dados foram salvos com sucesso!", null, 
@@ -170,18 +168,28 @@ public class TelaDetalheCliente implements ActionListener {
 		janela.dispose();
 	}
 	
+	/**
+	 * Mensagem de Sucesso de exclusão.
+	 */
 	public void mensagemSucessoExclusao() {
 		JOptionPane.showMessageDialog(null, "Os dados foram excluidos com sucesso!", null, 
 				JOptionPane.INFORMATION_MESSAGE);
 		janela.dispose();
 	}
 	
+	/**
+	 * Mensagem de Erro de cadastro.
+	 * Aparece caso todos os campos não estejam preenchidos ou o e-mail é inválido.
+	 */
 	public void mensagemErroCadastro() {
 		JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n " + "Nem todos os campos foram preenchidos OU \n"
 	+ "Email incorreto", null, 
 				JOptionPane.ERROR_MESSAGE);
 	}
 	
+	/**
+	 * Mensagem de Erro de exclusão
+	 */
 	public void mensagemErroExclusao() {
 		JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o dado.\n", null, 
 				JOptionPane.ERROR_MESSAGE);

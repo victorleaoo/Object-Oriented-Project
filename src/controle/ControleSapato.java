@@ -18,6 +18,10 @@ public class ControleSapato extends ControleDados {
 		this.setQtd(super.getQtdeLista(spt));
 	}
 	
+	/**
+	 * Método que retorna um array (lista) contendo os sapatos cadastrados no software.
+	 * @return Sapato[]
+	 */
 	@Override
 	public Sapato[] getLista() {
 		return super.getDados().getdSapatos();
@@ -70,7 +74,7 @@ public class ControleSapato extends ControleDados {
 	 * (2) False/Falso: caso ocorra um erro ao editar o funcionário, provavelmente algum dado com tipo ou valor inválido.
 	 */
 	public boolean editar(String[] dadosSapato) { 
-		if(Servicos.validaModelo(dadosSapato[3].toCharArray()[0]) && Servicos.validaDouble(Double.valueOf(dadosSapato[4])) && Servicos.validaTamanho(Double.valueOf(dadosSapato[5])) && Servicos.validaTamanho(Double.valueOf(dadosSapato[6]))) {
+		if(Servicos.validaModelo(dadosSapato[3].toCharArray()[0]) && Servicos.validaDouble(Double.valueOf(dadosSapato[4])) && Servicos.validaTamanho(Double.valueOf(dadosSapato[5])) && Servicos.validaTamanho(Double.valueOf(dadosSapato[6])) && Servicos.validaEstoque(Integer.valueOf(dadosSapato[8]))) {
 			Sapato s = new Sapato(dadosSapato[1], dadosSapato[2], dadosSapato[3].toCharArray()[0], Double.valueOf(dadosSapato[4]),
 					Double.valueOf(dadosSapato[5]), Double.valueOf(dadosSapato[6]), dadosSapato[7],
 					Integer.valueOf(dadosSapato[8]), dadosSapato[9]);

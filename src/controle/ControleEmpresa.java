@@ -19,6 +19,10 @@ public class ControleEmpresa extends ControleDados {
 		this.setQtd(empresa != null ?  1 : 0);
 	}
 	
+	/**
+	 * Método que retornaria um array (lista) contendo as empresas cadastradas no software, entretanto só há uma empresa cadastrada por vez.
+	 * @return null -> No caso, só há uma empresa no programa.
+	 */
 	@Override
 	public Empresa[] getLista()  {
 		return null;

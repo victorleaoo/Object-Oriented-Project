@@ -18,6 +18,10 @@ public class ControleFunc extends ControleDados {
 		this.setQtd(super.getQtdeLista(funcs));
 	}
 	
+	/**
+	 * Método que retorna um array (lista) contendo os funcionários cadastrados no software.
+	 * @return Funcionario[]
+	 */
 	@Override
 	public Funcionario[] getLista() {
 		return super.getDados().getdFuncs();
