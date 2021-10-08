@@ -76,7 +76,7 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
 	 * @param model -> Lista com o nome dos sapatos.
 	 * @param filter-> String que o usuário escreve no TextField de busca.
 	 */
-    public void filterModel(String filter) { // Sistema de Busca
+    public void filterModel(String filter) {
         listaSapatosCadastrados.setModel(getModel(filter)); 
         listaSapatosCadastrados.updateUI();
     }
@@ -180,7 +180,6 @@ public class TelaSapato implements ActionListener, ListSelectionListener {
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
-		//dados = new ControleSapato();
 
 		if(e.getValueIsAdjusting() && src == listaSapatosCadastrados) {
 			new TelaDetalheSapato().inserirEditar(2, dados, this, 

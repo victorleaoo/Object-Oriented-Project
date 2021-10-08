@@ -131,4 +131,16 @@ public class ControleVenda extends ControleDados {
 		return true;
 	}
 	
+	public boolean addItem(ItensVenda s, int i) {
+		if(s.getQntdVenda() > s.getS().getQntdEstoque()) {
+			return false;
+		}
+		s.getS().setQntdEstoque(s.getS().getQntdEstoque() - s.getQntdVenda());
+		vnd[i].getSapatos().add(s);
+		return true;
+	}
+	
+	public void deletarItem(ItensVenda s, int i) {
+		vnd[i].getSapatos().remove(s);
+	}
 }

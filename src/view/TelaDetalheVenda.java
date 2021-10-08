@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controle.ControleVenda;
 import modelo.ItensVenda;
+import modelo.Sapato;
 import modelo.Venda;
 
 public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
@@ -27,7 +27,6 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 	private JPanel pai;
 	private JPanel editarVenda;
 	private JPanel cadastrarVenda;
-	private JPanel detalheItem;
 	private JLabel labelCliente = new JLabel("Cliente: ");
 	private JTextField valorCliente;
 	private JLabel labelFuncionario = new JLabel("Funcionário: ");
@@ -46,9 +45,7 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 	private static ControleVenda dados;
 	private int posicao;
 	
-	private JList<String> listaItensVenda;
 	private Venda venda;
-	private TelaDetalheItem telaDetalheItem = new TelaDetalheItem();
 	private JTable table = new JTable();
 	
 	public JPanel inserirEditar(ControleVenda d) {
@@ -57,8 +54,7 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 			
 		janela = new JPanel(new GridLayout(2, 2));
 		
-		//this.janela.setLayout(new FlowLayout(FlowLayout.LEFT));
-		this.janela.setSize(650, 400);
+		this.janela.setSize(900, 400);
 		
 		venda = null;		
 		valorCliente = new JTextField(200);
@@ -69,22 +65,21 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 		table.setModel(createTableModel());
 		
 		JPanel panel = new JPanel();
-		panel.setSize(400, 200);
 		panel.setBorder(BorderFactory.createTitledBorder(
 		         BorderFactory.createEtchedBorder(), "Itens", TitledBorder.CENTER, TitledBorder.TOP));
 		var scrollPane = new JScrollPane(table);
-		scrollPane.setSize(350, 150);
+		scrollPane.setSize(200, 50);
 		panel.add(scrollPane);						
 		
 		JPanel panelDados = new JPanel(new GridLayout(5, 2));
 				
 		editarVenda = new JPanel();
-		editarVenda.setSize(400, 300);
+//		editarVenda.setSize(400, 300);
 		//editarVenda.add(listaItensVenda);
 		editarVenda.add(botaoAlterar);
 		editarVenda.add(botaoVoltar);
 		editarVenda.add(botaoExcluir);
-		//editarVenda.add(botaoItem);
+		editarVenda.add(botaoItem);
 		editarVenda.setVisible(true);
 		cadastrarVenda = new JPanel();						
 		cadastrarVenda.setSize(400, 400);
@@ -105,20 +100,27 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 		
 		janela.add(panelDados);
 		janela.add(panel);
-		
-		detalheItem = telaDetalheItem.inserirEditar();
-		telaDetalheItem.setParent(janela);
-		detalheItem.setVisible(false);		
-//		janela.add(BorderLayout.CENTER, detalheItem);
-		
+				
 		this.janela.setVisible(true);
 		
 		botaoAlterar.addActionListener(this);
 		botaoExcluir.addActionListener(this);
 		botaoVoltarCadastro.addActionListener(this);
 		botaoVoltar.addActionListener(this);
+		botaoItem.addActionListener(this);
 		//listaItensVenda.addListSelectionListener(this);
-		botaoSalvar.addActionListener(this);
+		botaoSalvar.addActionListener(this);		
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+	        public void valueChanged(ListSelectionEvent e) {
+    			var confirma = JOptionPane.showConfirmDialog(pai, "Deseja excluir esse item?");
+    			if(confirma == JOptionPane.YES_OPTION) {			
+    				var qtde = Integer.valueOf(table.getValueAt(table.getSelectedRow(), 1).toString());
+    				var sapato = new Sapato(table.getValueAt(table.getSelectedRow(), 0).toString());    	
+    				var item = new ItensVenda(sapato, qtde);
+    				dados.deletarItem(item, table.getSelectedRow());    		
+    			}
+	        }
+	    });
 		
 		return janela;
 	}
@@ -144,7 +146,7 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 			}			
 			table.setModel(mTable);
 			cadastrarVenda.setVisible(false);
-			editarVenda.setVisible(true);			
+			editarVenda.setVisible(true);		
 		}
 		else {
 			valorCliente.setText(null);
@@ -157,8 +159,14 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 		}
 	}
 
+	@SuppressWarnings("serial")
 	private DefaultTableModel createTableModel() {		
-		return new DefaultTableModel(null, new String[] { "Nome", "Quantidade" });
+		return new DefaultTableModel(null, new String[] { "Nome", "Quantidade" }) {
+		    public boolean isCellEditable(int row, int column)
+		    {
+		      return false;
+		    }
+		};
 	}
 	
 	@Override
@@ -218,15 +226,9 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 			if (res) mensagemSucessoExclusao(); 
 			else mensagemErroExclusao(); 
 		}
-	}
-
-	@Override
-	public void valueChanged(ListSelectionEvent e) {
-		Object src = e.getSource();		
-		if(e.getValueIsAdjusting() && src == listaItensVenda) {			
-			telaDetalheItem.setVenda(venda, listaItensVenda.getSelectedIndex());
-			janela.setVisible(false);
-			detalheItem.setVisible(true);
+		
+		if(src == botaoItem) {
+			new TelaInserirItem().inserirItem(posicao);
 		}
 	}
 	
@@ -250,6 +252,10 @@ public class TelaDetalheVenda implements ActionListener, ListSelectionListener {
 		JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o dado.\n"+ 
 							"Dê o refresh antes de excluir a próxima venda.", null, 
 				JOptionPane.ERROR_MESSAGE);
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
 	}
 
 }

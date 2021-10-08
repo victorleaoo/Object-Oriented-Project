@@ -37,7 +37,7 @@ public class Sapato implements Model {
 	 * @param q  -> Int contendo quantidade em estoque do Sapato.
 	 * @param img-> String contendo a URL/diretório para a imagem do sapato. Posteriormente, será exibida como ImageIcon.
 	 */
-	public Sapato(String nS, String m, char mod, double p, double men, double mai, String d, int q, String img) { //Falta colocar fotoSapato.
+	public Sapato(String nS, String m, char mod, double p, double men, double mai, String d, int q, String img) {
 		nomeSapato = nS;
 		marca = m;
 		modelo = mod;
@@ -47,6 +47,10 @@ public class Sapato implements Model {
 		descricao = d;
 		qntdEstoque = q;
 		fotoSapato = img;
+	}
+
+	public Sapato(String string) {
+		this.nomeSapato = string;
 	}
 
 	public String getNomeSapato() {

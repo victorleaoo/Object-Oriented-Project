@@ -80,20 +80,8 @@ public class Venda implements Model {
 	 * @param s -> ItensVenda contendo o item a ser adicionado à lista de itens da Venda.
 	 */
 	public void addItem(ItensVenda s) {
+		s.getS().setQntdEstoque(s.getS().getQntdEstoque() - s.getQntdVenda());
 		sapatos.add(s);
-	}
-	
-	/**
-	 * Altera quantidade vendida de um item da Venda.
-	 * @param s -> ItensVenda contendo o item a ter a quantidade vendida alterada.
-	 * @param nQ-> Int contendo a quantidade do item a ser alterada.
-	 */
-	public void alterarItem(ItensVenda s, int nQ) {
-		for (ItensVenda itensVenda : sapatos) {
-			if(itensVenda.equals(s)) {
-				itensVenda.setQntdVenda(nQ);
-			}
-		}
 	}
 	
 	/**

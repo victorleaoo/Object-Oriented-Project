@@ -7,8 +7,6 @@ package controle;
  */
 public class Servicos {
 	
-	public static ControleEmpresa dadosEmpresa;
-	
 	/**
 	 * Método que valida o e-mail de um cliente. Nesse caso, o e-mail deve conter o '@' e não pode começar com '@'.
 	 * @param email -> E-mail a ser verificado
@@ -45,6 +43,7 @@ public class Servicos {
 	 * (2) False/Falso: caso o Ano seja inválido.
 	 */
 	public static boolean validaAnoIng(int ano) {
+		ControleEmpresa dadosEmpresa;
 		dadosEmpresa = new ControleEmpresa();
 		if(ano >= dadosEmpresa.getEmpresa().getAnoFund() && ano <= 2021) {
 			return true;

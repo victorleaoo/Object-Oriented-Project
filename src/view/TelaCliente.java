@@ -46,26 +46,16 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
             @Override public void insertUpdate(DocumentEvent e) { filter(); }
             @Override public void removeUpdate(DocumentEvent e) { filter(); }
             @Override public void changedUpdate(DocumentEvent e) {}
-            private void filter() {
-                String filter = field.getText();
-                filterModel((DefaultListModel<String>)listaClientesCadastrados.getModel(), filter);
+            private void filter() {            	
+                filterModel(field.getText());
             }
         });
         return field;
 	}
 	
-	/**
-	 * Transforma a lista com o nome dos clientes em uma ListModel, para que seja possível implementar o recurso de busca.
-	 * @return ListModel<String>
-	 */
-	public ListModel<String> createDefaultListModel(){
+	private ListModel<String> createDefaultListModel(){
 		dados = new ControleCliente();
-		listaNomesClientes = dados.getNomeClientes();
-		DefaultListModel<String> model = new DefaultListModel<>();
-		for (String s : listaNomesClientes) {
-			model.addElement(s);
-		}
-		return model;
+		return getModel("");
 	}
 	
 	/**
@@ -73,21 +63,21 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 	 * @param model -> Lista com o nome dos clientes.
 	 * @param filter-> String que o usuário escreve no TextField de busca.
 	 */
-    public void filterModel(DefaultListModel<String> model, String filter) {
-		//dados = new ControleCliente();
-		listaNomesClientes = dados.getNomeClientes();
-        for (String s : listaNomesClientes) {
-            if (!s.startsWith(filter)) {
-                if (model.contains(s)) {
-                    model.removeElement(s);
-                }
-            } else {
-                if (!model.contains(s)) {
-                    model.addElement(s);
-                }
-            }
-        }
+    public void filterModel(String filter) {
+    	listaClientesCadastrados.setModel(getModel(filter)); 
+        listaClientesCadastrados.updateUI();
     }
+    
+	private ListModel<String> getModel(String filter) {
+		DefaultListModel<String> model = new DefaultListModel<>();
+		listaNomesClientes = dados.getNomeClientes();
+        for (String s : listaNomesClientes) {        	
+        	if("".equals(filter.trim()) || s.startsWith(filter)) {
+        		model.addElement(s);
+        	}        	
+        }
+        return model;
+	}
 	
     /**
      * Design dos elementos da Tela.

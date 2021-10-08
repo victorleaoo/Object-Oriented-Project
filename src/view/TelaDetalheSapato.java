@@ -93,6 +93,7 @@ public class TelaDetalheSapato implements ActionListener {
 			valorDescricao.setLineWrap(true);
 			valorDescricao.setEditable(true);
 			valorEstoque = new JTextField(String.valueOf(dados.getLista()[pos].getQntdEstoque()), 200);
+			valorEstoque.setEditable(false);
 			
 		} else { //Não preenche com dados
 

@@ -40,39 +40,33 @@ public class TelaVenda implements ActionListener, ListSelectionListener {
             @Override public void insertUpdate(DocumentEvent e) { filter(); }
             @Override public void removeUpdate(DocumentEvent e) { filter(); }
             @Override public void changedUpdate(DocumentEvent e) {}
-            private void filter() {
-                String filter = field.getText();
-                filterModel((DefaultListModel<String>)listaVendasCadastradas.getModel(), filter);
+            private void filter() {            	
+                filterModel(field.getText());
             }
         });
         return field;
 	}
 	
-	private ListModel<String> createDefaultListModel(){ // Transformando os nomes dos clientes em uma ListModel para buscar
-		dados = new ControleVenda();		
-		listaNomeVendas = dados.getNomeVendas();
-		DefaultListModel<String> model = new DefaultListModel<>();
-		for (String s : listaNomeVendas) {
-			model.addElement(s);
-		}
-		return model;
+	private ListModel<String> createDefaultListModel(){
+		dados = new ControleVenda();
+		return getModel("");
 	}
 	
-    public void filterModel(DefaultListModel<String> model, String filter) { // Sistema de Busca
-		dados = new ControleVenda();		
-		listaNomeVendas = dados.getNomeVendas();
-        for (String s : listaNomeVendas) {
-            if (!s.startsWith(filter)) {
-                if (model.contains(s)) {
-                    model.removeElement(s);
-                }
-            } else {
-                if (!model.contains(s)) {
-                    model.addElement(s);
-                }
-            }
-        }
+    public void filterModel(String filter) {
+    	listaVendasCadastradas.setModel(getModel(filter)); 
+    	listaVendasCadastradas.updateUI();
     }
+    
+	private ListModel<String> getModel(String filter) {
+		DefaultListModel<String> model = new DefaultListModel<>();
+		listaNomeVendas = dados.getNomeVendas();
+        for (String s : listaNomeVendas) {        	
+        	if("".equals(filter.trim()) || s.startsWith(filter)) {
+        		model.addElement(s);
+        	}        	
+        }
+        return model;
+	}
 	
 	public void mostrarVendas() {
 		
@@ -104,7 +98,7 @@ public class TelaVenda implements ActionListener, ListSelectionListener {
 		manterVenda.setVisible(false);
 		janela.getContentPane().add(BorderLayout.CENTER, manterVenda);
 		
-		janela.setSize(550, 400);
+		janela.setSize(710, 400);
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
 		
@@ -129,6 +123,7 @@ public class TelaVenda implements ActionListener, ListSelectionListener {
 		if(src == refresh) {
 			listaVendasCadastradas.setListData(dados.getNomeVendas());
 			listaVendasCadastradas.updateUI();
+			busca.setVisible(true);
 		}		
 	}
 	
