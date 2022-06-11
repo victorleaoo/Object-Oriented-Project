@@ -1,5 +1,7 @@
 # Project for the Object Oriented Programming subject
 
+The idea was to apply the basics concepts of Object Oriented Programming on a project for a sneakers/shoes store's management.
+
 The main language of this project is Java.
 
-The idea was apply the basics concepts of Object Oriented Programming on a project for a sneakers/shoes store.
+It has not only coding, but also UML diagrams.
